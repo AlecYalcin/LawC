@@ -26,7 +26,7 @@ como os advogados, assistente jurídico e correspondente jurídico.
 - E-mail: *Char*<br>
 - Telefone: *Char*<br>
 - OAB: *Char*<br>
-- Cargo: *Char*<br>
+- Cargo: *Int*<br>
 - Descrição Profissional: *Char*<br>
 
 # 2. Gestão de Serviços
