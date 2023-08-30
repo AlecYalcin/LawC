@@ -9,7 +9,7 @@ dos Advogados. Mas conta com uma série de Gestões para facilitar
 a manipulação dessa parte
 
 # 1. Gestão de Funcionários
-> Essa gestão serve para criar, alterar ou deletas funcionários
+> Essa gestão serve para criar, alterar ou deletar funcionários  
 como os advogados, assistente jurídico e correspondente jurídico.
 
 ## Funções
