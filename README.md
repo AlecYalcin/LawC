@@ -41,9 +41,9 @@ Serve para Criar, Alterar ou Deletar serviços.
 5. Listar Serviços
 
 ### objeto: Serviços
-> - Nome do Serviço<br>
-> - Descrição do Serviço<br>
-> - Valor Inicial<br>
+- Nome: *char*<br>
+- Descrição: *char*<br>
+- Valor: *float*<br>
 
 # 3. Gestão de Recursos
 > Essa gestão serve para manipular os recursos do sistema de advocacia. 
@@ -57,9 +57,9 @@ Tal como documentos, papéis, processos, etc... CRUD.
 5. Listar Serviços
 
 ### Objeto: Recurso
-> - Nome <br>
-> - Descrição <br>
-> - Disponibilidade <br>
+- Nome: *char*<br>
+- Descrição: *char*<br>
+- Disponibilidade: *char*<br>
 
 # 4. Gestão de Clientes
 > Serve para manipular a criação de clientes. Um CRUD comum com informações que são ligadas com recursos e histórico de serviços.
@@ -72,11 +72,11 @@ Tal como documentos, papéis, processos, etc... CRUD.
 5. Listar Clientes
 
 ### Objeto: Cliente
-> - Nome<br>
-> - Idade<br>
-> - CPF<br>
-> - E-mail<br>
-> - Telefone<br>
+- Nome: *char*<br>
+- Idade: *int*<br>
+- CPF: *char*<br>
+- E-mail: *char*<br>
+- Telefone: *char*<br>
 
 # 5. Agendamento de Serviços
 > Módulo principal, aqui todas as partes se juntam na gestão dos casos
@@ -93,9 +93,9 @@ altera eles, deleta eles, finaliza eles, designa, etc...
 7. Listar por Data
 
 ### Objeto: Agendamento
-> - Funcionários
-> - Clientes
-> - Recursos 
-> - Serviço
-> - Data do Serviço
-> - Valor Adicional
+- Funcionários: *Object Funcionario*<br>
+- Clientes: *Object Cliente*<br>
+- Recursos: *Object Recurso*<br>
+- Serviço: *Object Serviço*<br>
+- Data do Serviço: *Date*<br>
+- Valor Adicional: *float*<br>
