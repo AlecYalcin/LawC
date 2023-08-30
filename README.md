@@ -3,14 +3,14 @@ Projeto para o Componente DCT1106 da UFRN - CERES.
 
 LawC
 
-Programa que é um sistema de advocacia, tem como principal
-módulo o Agendamento e Calendário de consultas e disponibilidade
-dos Advogados. Mas conta com uma série de Gestões para facilitar
-a manipulação dessa parte
+Programa que é um sistema de advocacia, tem como principal  
+módulo o Agendamento e Calendário de consultas e disponibilidade  
+dos Advogados. Mas conta com uma série de Gestões para facilitar  
+a manipulação dessa parte.
 
 # 1. Gestão de Funcionários
 > Essa gestão serve para criar, alterar ou deletar funcionários  
-como os advogados, assistente jurídico e correspondente jurídico.
+como os advogados, assistente jurídico e correspondente jurídico.  
 
 ## Funções
 1. Criar Funcionários
@@ -20,14 +20,14 @@ como os advogados, assistente jurídico e correspondente jurídico.
 5. Listar Funcionários
 
 ### Objeto: Funcionário
-> - Nome<br>
-> - Idade<br>
-> - CPF<br>
-> - E-mail<br>
-> - Telefone<br>
-> - OAB? Id da OAB?<br>
-> - Cargo<br>
-> - Descrição Profissional<br>
+- Nome: *Char*<br>
+- Idade: *Int*<br>
+- CPF: *Char*<br>
+- E-mail: *Char*<br>
+- Telefone: *Char*<br>
+- OAB: *Char*<br>
+- Cargo: *Char*<br>
+- Descrição Profissional: *Char*<br>
 
 # 2. Gestão de Serviços
 > Essa gestão gera os serviços disponibilizados pela advocacia.
