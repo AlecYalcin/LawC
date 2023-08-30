@@ -8,11 +8,18 @@ módulo o Agendamento e Calendário de consultas e disponibilidade
 dos Advogados. Mas conta com uma série de Gestões para facilitar
 a manipulação dessa parte
 
-1. Gestão de Funcionários
+# 1. Gestão de Funcionários
 -> Essa gestão serve para criar, alterar ou deletas funcionários
 como os advogados, assistente jurídico e correspondente jurídico.
 
-> # Objeto: Funcionário
+## Funções:
+1. Criar Funcionários
+2. Alterar Funcionários
+3. Deletar Funcionários (Verificar se já está salvo.)
+4. Ler Funcionários
+5. Listar Funcionários
+
+> ### Objeto: Funcionário
 > 1.Nome<br>
 > 2.Idade<br>
 > 3.CPF<br>
@@ -22,28 +29,21 @@ como os advogados, assistente jurídico e correspondente jurídico.
 > 7.Cargo<br>
 > 8.Descrição Profissional<br>
 
-Utilidades:
-1. Criar Funcionários
-2. Alterar Funcionários
-3. Deletar Funcionários  (Verificar se já está salvo.)
-4. Ler Funcionários
-5. Listar Funcionários
-
 2. Gestão de Serviços
 -> Essa gestão gera os serviços disponibilizados pela advocacia.
 Serve para Criar, Alterar ou Deletar serviços. 
 
-Objeto: Serviços
--- Nome do Serviço
--- Descrição do Serviço
--- Valor Inicial
-
-Utilidades:
+## Funções:
 1. Criar Serviço
 2. Alterar Serviço
 3. Deletar Serviço (Verificar se já está salvo.)
 4. Ler Serviços
 5. Listar Serviços
+
+> ### objeto: Serviços
+> 1.Nome do Serviço<br>
+> 2.Descrição do Serviço<br>
+> 3.Valor Inicial<br>
 
 3. Gestão de Recursos
 -> Essa gestão serve para manipular os recursos do sistema de advocacia. 
