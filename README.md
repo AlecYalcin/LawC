@@ -12,15 +12,15 @@ a manipulação dessa parte
 -> Essa gestão serve para criar, alterar ou deletas funcionários
 como os advogados, assistente jurídico e correspondente jurídico.
 
-Objeto: Funcionário
--- Nome
--- Idade
--- CPF
--- E-mail
--- Telefone
--- OAB? Id da OAB?
--- Cargo
--- Descrição Profissional
+> Objeto: Funcionário
+> 1.Nome
+> 2.Idade
+> 3.CPF
+> 4.E-mail
+> 5.Telefone
+> 6.OAB? Id da OAB?
+> 7.Cargo
+> 8.Descrição Profissional
 
 Utilidades:
 1. Criar Funcionários
