@@ -13,14 +13,14 @@ a manipulação dessa parte
 como os advogados, assistente jurídico e correspondente jurídico.
 
 > Objeto: Funcionário
-> 1.Nome
-> 2.Idade
-> 3.CPF
-> 4.E-mail
-> 5.Telefone
-> 6.OAB? Id da OAB?
-> 7.Cargo
-> 8.Descrição Profissional
+> 1.Nome<br>
+> 2.Idade<br>
+> 3.CPF<br>
+> 4.E-mail<br>
+> 5.Telefone<br>
+> 6.OAB? Id da OAB?<br>
+> 7.Cargo<br>
+> 8.Descrição Profissional<br>
 
 Utilidades:
 1. Criar Funcionários
