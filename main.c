@@ -313,11 +313,11 @@ void menu_services(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                       Modulo de Servicos                      |\n");
     printf("|                                                               |\n");
-    printf("|                     1. Criar Recurso                          |\n");
-    printf("|                     2. Pesquisar Recurso                      |\n");
-    printf("|                     3. Alterar Recurso                        |\n");
-    printf("|                     4. Excluir Recurso                        |\n");
-    printf("|                     5. Listar Recursos                        |\n");
+    printf("|                     1. Criar Servico                          |\n");
+    printf("|                     2. Pesquisar Servico                      |\n");
+    printf("|                     3. Alterar Servico                        |\n");
+    printf("|                     4. Excluir Servico                        |\n");
+    printf("|                     5. Listar Servicos                        |\n");
     printf("|                     0. Voltar ao Menu                         |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
@@ -372,7 +372,7 @@ void services_r(void) {
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Pesquisa               |\n");
+    printf("|                 Modulo de Servicos - Pesquisa                 |\n");
     printf("|                                                               |\n");
     printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
@@ -384,7 +384,7 @@ void services_u(void) {
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Alterar                |\n");
+    printf("|                 Modulo de Servicos - Alterar                  |\n");
     printf("|                                                               |\n");
     printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
@@ -396,7 +396,7 @@ void services_d(void) {
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Excluir                |\n");
+    printf("|                 Modulo de Servicos - Excluir                  |\n");
     printf("|                                                               |\n");
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
@@ -408,7 +408,7 @@ void services_list(void) {
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                Modulo de Funcionarios - Alterar               |\n");
+    printf("|                  Modulo de Servicos - Listar                  |\n");
     printf("|                                                               |\n");
     printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
@@ -418,25 +418,113 @@ void services_list(void) {
 // MODULO 3 - Funções de Recursos
 
 void menu_resources(void) {
+    system("clear||cls");
 
+    int option;
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                       Modulo de Recursos                      |\n");
+    printf("|                                                               |\n");
+    printf("|                     1. Criar Recurso                          |\n");
+    printf("|                     2. Pesquisar Recurso                      |\n");
+    printf("|                     3. Alterar Recurso                        |\n");
+    printf("|                     4. Excluir Recurso                        |\n");
+    printf("|                     5. Listar Recursos                        |\n");
+    printf("|                     0. Voltar ao Menu                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &option);
+
+    switch(option) {
+        case 0:
+        break;
+
+        case 1:
+        resources_c();
+        break;
+
+        case 2:
+        resources_r();
+        break;
+
+        case 3:
+        resources_u();
+        break;
+
+        case 4:
+        resources_d();
+        break;
+
+        case 5:
+        resources_list();
+        break;
+
+        default:
+        printf("Valor Invalido!\n");
+        exe_breaker();
+    }
 }
 
 void resources_c(void) {
-
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                  Modulo de Recursos - Criacao                 |\n");
+    printf("|                                                               |\n");
+    printf("|                     Nome:                                     |\n");
+    printf("|                     Descricao:                                |\n");
+    printf("|                     Disponibilidade:                          |\n");
+    printf("-----------------------------------------------------------------\n");
+    exe_breaker();
 }
 
 void resources_r(void) {
-
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                 Modulo de Recursos - Pesquisa                 |\n");
+    printf("|                                                               |\n");
+    printf("|                 Filtro:(Nome, Disponibilidade)                |\n");
+    printf("-----------------------------------------------------------------\n");
+    exe_breaker();
 }
 
 void resources_u(void) {
-
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                 Modulo de Recursos - Alterar                  |\n");
+    printf("|                                                               |\n");
+    printf("|                         Filtro:(Nome)                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    exe_breaker();
 }
 
 void resources_d(void) {
-
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                 Modulo de Recursos - Excluir                  |\n");
+    printf("|                                                               |\n");
+    printf("|                         Filtro:(Nome)                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    exe_breaker();
 }
 
 void resources_list(void) {
-
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                 Modulo de Recursos - Listar                   |\n");
+    printf("|                                                               |\n");
+    printf("|                         Filtro:(Nome)                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    exe_breaker();
 }
