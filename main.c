@@ -14,6 +14,13 @@ void employer_u(void);
 void employer_d(void);
 void employer_list(void);
 
+void menu_services(void);
+void services_c(void);
+void services_r(void);
+void services_u(void);
+void services_d(void);
+void services_list(void);
+
 /*
     Função feita somente para o "Digite ENTER" 
     Origem: https://github.com/FlaviusGorgonio/LinguaSolta/blob/main/ls.c
@@ -161,6 +168,8 @@ void menu_devs(void) {
     exe_breaker();
 }
 
+// MODULO 1 - Funções de Funcionário
+
 void menu_employer(void) {
     system("clear||cls");
 
@@ -277,4 +286,91 @@ void employer_list(void) {
     printf("|       Filtro:(CPF, Nome, ID, Cargo)       |\n");
     printf("---------------------------------------------\n");
     exe_breaker();
+}
+
+// MODULO 2 - Funções de Serviços
+
+void menu_services(void) {
+    system("clear||cls");
+
+    int option;
+    printf("---------------------------------------------\n");
+    printf("|                                           |\n");
+    printf("|                   Law-C                   |\n");
+    printf("|           Sistema de Advocacia            |\n");
+    printf("|            Modulo de Servicos             |\n");
+    printf("|                                           |\n");
+    printf("|           1. Criar Recurso                |\n");
+    printf("|           2. Pesquisar Recurso            |\n");
+    printf("|           3. Alterar Recurso              |\n");
+    printf("|           4. Excluir Recurso              |\n");
+    printf("|           5. Listar Recursos              |\n");
+    printf("|           0. Voltar ao Menu               |\n");
+    printf("---------------------------------------------\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &option);
+
+    switch(option) {
+        case 0:
+        break;
+
+        case 1:
+        services_c();
+        break;
+
+        case 2:
+        services_r();
+        break;
+
+        case 3:
+        services_u();
+        break;
+
+        case 4:
+        services_d();
+        break;
+
+        case 5:
+        services_list();
+        break;
+
+        default:
+        printf("Valor Invalido!\n");
+        exe_breaker();
+    }
+}
+
+void services_c(void) {
+    printf("---------------------------------------------\n");
+    printf("|                                           |\n");
+    printf("|                   Law-C                   |\n");
+    printf("|           Sistema de Advocacia            |\n");
+    printf("|       Modulo de Servicos - Criacao        |\n");
+    printf("|                                           |\n");
+    printf("|           Nome:                           |\n");
+    printf("|           Idade:                          |\n");
+    printf("|           CPF:                            |\n");
+    printf("|           E-mail:                         |\n");
+    printf("|           Telefone:                       |\n");
+    printf("|           ID da OAB (Opcional):           |\n");
+    printf("|           Cargo:                          |\n");
+    printf("|           Descricao Profissional:         |\n");
+    printf("---------------------------------------------\n");
+    exe_breaker();
+}
+
+void services_r(void) {
+
+}
+
+void services_u(void) {
+
+}
+
+void services_d(void) {
+
+}
+
+void services_list(void) {
+
 }
