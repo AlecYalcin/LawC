@@ -34,7 +34,7 @@ void resources_list(void);
 */ 
 void exe_breaker(void) {
     char aux;
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    printf(">>> Tecle <ENTER> para continuar...\n");
     aux = getchar();
 }
 
@@ -122,12 +122,19 @@ void menu_system(void) {
 
         case 1:
         menu_employer();
+        break;
 
         case 2:
         menu_services();
+        break;
+
+        case 3:
+        menu_resources();
+        break;
 
         default:
         printf("Valor Invalido!\n");
+        break;
     }
 }
 
@@ -230,6 +237,7 @@ void menu_employer(void) {
         default:
         printf("Valor Invalido!\n");
         exe_breaker();
+        break;
     }
     
 }
@@ -350,6 +358,7 @@ void menu_services(void) {
         default:
         printf("Valor Invalido!\n");
         exe_breaker();
+        break;
     }
 }
 
@@ -464,6 +473,7 @@ void menu_resources(void) {
         default:
         printf("Valor Invalido!\n");
         exe_breaker();
+        break;
     }
 }
 
