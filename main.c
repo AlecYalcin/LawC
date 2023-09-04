@@ -55,6 +55,11 @@ void menu_main(void) {
     printf("|                                           |\n");
     printf("|                   Law-C                   |\n");
     printf("|           Sistema de Advocacia            |\n");
+    printf("| ,.    .                             ,                   ,-.  |\n");
+    printf("| /  \   |                     o       |                  /    |\n");
+    printf("| |--| ,-| . , ,-. ,-. ,-: ,-. . ,-:   |    ,-: , , , --- |    |\n");
+    printf("| |  | | | |/  | | |   | | |   | | |   |    | | |/|/      \    |\n");
+    printf("| '  ' `-' '   `-' `-' `-` `-' ' `-`   `--' `-` ' '        `-' |\n");                                      
     printf("|                                           |\n");
     printf("|        1. Sistema Principal               |\n");
     printf("|        2. Sobre o Projeto                 |\n");
