@@ -1,32 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+// Created Modules
+#include "modules\employers.h"
+#include "modules\resources.h"
+#include "modules\services.h"
 
-// Declaração de Funções
+// Main Menu Functions
 void menu_main(void);
 void menu_system(void);
 void menu_project(void);
 void menu_devs(void);
 
+// Modules Menu Functions
 void menu_employer(void);
-void employer_c(void);
-void employer_r(void);
-void employer_u(void);
-void employer_d(void);
-void employer_list(void);
-
 void menu_services(void);
-void services_c(void);
-void services_r(void);
-void services_u(void);
-void services_d(void);
-void services_list(void);
-
 void menu_resources(void);
-void resources_c(void);
-void resources_r(void);
-void resources_u(void);
-void resources_d(void);
-void resources_list(void);
 
 /*
     Função feita somente para o "Digite ENTER" 
@@ -34,7 +22,7 @@ void resources_list(void);
 */ 
 void exe_breaker(void) {
     char aux;
-    printf(">>> Tecle <ENTER> para continuar...\n");
+    printf("!!! Tecle <ENTER> para continuar...\n");
     aux = getchar();
 }
 
@@ -75,6 +63,7 @@ void menu_main(void) {
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
+    getchar();
 
     switch(option) {
         case 0:
@@ -115,9 +104,11 @@ void menu_system(void) {
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
+    getchar();
 
     switch(option) {
         case 0:
+        menu_main();
         break;
 
         case 1:
@@ -209,9 +200,11 @@ void menu_employer(void) {
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
+    getchar();
 
     switch(option) {
         case 0:
+        menu_system();
         break;
 
         case 1:
@@ -238,193 +231,8 @@ void menu_employer(void) {
         printf("Valor Invalido!\n");
         exe_breaker();
         break;
-    }
-    
+    }   
 }
-
-void employer_c(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Criacao                |\n");
-    printf("|                                                               |\n");
-    printf("|                     Nome:                                     |\n");
-    printf("|                     Idade:                                    |\n");
-    printf("|                     CPF:                                      |\n");
-    printf("|                     E-mail:                                   |\n");
-    printf("|                     Telefone:                                 |\n");
-    printf("|                     ID da OAB (Opcional):                     |\n");
-    printf("|                     Cargo:                                    |\n");
-    printf("|                     Descricao Profissional:                   |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void employer_r(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Pesquisa               |\n");
-    printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void employer_u(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Alterar                |\n");
-    printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void employer_d(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Funcionarios - Excluir                |\n");
-    printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void employer_list(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                Modulo de Funcionarios - Listar                |\n");
-    printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-// MODULO 2 - Funções de Serviços
-
-void menu_services(void) {
-    system("clear||cls");
-
-    int option;
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                       Modulo de Servicos                      |\n");
-    printf("|                                                               |\n");
-    printf("|                     1. Criar Servico                          |\n");
-    printf("|                     2. Pesquisar Servico                      |\n");
-    printf("|                     3. Alterar Servico                        |\n");
-    printf("|                     4. Excluir Servico                        |\n");
-    printf("|                     5. Listar Servicos                        |\n");
-    printf("|                     0. Voltar ao Menu                         |\n");
-    printf("-----------------------------------------------------------------\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &option);
-
-    switch(option) {
-        case 0:
-        break;
-
-        case 1:
-        services_c();
-        break;
-
-        case 2:
-        services_r();
-        break;
-
-        case 3:
-        services_u();
-        break;
-
-        case 4:
-        services_d();
-        break;
-
-        case 5:
-        services_list();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        exe_breaker();
-        break;
-    }
-}
-
-void services_c(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                  Modulo de Servicos - Criacao                 |\n");
-    printf("|                                                               |\n");
-    printf("|                     Nome:                                     |\n");
-    printf("|                     Descricao:                                |\n");
-    printf("|                     Valor:                                    |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void services_r(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Servicos - Pesquisa                 |\n");
-    printf("|                                                               |\n");
-    printf("|                     Filtro:(Nome, Valor)                      |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void services_u(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Servicos - Alterar                  |\n");
-    printf("|                                                               |\n");
-    printf("|                     Filtro:(Nome, Valor)                      |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void services_d(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Servicos - Excluir                  |\n");
-    printf("|                                                               |\n");
-    printf("|                         Filtro:(Nome)                         |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-void services_list(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                  Modulo de Servicos - Listar                  |\n");
-    printf("|                                                               |\n");
-    printf("|                     Filtro:(Nome, Valor)                      |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
-
-// MODULO 3 - Funções de Recursos
 
 void menu_resources(void) {
     system("clear||cls");
@@ -448,6 +256,7 @@ void menu_resources(void) {
 
     switch(option) {
         case 0:
+        menu_system();
         break;
 
         case 1:
@@ -472,69 +281,57 @@ void menu_resources(void) {
 
         default:
         printf("Valor Invalido!\n");
-        exe_breaker();
         break;
     }
 }
 
-void resources_c(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                  Modulo de Recursos - Criacao                 |\n");
-    printf("|                                                               |\n");
-    printf("|                     Nome:                                     |\n");
-    printf("|                     Descricao:                                |\n");
-    printf("|                     Disponibilidade:                          |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
+void menu_services(void) {
+    system("clear||cls");
 
-void resources_r(void) {
+    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Recursos - Pesquisa                 |\n");
+    printf("|                       Modulo de Servicos                      |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(Nome, Disponibilidade)                |\n");
+    printf("|                     1. Criar Servico                          |\n");
+    printf("|                     2. Pesquisar Servico                      |\n");
+    printf("|                     3. Alterar Servico                        |\n");
+    printf("|                     4. Excluir Servico                        |\n");
+    printf("|                     5. Listar Servicos                        |\n");
+    printf("|                     0. Voltar ao Menu                         |\n");
     printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
+    printf("Escolha uma opcao: ");
+    scanf("%d", &option);
 
-void resources_u(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Recursos - Alterar                  |\n");
-    printf("|                                                               |\n");
-    printf("|                         Filtro:(Nome)                         |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
+    switch(option) {
+        case 0:
+        menu_system();
+        break;
 
-void resources_d(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Recursos - Excluir                  |\n");
-    printf("|                                                               |\n");
-    printf("|                         Filtro:(Nome)                         |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
-}
+        case 1:
+        services_c();
+        break;
 
-void resources_list(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|                 Modulo de Recursos - Listar                   |\n");
-    printf("|                                                               |\n");
-    printf("|                         Filtro:(Nome)                         |\n");
-    printf("-----------------------------------------------------------------\n");
-    exe_breaker();
+        case 2:
+        services_r();
+        break;
+
+        case 3:
+        services_u();
+        break;
+
+        case 4:
+        services_d();
+        break;
+
+        case 5:
+        services_list();
+        break;
+
+        default:
+        printf("Valor Invalido!\n");
+        break;
+    }
 }
