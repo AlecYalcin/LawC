@@ -4,6 +4,8 @@
 #include "modules\employers.h"
 #include "modules\resources.h"
 #include "modules\services.h"
+#include "modules\clients.h"
+#include "modules\schedule.h"
 
 // Main Menu Functions
 void menu_main(void);
@@ -15,6 +17,8 @@ void menu_devs(void);
 void menu_employer(void);
 void menu_services(void);
 void menu_resources(void);
+void menu_clients(void);
+void menu_schedule(void);
 
 /*
     Função feita somente para o "Digite ENTER" 
@@ -121,6 +125,14 @@ void menu_system(void) {
 
         case 3:
         menu_resources();
+        break;
+
+        case 4:
+        menu_clients();
+        break;
+
+        case 5:
+        menu_schedule();
         break;
 
         default:
@@ -328,6 +340,118 @@ void menu_services(void) {
 
         case 5:
         services_list();
+        break;
+
+        default:
+        printf("Valor Invalido!\n");
+        break;
+    }
+}
+
+void menu_clients(void) {
+    system("clear||cls");
+
+    int option;
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                      Modulo de Clientes                       |\n");
+    printf("|                                                               |\n");
+    printf("|                     1. Criar Cliente                          |\n");
+    printf("|                     2. Pesquisar Cliente                      |\n");
+    printf("|                     3. Alterar Cliente                        |\n");
+    printf("|                     4. Excluir Cliente                        |\n");
+    printf("|                     5. Listar Clientes                        |\n");
+    printf("|                     0. Voltar ao Menu                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &option);
+
+    switch(option) {
+        case 0:
+        menu_system();
+        break;
+
+        case 1:
+        clients_c();
+        break;
+
+        case 2:
+        clients_r();
+        break;
+
+        case 3:
+        clients_u();
+        break;
+
+        case 4:
+        clients_d();
+        break;
+
+        case 5:
+        clients_list();
+        break;
+
+        default:
+        printf("Valor Invalido!\n");
+        break;
+    }
+}
+
+void menu_schedule(void) {
+    system("clear||cls");
+
+    int option;
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                      Modulo de Agendamentos                   |\n");
+    printf("|                                                               |\n");
+    printf("|                     1. Criar Agendamento                      |\n");
+    printf("|                     2. Pesquisar Agendamento                  |\n");
+    printf("|                     3. Alterar Agendamento                    |\n");
+    printf("|                     4. Excluir Agendamento                    |\n");
+    printf("|                     5. Finalizar Agendamentos                 |\n");
+    printf("|                     6. Listar Agendamentos                    |\n");
+    printf("|                     7. Calendario de Agendamentos             |\n");
+    printf("|                     0. Voltar ao Menu                         |\n");
+    printf("-----------------------------------------------------------------\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &option);
+
+    switch(option) {
+        case 0:
+        menu_system();
+        break;
+
+        case 1:
+        schedule_c();
+        break;
+
+        case 2:
+        schedule_r();
+        break;
+
+        case 3:
+        schedule_u();
+        break;
+
+        case 4:
+        schedule_d();
+        break;
+
+        case 5:
+        schedule_end();
+        break;
+
+        case 6:
+        schedule_list();
+        break;
+
+        case 7:
+        schedule_data();
         break;
 
         default:

@@ -4,5 +4,6 @@
         "employers.h": "c",
         "services.h": "c",
         "resources.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

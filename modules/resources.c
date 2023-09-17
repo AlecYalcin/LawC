@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void resources_c(void) {
     printf("-----------------------------------------------------------------\n");
