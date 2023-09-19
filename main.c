@@ -165,6 +165,7 @@ void menu_project(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     exe_breaker();
+    menu_main();
 }
 
 void menu_devs(void) {
@@ -189,6 +190,7 @@ void menu_devs(void) {
     printf("|                     Git:     alecyalcin                       |\n");
     printf("-----------------------------------------------------------------\n");
     exe_breaker();
+    menu_main();
 }
 
 // MODULO 1 - Funções de Funcionário
@@ -243,7 +245,7 @@ void menu_employer(void) {
         printf("Valor Invalido!\n");
         exe_breaker();
         break;
-    }   
+    }
 }
 
 void menu_resources(void) {
