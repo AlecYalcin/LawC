@@ -1,5 +1,6 @@
-all: employers.o resources.o services.o clients.o schedule.o
-	gcc -o main employers.o resources.o services.o clients.o schedule.o main.c
+all: employers.o resources.o services.o clients.o schedule.o utils.o
+	gcc -o main employers.o resources.o services.o clients.o schedule.o utils.o main.c
+	rm -rf *.o
 
 employers.o: 
 	gcc -c modules/employers.c
@@ -15,6 +16,9 @@ clients.o:
 
 schedule.o: 
 	gcc -c modules/schedule.c
+
+utils.o: 
+	gcc -c modules/utils.c
 
 clean:
 	rm -rf *.o main

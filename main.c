@@ -53,7 +53,7 @@ void menu_main(void) {
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|                     Sistema de Advôcacia                      |\n");
     printf("|  ,.    .                             ,                   ,-.  |\n");
     printf("| /  \\   |                     o       |                  /     |\n");
     printf("| |--| ,-| . , ,-. ,-. ,-: ,-. . ,-:   |    ,-: , , , --- |     |\n");
