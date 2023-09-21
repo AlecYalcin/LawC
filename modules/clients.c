@@ -13,7 +13,6 @@ void clients_c(void)  {
     printf("|                  Modulo de Clientes - Criacao                 |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
-    printf(">  Nome: \t");
     verify_name(name);
 
     printf(">  Idade: \t");
