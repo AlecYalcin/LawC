@@ -13,7 +13,9 @@ void clients_c(void)  {
     printf("|                  Modulo de Clientes - Criacao                 |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
-    verify_name(name);
+
+    // Função que Pega e Verifica o Nome
+    get_name(name);
 
     printf(">  Idade: \t");
     scanf(" %d", &age);

@@ -5,7 +5,8 @@
         "services.h": "c",
         "resources.h": "c",
         "typeinfo": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "ctype.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

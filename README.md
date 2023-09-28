@@ -21,7 +21,7 @@ como os advogados, assistente jurídico e correspondente jurídico.
 
 ### Objeto: Funcionário
 - Nome: *Char*<br>
-- Idade: *Int*<br>
+- Data de Nascimento: *Int*<br>
 - CPF: *Char*<br>
 - E-mail: *Char*<br>
 - Telefone: *Char*<br>
@@ -73,7 +73,7 @@ Tal como documentos, papéis, processos, etc... CRUD.
 
 ### Objeto: Cliente
 - Nome: *char*<br>
-- Idade: *int*<br>
+- Data de Nascimento: *int*<br>
 - CPF: *char*<br>
 - E-mail: *char*<br>
 - Telefone: *char*<br>
