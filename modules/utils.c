@@ -63,3 +63,8 @@ void get_desc(char* _desc) {
     printf("> Descricao...............: ");
     gets(_desc);
 }
+
+void get_available_at(char* _available_at) {
+    printf("> Disponivel Em...........: ");
+    gets(_available_at);
+}

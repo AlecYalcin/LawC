@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include "utils.h"
 
 void resources_c(void) {
-    char name[30]; char desc[]
+    char name[30]; char desc[200]; char available_at[200];
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -12,8 +13,14 @@ void resources_c(void) {
     printf("|                     Descricao:                                |\n");
     printf("|                     Disponibilidade:                          |\n");
     printf("-----------------------------------------------------------------\n");
-
+    // Coletar e Verificar o NOME DO RECURSO;
+    get_name(name);
+    // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
+    get_desc(desc);
+    // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
+    get_available_at(available_at);
     printf("-----------------------------------------------------------------\n");
+    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", name, desc, available_at);
 }
 
 void resources_r(void) {

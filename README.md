@@ -59,7 +59,7 @@ Tal como documentos, papéis, processos, etc... CRUD.
 ### Objeto: Recurso
 - Nome: *char*<br>
 - Descrição: *char*<br>
-- Disponibilidade: *char*<br>
+- Disponibilidade: *char* (Onde encontrar o documento, o dono, onde pertence)<br>
 
 # 4. Gestão de Clientes
 > Serve para manipular a criação de clientes. Um CRUD comum com informações que são ligadas com recursos e histórico de serviços.
