@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include "utils.h"
 
-
 void clients_c(void)  {
-    char name[30]; int  age; int cpf; char email[30]; int tel;
+    char name[30]; char birth_date[11]; double cpf; char email[30]; double tel;
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -14,26 +13,19 @@ void clients_c(void)  {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
 
-    // Função que Pega e Verifica o Nome
+    // Coletar e Verificar nome;
     get_name(name);
-
-    printf(">  Idade: \t");
-    scanf(" %d", &age);
-    getchar();
-
-    printf(">  CPF (Somente Numeros): \t");
-    scanf(" %d", &cpf);
-    getchar();
-
-    printf(">  E-mail: \t");
-    scanf(" %s", email);
-
-    printf(">  Telefone (Somente Números): \t");
-    scanf(" %d", &tel);
-    getchar();
+    // Coletar e Verificar data de nascimento.
+    get_birth(birth_date);
+    // Coletar e Verificar CPF;
+    get_cpf(&cpf);
+    // Coletar e Verificar o Email;
+    get_email(email);
+    // Coletar e Verificar o Contato;
+    get_tel(&tel);
 
     printf("-----------------------------------------------------------------\n");
-    printf("Cliente: \n-> Nome: %s,\n-> Idade: %d,\n-> CPF: %d,\n-> E-mail: %s\n-> Telefone: %d\n", name, age, cpf, email, tel);
+    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %.lf,\n-> E-mail: %s\n-> Telefone: %.lf\n", name, birth_date, cpf, email, tel);
 }
 
 void clients_r(void)  {

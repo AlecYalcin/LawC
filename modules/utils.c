@@ -1,12 +1,14 @@
-#include <stdio.h>
+#include <stdio.h> 
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 void get_name(char* _name){
-    int isValid = 0; int i;
+    int isValid = 0; int i; fflush(stdin);
 
     do {
-        printf(">  Nome: ");
+        printf("> Nome....................: ");
         gets(_name);
 
         for (i = 0; i < strlen(_name); i++) {
@@ -27,15 +29,22 @@ void get_name(char* _name){
     } while (!isValid);
 }
 
-char* verify_email(char* email){
-
+void get_birth(char* _birth_date) {  
+    printf("> Idade (DD/MM/AAAA)......: ");
+    gets(_birth_date);
 }
 
-int verify_cpf(int cpf){
-
+void get_cpf(double* _cpf) {
+    printf("> CPF.....................: ");
+    scanf("%lf", _cpf); getchar();
 }
 
-int verify_tel(int tel){
-
+void get_email(char* _email) {
+    printf("> E-mail..................: ");
+    gets(_email);
 }
 
+void get_tel(double* _tel) {
+    printf("> Telefone................: ");
+    scanf("%lf", _tel); getchar();
+}

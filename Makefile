@@ -1,5 +1,6 @@
 all: employers.o resources.o services.o clients.o schedule.o utils.o
 	gcc -o main employers.o resources.o services.o clients.o schedule.o utils.o main.c
+	del *.o
 
 employers.o: 
 	gcc -c modules/employers.c
@@ -20,7 +21,7 @@ utils.o:
 	gcc -c modules/utils.c
 
 clean:
-	rm -rf *.o
+	rm -rf *.o 
 
 cleanWin:
 	del *.o

@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+void get_name(char* _name);
+void get_birth(char* _birth_date);
+void get_cpf(double* _cpf);
+void get_email(char* _email);
+void get_tel(double* _tel);
 
-void get_name(char* name);
-char* verify_email(char* email);
-int verify_cpf(int cpf);
-int verify_tel(int tel);
+// char* verify_email(char* email);
+
+// int verify_tel(int tel);
