@@ -68,3 +68,8 @@ void get_available_at(char* _available_at) {
     printf("> Disponivel Em...........: ");
     gets(_available_at);
 }
+
+void get_value(float* _value) {
+    printf("> Valor................: R$");
+    scanf("%f", _value); getchar();
+}

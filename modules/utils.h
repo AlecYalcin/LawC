@@ -7,3 +7,4 @@ void get_oab(char* _oab);
 void get_role(char* _role);
 void get_desc(char* _desc);
 void get_available_at(char* _available_at);
+void get_value(float* _value);

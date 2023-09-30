@@ -9,9 +9,6 @@ void resources_c(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                  Modulo de Recursos - Criacao                 |\n");
     printf("|                                                               |\n");
-    printf("|                     Nome:                                     |\n");
-    printf("|                     Descricao:                                |\n");
-    printf("|                     Disponibilidade:                          |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO RECURSO;
     get_name(name);
