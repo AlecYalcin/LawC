@@ -48,3 +48,18 @@ void get_tel(double* _tel) {
     printf("> Telefone................: ");
     scanf("%lf", _tel); getchar();
 }
+
+void get_oab(char* _oab) {
+    printf("> OAB.....................: ");
+    gets(_oab);
+}
+
+void get_role(char* _role) {
+    printf("> Cargo...................: ");
+    gets(_role);
+}
+
+void get_desc(char* _desc) {
+    printf("> Descricao...............: ");
+    gets(_desc);
+}

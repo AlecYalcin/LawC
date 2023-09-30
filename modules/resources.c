@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void resources_c(void) {
+    char name[30]; char desc[]
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -10,6 +11,8 @@ void resources_c(void) {
     printf("|                     Nome:                                     |\n");
     printf("|                     Descricao:                                |\n");
     printf("|                     Disponibilidade:                          |\n");
+    printf("-----------------------------------------------------------------\n");
+
     printf("-----------------------------------------------------------------\n");
 }
 

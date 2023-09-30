@@ -21,12 +21,12 @@ como os advogados, assistente jurídico e correspondente jurídico.
 
 ### Objeto: Funcionário
 - Nome: *Char*<br>
-- Data de Nascimento: *Int*<br>
+- Data de Nascimento: *Char*<br>
 - CPF: *Char*<br>
 - E-mail: *Char*<br>
 - Telefone: *Char*<br>
 - OAB: *Char*<br>
-- Cargo: *Int*<br>
+- Cargo: *Char*<br>
 - Descrição Profissional: *Char*<br>
 
 # 2. Gestão de Serviços
@@ -50,11 +50,11 @@ Serve para Criar, Alterar ou Deletar serviços.
 Tal como documentos, papéis, processos, etc... CRUD.
 
 ## Funções
-1. Criar Serviço
-2. Alterar Serviço
-3. Deletar Serviço (Verificar se já está salvo.)
-4. Ler Serviços
-5. Listar Serviços
+1. Criar Recurso
+2. Alterar Recurso
+3. Deletar Recurso (Verificar se já está salvo.)
+4. Ler Recursos
+5. Listar Recursos
 
 ### Objeto: Recurso
 - Nome: *char*<br>
