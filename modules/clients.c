@@ -3,7 +3,7 @@
 #include "utils.h"
 
 void clients_c(void)  {
-    char name[30]; char birth_date[11]; double cpf; char email[30]; double tel;
+    char name[30]; char birth_date[12]; char cpf[12]; char email[30]; double tel;
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -18,14 +18,15 @@ void clients_c(void)  {
     // Coletar e Verificar data de nascimento.
     get_birth(birth_date);
     // Coletar e Verificar CPF;
-    get_cpf(&cpf);
+    get_cpf(cpf);
+    printf("\nData de Aniversario: %s", birth_date);
     // Coletar e Verificar o Email;
     get_email(email);
     // Coletar e Verificar o Contato;
     get_tel(&tel);
 
     printf("-----------------------------------------------------------------\n");
-    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %.lf,\n-> E-mail: %s\n-> Telefone: %.lf\n", name, birth_date, cpf, email, tel);
+    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %.lf\n", name, birth_date, cpf, email, tel);
 }
 
 void clients_r(void)  {

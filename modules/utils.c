@@ -5,7 +5,7 @@
 #include <time.h>
 
 void get_name(char* _name){
-    int isValid = 0; int i; fflush(stdin);
+    int isValid = 1; int i; fflush(stdin);
 
     do {
         printf("> Nome....................: ");
@@ -22,15 +22,13 @@ void get_name(char* _name){
                 isValid = 0;
 
                 break;
-            } else {
-                isValid = 1;
             }
         }
     } while (!isValid);
 }
 
 void get_birth(char* _birth_date) {
-    int isValid = 0; int i;
+    int isValid = 1; int i; fflush(stdin);
 
     do {
         printf("> Idade (DD/MM/AAAA)......: ");
@@ -54,8 +52,6 @@ void get_birth(char* _birth_date) {
                     isValid = 0;
 
                     break;
-                } else {
-                    isValid = 1;
                 }
             } else if (!is_Number) {
                 printf("\nSua data de aniversario e invalida. Tente Novamente.\n");
@@ -67,9 +63,21 @@ void get_birth(char* _birth_date) {
     } while (!isValid);
 }
 
-void get_cpf(double* _cpf) {
-    printf("> CPF.....................: ");
-    scanf("%lf", _cpf); getchar();
+void get_cpf(char* _cpf) {
+    int isValid = 1; int i; fflush(stdin);
+
+    do {
+        printf("> CPF (Somente Numeros)...: ");
+        gets(_cpf);
+
+        for (i = 0; i < strlen(_cpf); i++) {
+            if (!isdigit(_cpf[i])) {
+                printf("\nVoce digitou algum caractere que nao e um numero. Tente novamente.\n");
+                isValid = 0;
+                break;
+            }
+        }
+    } while(!isValid);
 }
 
 void get_email(char* _email) {
