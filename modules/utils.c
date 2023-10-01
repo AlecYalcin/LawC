@@ -29,9 +29,42 @@ void get_name(char* _name){
     } while (!isValid);
 }
 
-void get_birth(char* _birth_date) {  
-    printf("> Idade (DD/MM/AAAA)......: ");
-    gets(_birth_date);
+void get_birth(char* _birth_date) {
+    int isValid = 0; int i;
+
+    do {
+        printf("> Idade (DD/MM/AAAA)......: ");
+        gets(_birth_date);
+
+        // Verificar se tem 10 caracteres
+        if (strlen(_birth_date) < 10) {
+            printf("\nSua data de aniversario nao contem caracteres o suficiente.\n");
+            continue;
+        }
+
+        // Verificar se contem o padrão valido
+        for (i = 0; i < strlen(_birth_date); i++) {
+            char letter = _birth_date[i];
+            // Verificadores de Numero
+            int is_Number = isdigit(letter);
+            // Verificar formatação do slash.
+            if(i == 2 || i == 5) {
+                if (letter != '/') {
+                    printf("\nSua data de aniversario e invalida. Tente Novamente.\n");
+                    isValid = 0;
+
+                    break;
+                } else {
+                    isValid = 1;
+                }
+            } else if (!is_Number) {
+                printf("\nSua data de aniversario e invalida. Tente Novamente.\n");
+                isValid = 0;
+
+                break;
+            }
+        }
+    } while (!isValid);
 }
 
 void get_cpf(double* _cpf) {
