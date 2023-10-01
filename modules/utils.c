@@ -37,7 +37,10 @@ void get_birth(char* _birth_date) {
         // Verificar se tem 10 caracteres
         if (strlen(_birth_date) < 10) {
             printf("\nSua data de aniversario nao contem caracteres o suficiente.\n");
+            isValid = 0;
             continue;
+        }  else {
+            isValid = 1;
         }
 
         // Verificar se contem o padrão valido
@@ -115,9 +118,29 @@ void get_email(char* _email) {
     } while(!isValid);
 }
 
-void get_tel(double* _tel) {
-    printf("> Telefone................: ");
-    scanf("%lf", _tel); getchar();
+void get_tel(char* _tel) {
+    int isValid = 1; int i; fflush(stdin);
+
+    do {
+        printf("> Telefone (Numerico).....: ");
+        gets(_tel);
+
+        if (strlen(_tel) < 11) {
+            printf("Ha uma quantidade menor de informacoes no telefone do que deveria, por favor considere: 00900000000.\n");
+            isValid = 0;
+            continue;
+        } else {
+            isValid = 1;
+        }
+
+        for(i = 0; i < strlen(_tel); i++) {
+            if (!isdigit(_tel[i])) {
+                printf("\nVoce digitou algum caractere que nao e um numero. Tente novamente.\n");
+                isValid = 0;
+                break;
+            }
+        }
+    } while(!isValid);
 }
 
 void get_oab(char* _oab) {
