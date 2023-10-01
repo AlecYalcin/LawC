@@ -81,8 +81,38 @@ void get_cpf(char* _cpf) {
 }
 
 void get_email(char* _email) {
-    printf("> E-mail..................: ");
-    gets(_email);
+    int isValid = 1; int aux; int i; fflush(stdin);
+
+    do {
+        printf("> E-mail..................: ");
+        gets(_email);
+
+        // Variavel auxiliar para verificar integridade do E-mail
+        aux = 0;
+        for(i = 0; i < strlen(_email); i++) {
+            char letter = _email[i];
+
+            if (letter == ' ') {
+                printf("Seu e-mail contem espacos. Tente novamente.\n");
+                isValid = 0;
+
+                break;
+            }
+            
+            if (letter == '@') {
+                aux = !aux;
+            }
+
+            // Ainda planejando como vou fazer para reconhecer terminações de e-mail.
+        }
+
+        if (!aux) {
+            printf("Seu e-mail nao e valido. Tente novamente.\n");
+            isValid = 0;
+        } else {
+            isValid = 1;
+        }
+    } while(!isValid);
 }
 
 void get_tel(double* _tel) {

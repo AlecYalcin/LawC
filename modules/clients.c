@@ -19,7 +19,6 @@ void clients_c(void)  {
     get_birth(birth_date);
     // Coletar e Verificar CPF;
     get_cpf(cpf);
-    printf("\nData de Aniversario: %s", birth_date);
     // Coletar e Verificar o Email;
     get_email(email);
     // Coletar e Verificar o Contato;
