@@ -2,7 +2,7 @@
 #include "utils.h"
 
 void employer_c(void) {
-    char name[30]; char birth_date[11]; char cpf[12]; char email[30]; char tel[12]; char OAB[15]; char role[30]; char desc[200];
+    char name[30]; char birth_date[11]; char cpf[12]; char email[30]; char tel[12]; char OAB[30]; char role[30]; char desc[200];
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");

@@ -125,8 +125,8 @@ void get_tel(char* _tel) {
         printf("> Telefone (Numerico).....: ");
         gets(_tel);
 
-        if (strlen(_tel) < 11) {
-            printf("Ha uma quantidade menor de informacoes no telefone do que deveria, por favor considere: 00900000000.\n");
+        if (strlen(_tel) < 11 || strlen(_tel) > 12) {
+            printf("Ha uma quantidade menor ou maior de informacoes no telefone do que deveria, por favor considere: 00900000000.\n");
             isValid = 0;
             continue;
         } else {
@@ -144,13 +144,43 @@ void get_tel(char* _tel) {
 }
 
 void get_oab(char* _oab) {
-    printf("> OAB.....................: ");
-    gets(_oab);
+    int isValid = 1; int i; fflush(stdin);
+
+    do {
+        printf("> OAB.....................: ");
+        gets(_oab);
+
+        for(i = 0; i < strlen(_oab); i++) {
+            char letter = _oab[i];
+            // Verificador de Caracteres
+            if (!isalnum(letter) && !isspace(letter)) {
+                printf("Esse cargo contem caracteres nao comuns. Tente novamente.\n");
+                isValid = 0;
+                break;
+            } else {
+                isValid = 1;
+            }
+        }
+    } while(!isValid);
 }
 
 void get_role(char* _role) {
-    printf("> Cargo...................: ");
-    gets(_role);
+    int isValid = 1; int i; fflush(stdin);
+
+    do {
+        printf("> Cargo...................: ");
+        gets(_role);
+
+        for(i = 0; i < strlen(_role); i++) {
+            if (!isalpha(_role[i]) && !isspace(_role[i])) {
+                printf("Esse cargo contem caracteres nao comuns. Tente novamente.\n");
+                isValid = 0;
+                break;
+            } else {
+                isValid = 1;
+            }
+        }
+    } while(!isValid);
 }
 
 void get_desc(char* _desc) {
