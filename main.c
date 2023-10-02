@@ -25,6 +25,8 @@ void menu_schedule(void);
     Origem: https://github.com/FlaviusGorgonio/LinguaSolta/blob/main/ls.c
 */ 
 void exe_breaker(void) {
+    fflush(stdin);
+
     char aux;
     printf("!!! Tecle <ENTER> para continuar...\n");
     aux = getchar();
@@ -71,6 +73,7 @@ void menu_main(void) {
 
     switch(option) {
         case 0:
+        exit(0);
         break;
 
         case 1:
@@ -137,6 +140,7 @@ void menu_system(void) {
 
         default:
         printf("Valor Invalido!\n");
+        menu_system();
         break;
     }
 }
@@ -243,9 +247,10 @@ void menu_employer(void) {
 
         default:
         printf("Valor Invalido!\n");
-        exe_breaker();
         break;
     }
+    exe_breaker();
+    menu_employer();
 }
 
 void menu_resources(void) {
@@ -297,6 +302,8 @@ void menu_resources(void) {
         printf("Valor Invalido!\n");
         break;
     }
+    exe_breaker();
+    menu_resources();
 }
 
 void menu_services(void) {
@@ -348,6 +355,8 @@ void menu_services(void) {
         printf("Valor Invalido!\n");
         break;
     }
+    exe_breaker();
+    menu_services();
 }
 
 void menu_clients(void) {
@@ -399,6 +408,8 @@ void menu_clients(void) {
         printf("Valor Invalido!\n");
         break;
     }
+    exe_breaker();
+    menu_clients();
 }
 
 void menu_schedule(void) {
@@ -460,4 +471,6 @@ void menu_schedule(void) {
         printf("Valor Invalido!\n");
         break;
     }
+    exe_breaker();
+    menu_schedule();
 }
