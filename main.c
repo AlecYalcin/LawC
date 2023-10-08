@@ -107,7 +107,7 @@ void menu_system(void) {
     printf("|                     3. Gestao de Recursos                     |\n");
     printf("|                     4. Gestao de Clientes                     |\n");
     printf("|                     5. Agendamento de Servicos                |\n");
-    printf("|                     0. Sair                                   |\n");
+    printf("|                     0. Voltar ao Inicio                       |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
