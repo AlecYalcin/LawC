@@ -1,5 +1,3 @@
-typedef struct cliente Cliente;
-
 struct cliente {};
 void clients_c(void);
 void clients_r(void);
