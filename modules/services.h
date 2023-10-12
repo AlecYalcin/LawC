@@ -1,3 +1,4 @@
+struct service {};
 void services_c(void);
 void services_r(void);
 void services_u(void);
