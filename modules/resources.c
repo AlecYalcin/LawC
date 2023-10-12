@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include "utils.h"
 
+typedef struct resource Resource;
+
+struct resource {
+    char name[30];
+    char desc[200];
+    char available_at[200];
+};
+
 void resources_c(void) {
-    char name[30]; char desc[200]; char available_at[200];
+    Resource new_resource;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -11,13 +19,13 @@ void resources_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO RECURSO;
-    get_name(name);
+    get_name(new_resource.name);
     // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
-    get_desc(desc);
+    get_desc(new_resource.desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
-    get_available_at(available_at);
+    get_available_at(new_resource.available_at);
     printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", name, desc, available_at);
+    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource.name, new_resource.desc, new_resource.available_at);
 }
 
 void resources_r(void) {

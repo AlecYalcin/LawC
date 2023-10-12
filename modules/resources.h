@@ -1,3 +1,4 @@
+struct resource {};
 void resources_c(void);
 void resources_r(void);
 void resources_u(void);
