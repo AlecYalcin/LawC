@@ -2,8 +2,18 @@
 #include <stdlib.h>
 #include "utils.h"
 
+typedef struct cliente Cliente;
+
+struct cliente {
+    char name[30];
+    char birth_date[12];
+    char cpf[12];
+    char email[30];
+    char tel[12];
+};
+
 void clients_c(void)  {
-    char name[30]; char birth_date[12]; char cpf[12]; char email[30]; char tel[12];
+    Cliente new_client;
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -14,18 +24,18 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
 
     // Coletar e Verificar nome;
-    get_name(name);
+    get_name(new_client.name);
     // Coletar e Verificar data de nascimento.
-    get_birth(birth_date);
+    get_birth(new_client.birth_date);
     // Coletar e Verificar CPF;
-    get_cpf(cpf);
+    get_cpf(new_client.cpf);
     // Coletar e Verificar o Email;
-    get_email(email);
+    get_email(new_client.email);
     // Coletar e Verificar o Contato;
-    get_tel(tel);
+    get_tel(new_client.tel);
 
     printf("-----------------------------------------------------------------\n");
-    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", name, birth_date, cpf, email, tel);
+    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client.name, new_client.birth_date, new_client.cpf, new_client.email, new_client.tel);
 }
 
 void clients_r(void)  {
