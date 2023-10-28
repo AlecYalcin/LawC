@@ -1,16 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 typedef struct service Service;
 
 struct service {
-    char name[30];
-    char desc[200];
+    char* name;
+    char* desc;
     float value;
 };
 
 void services_c(void) {
-    Service new_service;
+    Service* new_service = (Service*) malloc(sizeof(Service));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -19,13 +21,20 @@ void services_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO SERVIÇO;
-    get_name(new_service.name);
+    new_service->name = (char*) malloc(50*sizeof(char));
+    get_name(new_service->name);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
-    get_desc(new_service.desc);
+    new_service->name = (char*) malloc(sizeof(char));
+    get_desc(new_service->desc);
     // Coletar e Verificar VALOR DO SERVIÇO;
-    get_value(&new_service.value);
+    get_value(&new_service->value);
     printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nDescricao: %s,\nValor: R$%.2f", new_service.name, new_service.desc, new_service.value);
+    printf("Nome: %s,\nDescricao: %s,\nValor: R$%.2f", new_service->name, new_service->desc, new_service->value);
+
+    // Liberação de memória dinâmica
+    free(new_service->name);
+    free(new_service->desc);
+    free(new_service);
 }
 
 void services_r(void) {

@@ -1,21 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 typedef struct employer Employer;
 
 struct employer {
-    char name[30];
+    char* name;
     char birth_date[12];
     char cpf[12];
-    char email[30];
+    char* email;
     char tel[12];
-    char OAB[30];
-    char role[30];
-    char desc[200];
+    char* OAB;
+    char* role;
+    char* desc;
 };
 
 void employer_c(void) {
-    Employer new_employer;
+    Employer* new_employer = (Employer*) malloc(sizeof(Employer));
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -25,24 +26,37 @@ void employer_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar nome;
-    get_name(new_employer.name);
+    new_employer->name = (char*) malloc(75*sizeof(char));
+    get_name(new_employer->name);
     // Coletar e Verificar data de nascimento.
-    get_birth(new_employer.birth_date);
+    get_birth(new_employer->birth_date);
     // Coletar e Verificar CPF;
-    get_cpf(new_employer.cpf);
+    get_cpf(new_employer->cpf);
     // Coletar e Verificar o Email;
-    get_email(new_employer.email);
+    new_employer->email = (char*) malloc(75*sizeof(char));
+    get_email(new_employer->email);
     // Coletar e Verificar o Contato;
-    get_tel(new_employer.tel);
+    get_tel(new_employer->tel);
     // Coletar e Verificar o OAB;
-    get_oab(new_employer.OAB);
+    new_employer->OAB = (char*) malloc(50*sizeof(char));
+    get_oab(new_employer->OAB);
     // Coletar e Verificar o CARGO;
-    get_role(new_employer.role);
+    new_employer->role = (char*) malloc(50*sizeof(char));
+    get_role(new_employer->role);
     // Coletar e Verificar o DESCRIÇÃO;
-    get_desc(new_employer.desc);
+    new_employer->desc = (char*) malloc(sizeof(char));
+    get_desc(new_employer->desc);
 
     printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer.name, new_employer.birth_date, new_employer.cpf, new_employer.email, new_employer.tel, new_employer.OAB, new_employer.role, new_employer.desc);
+    printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
+
+    // Liberação de memória dinâmica
+    free(new_employer->name);
+    free(new_employer->email);
+    free(new_employer->OAB);
+    free(new_employer->role);
+    free(new_employer->desc);
+    free(new_employer);
 }
 
 void employer_r(void) {

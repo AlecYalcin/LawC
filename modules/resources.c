@@ -1,16 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 typedef struct resource Resource;
 
 struct resource {
-    char name[30];
-    char desc[200];
-    char available_at[200];
+    char* name;
+    char* desc;
+    char* available_at;
 };
 
 void resources_c(void) {
-    Resource new_resource;
+    Resource* new_resource = (Resource*) malloc(sizeof(Resource));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -19,13 +21,22 @@ void resources_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO RECURSO;
-    get_name(new_resource.name);
+    new_resource->name = (char*) malloc(75*sizeof(char));
+    get_name(new_resource->name);
     // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
-    get_desc(new_resource.desc);
+    new_resource->desc = (char*) malloc(sizeof(char));
+    get_desc(new_resource->desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
-    get_available_at(new_resource.available_at);
+    new_resource->available_at = (char*) malloc(sizeof(char));
+    get_available_at(new_resource->available_at);
     printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource.name, new_resource.desc, new_resource.available_at);
+    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource->name, new_resource->desc, new_resource->available_at);
+
+    // Liberação de memória dinâmica
+    free(new_resource->name);
+    free(new_resource->desc);
+    free(new_resource->available_at);
+    free(new_resource);
 }
 
 void resources_r(void) {

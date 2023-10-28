@@ -5,15 +5,15 @@
 typedef struct cliente Cliente;
 
 struct cliente {
-    char name[30];
+    char* name;
     char birth_date[12];
     char cpf[12];
-    char email[30];
+    char* email;
     char tel[12];
 };
 
 void clients_c(void)  {
-    Cliente new_client;
+    Cliente* new_client = (Cliente*) malloc(sizeof(Cliente));
 
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -24,18 +24,25 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
 
     // Coletar e Verificar nome;
-    get_name(new_client.name);
+    new_client->name = (char*) malloc(sizeof(char));
+    get_name(new_client->name);
     // Coletar e Verificar data de nascimento.
-    get_birth(new_client.birth_date);
+    get_birth(new_client->birth_date);
     // Coletar e Verificar CPF;
-    get_cpf(new_client.cpf);
+    get_cpf(new_client->cpf);
     // Coletar e Verificar o Email;
-    get_email(new_client.email);
+    new_client->email = (char*) malloc(sizeof(char));
+    get_email(new_client->email);
     // Coletar e Verificar o Contato;
-    get_tel(new_client.tel);
+    get_tel(new_client->tel);
 
     printf("-----------------------------------------------------------------\n");
-    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client.name, new_client.birth_date, new_client.cpf, new_client.email, new_client.tel);
+    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client->name, new_client->birth_date, new_client->cpf, new_client->email, new_client->tel);
+
+    // Liberação de memória dinâmica
+    free(new_client->name);
+    free(new_client->email);
+    free(new_client);
 }
 
 void clients_r(void)  {
