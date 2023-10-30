@@ -3,22 +3,8 @@
 // Created Modules
 #include "../modules/employers.h"
 
-// Criação/Reset de Arquivos
-void create_archive(char* ar_name) {
-    FILE *fp;
-
-    fp = fopen(ar_name, "wb");
-    
-    if (!(fp == NULL)) {
-        printf("\n>>> Criou o arquivo, nome do arquivo: '%s'.\n", ar_name);
-        fclose(fp);
-    } else {
-        printf("\n>>> Erro na criação\n");
-    }
-}
-
 // Leitura (Read) de Arquivos
-void read_archive(char *ar_name, Employer *al) {
+void e_read_archive(char *ar_name, Employer *al) {
     FILE *fp;
 
     fp = fopen(ar_name, "rb");
@@ -32,7 +18,7 @@ void read_archive(char *ar_name, Employer *al) {
 }
 
 // Atualização (Update) de Arquivos
-void update_archive(char *ar_name, Employer *al) { 
+void e_update_archive(char *ar_name, Employer *al) { 
     FILE *fp;
 
     fp = fopen(ar_name, "ab");

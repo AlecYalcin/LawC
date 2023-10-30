@@ -3,22 +3,8 @@
 // Created Modules
 #include "../modules/services.h"
 
-// Criação/Reset de Arquivos
-void create_archive(char* ar_name) {
-    FILE *fp;
-
-    fp = fopen(ar_name, "wb");
-    
-    if (!(fp == NULL)) {
-        printf("\n>>> Criou o arquivo, nome do arquivo: '%s'.\n", ar_name);
-        fclose(fp);
-    } else {
-        printf("\n>>> Erro na criação\n");
-    }
-}
-
 // Leitura (Read) de Arquivos
-void read_archive(char *ar_name, Service *al) {
+void s_read_archive(char *ar_name, Service *al) {
     FILE *fp;
 
     fp = fopen(ar_name, "rb");
@@ -32,7 +18,7 @@ void read_archive(char *ar_name, Service *al) {
 }
 
 // Atualização (Update) de Arquivos
-void update_archive(char *ar_name, Service *al) { 
+void s_update_archive(char *ar_name, Service *al) { 
     FILE *fp;
 
     fp = fopen(ar_name, "ab");
