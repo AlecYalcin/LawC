@@ -36,6 +36,7 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
     printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client->name, new_client->birth_date, new_client->cpf, new_client->email, new_client->tel);
 
+    // Criação de arquivos
     if (verify_archive(c_ar_name)) {
         // Se o arquivo existe, apenas adicione.
         c_update_archive(c_ar_name, new_client);

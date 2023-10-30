@@ -3,7 +3,7 @@
 // Created Modules
 #include "utils.h"
 #include "../database/data_utils.h"
-#include "../database/data_employers.h" //data_clients já tem o include de clients
+#include "../database/data_employers.h" //data_clients já tem o include de employers
 
 typedef struct employer Employer;
 // Arquivo de database
@@ -44,6 +44,7 @@ void employer_c(void) {
     printf("-----------------------------------------------------------------\n");
     printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
 
+    // Criação de arquivos
     if (verify_archive(e_ar_name)) {
         // Se o arquivo existe, apenas adicione.
         e_update_archive(e_ar_name, new_employer);

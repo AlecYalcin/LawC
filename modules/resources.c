@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+// Created Modules
 #include "utils.h"
-#include "resources.h"
+#include "../database/data_utils.h"
+#include "../database/data_resources.h" //data_clients já tem o include de resources
 
 typedef struct resource Resource;
+// Arquivo de database
+char* r_ar_name = "database/_resources.dat";
 
 void resources_c(void) {
     Resource* new_resource = (Resource*) malloc(sizeof(Resource));
@@ -26,6 +30,16 @@ void resources_c(void) {
     get_available_at(new_resource->available_at);
     printf("-----------------------------------------------------------------\n");
     printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource->name, new_resource->desc, new_resource->available_at);
+
+    // Criação de arquivos
+    if (verify_archive(r_ar_name)) {
+        // Se o arquivo existe, apenas adicione.
+        r_update_archive(r_ar_name, new_resource);
+    } else {
+        // Se o arquivo não existe, crie e adicione.
+        create_archive(r_ar_name);
+        r_update_archive(r_ar_name, new_resource);
+    }
 
     // Liberação de memória dinâmica
     free(new_resource->name);
