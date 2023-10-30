@@ -6,6 +6,8 @@
 #include "../database/data_clients.h" //data_clients já tem o include de clients
 
 typedef struct cliente Cliente;
+// Arquivo de database
+char* c_ar_name = "database/_clients.dat";
 
 void clients_c(void)  {
     Cliente* new_client = (Cliente*) malloc(sizeof(Cliente));
@@ -34,14 +36,13 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
     printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client->name, new_client->birth_date, new_client->cpf, new_client->email, new_client->tel);
 
-    char* ar_name = "clients.dat";
-    if (verify_archive(ar_name)) {
+    if (verify_archive(c_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        c_update_archive(ar_name, new_client);
+        c_update_archive(c_ar_name, new_client);
     } else {
         // Se o arquivo não existe, crie e adicione.
-        create_archive(ar_name);
-        c_update_archive(ar_name, new_client);
+        create_archive(c_ar_name);
+        c_update_archive(c_ar_name, new_client);
     }
 
     // Liberação de memória dinâmica

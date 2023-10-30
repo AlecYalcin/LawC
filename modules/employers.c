@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+// Created Modules
 #include "utils.h"
-#include "employers.h"
+#include "../database/data_utils.h"
+#include "../database/data_employers.h" //data_clients já tem o include de clients
 
 typedef struct employer Employer;
+// Arquivo de database
+char* e_ar_name = "database/_employers.dat";
 
 void employer_c(void) {
     Employer* new_employer = (Employer*) malloc(sizeof(Employer));
@@ -39,6 +43,15 @@ void employer_c(void) {
 
     printf("-----------------------------------------------------------------\n");
     printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
+
+    if (verify_archive(e_ar_name)) {
+        // Se o arquivo existe, apenas adicione.
+        e_update_archive(e_ar_name, new_employer);
+    } else {
+        // Se o arquivo não existe, crie e adicione.
+        create_archive(e_ar_name);
+        e_update_archive(e_ar_name, new_employer);
+    }
 
     // Liberação de memória dinâmica
     free(new_employer->name);
