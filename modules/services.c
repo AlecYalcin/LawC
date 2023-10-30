@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "services.h"
 
 typedef struct service Service;
-
-struct service {
-    char* name;
-    char* desc;
-    float value;
-};
 
 void services_c(void) {
     Service* new_service = (Service*) malloc(sizeof(Service));

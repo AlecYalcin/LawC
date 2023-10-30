@@ -1,4 +1,11 @@
-struct resource {};
+typedef struct resource Resource;
+
+struct resource {
+    char* name;
+    char* desc;
+    char* available_at;
+};
+
 void resources_c(void);
 void resources_r(void);
 void resources_u(void);

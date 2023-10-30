@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "resources.h"
 
 typedef struct resource Resource;
-
-struct resource {
-    char* name;
-    char* desc;
-    char* available_at;
-};
 
 void resources_c(void) {
     Resource* new_resource = (Resource*) malloc(sizeof(Resource));
