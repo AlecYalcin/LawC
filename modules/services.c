@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+// Created Modules
 #include "utils.h"
-#include "services.h"
-
+#include "../database/data_utils.h"
+#include "../database/data_services.h" //data_clients já tem o include de services
 typedef struct service Service;
 
+// Arquivo de database
+char* s_ar_name = "database/_services.dat";
 void services_c(void) {
     Service* new_service = (Service*) malloc(sizeof(Service));
 
@@ -26,6 +29,15 @@ void services_c(void) {
     printf("-----------------------------------------------------------------\n");
     printf("Nome: %s,\nDescricao: %s,\nValor: R$%.2f", new_service->name, new_service->desc, new_service->value);
 
+    // Criação de arquivos
+    if (verify_archive(s_ar_name)) {
+        // Se o arquivo existe, apenas adicione.
+        s_update_archive(s_ar_name, new_service);
+    } else {
+        // Se o arquivo não existe, crie e adicione.
+        create_archive(s_ar_name);
+        s_update_archive(s_ar_name, new_service);
+    }
     // Liberação de memória dinâmica
     free(new_service->name);
     free(new_service->desc);
