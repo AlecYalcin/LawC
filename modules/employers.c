@@ -20,25 +20,20 @@ void employer_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar nome;
-    new_employer->name = (char*) malloc(75*sizeof(char));
     get_name(new_employer->name);
     // Coletar e Verificar data de nascimento.
     get_birth(new_employer->birth_date);
     // Coletar e Verificar CPF;
     get_cpf(new_employer->cpf);
     // Coletar e Verificar o Email;
-    new_employer->email = (char*) malloc(75*sizeof(char));
     get_email(new_employer->email);
     // Coletar e Verificar o Contato;
     get_tel(new_employer->tel);
     // Coletar e Verificar o OAB;
-    new_employer->OAB = (char*) malloc(50*sizeof(char));
     get_oab(new_employer->OAB);
     // Coletar e Verificar o CARGO;
-    new_employer->role = (char*) malloc(50*sizeof(char));
     get_role(new_employer->role);
     // Coletar e Verificar o DESCRIÇÃO;
-    new_employer->desc = (char*) malloc(sizeof(char));
     get_desc(new_employer->desc);
 
     printf("-----------------------------------------------------------------\n");
@@ -55,11 +50,6 @@ void employer_c(void) {
     }
 
     // Liberação de memória dinâmica
-    free(new_employer->name);
-    free(new_employer->email);
-    free(new_employer->OAB);
-    free(new_employer->role);
-    free(new_employer->desc);
     free(new_employer);
 }
 

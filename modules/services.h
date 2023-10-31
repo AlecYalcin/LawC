@@ -1,8 +1,8 @@
 typedef struct service Service;
 
 struct service {
-    char* name;
-    char* desc;
+    char name[50];
+    char desc[300];
     float value;
 };
 void services_c(void);

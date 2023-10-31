@@ -1,9 +1,9 @@
 typedef struct resource Resource;
 
 struct resource {
-    char* name;
-    char* desc;
-    char* available_at;
+    char name[50];
+    char desc[300];
+    char available_at[100];
 };
 
 void resources_c(void);

@@ -19,10 +19,8 @@ void services_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO SERVIÇO;
-    new_service->name = (char*) malloc(50*sizeof(char));
     get_name(new_service->name);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
-    new_service->desc = (char*) malloc(300*sizeof(char));
     get_desc(new_service->desc);
     // Coletar e Verificar VALOR DO SERVIÇO;
     get_value(&new_service->value);
@@ -39,8 +37,6 @@ void services_c(void) {
         s_update_archive(s_ar_name, new_service);
     }
     // Liberação de memória dinâmica
-    free(new_service->name);
-    free(new_service->desc);
     free(new_service);
 }
 

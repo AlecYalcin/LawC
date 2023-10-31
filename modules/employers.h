@@ -1,13 +1,13 @@
 typedef struct employer Employer;
 struct employer {
-    char* name;
+    char name[50];
     char birth_date[12];
     char cpf[12];
-    char* email;
+    char email[50];
     char tel[12];
-    char* OAB;
-    char* role;
-    char* desc;
+    char OAB[100];
+    char role[75];
+    char desc[300];
 };
 void employer_c(void);
 void employer_r(void);
