@@ -1,9 +1,9 @@
 typedef struct cliente Cliente;
 struct cliente {
-    char* name;
+    char name[50];
     char birth_date[12];
     char cpf[12];
-    char* email;
+    char email[50];
     char tel[12];
 };
 

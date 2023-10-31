@@ -21,14 +21,12 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
 
     // Coletar e Verificar nome;
-    new_client->name = (char*) malloc(75*sizeof(char));
     get_name(new_client->name);
     // Coletar e Verificar data de nascimento.
     get_birth(new_client->birth_date);
     // Coletar e Verificar CPF;
     get_cpf(new_client->cpf);
     // Coletar e Verificar o Email;
-    new_client->email = (char*) malloc(75*sizeof(char));
     get_email(new_client->email);
     // Coletar e Verificar o Contato;
     get_tel(new_client->tel);
@@ -47,20 +45,29 @@ void clients_c(void)  {
     }
 
     // Liberação de memória dinâmica
-    free(new_client->name);
-    free(new_client->email);
     free(new_client);
 }
 
 void clients_r(void)  {
+    Cliente* client = (Cliente*) malloc(sizeof(Cliente));
+    char* filter = (char*) malloc(12*sizeof(char));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                 Modulo de Clientes - Pesquisa                 |\n");
     printf("|                                                               |\n");
-    printf("|              Filtro:(CPF, Nome, E-mail, Telefone)             |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Escolha um filtro: ");
+    getchar(); gets(filter);
+
+    client = c_read_archive(client, c_ar_name, filter);
+    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", client->name, client->birth_date, client->cpf, client->email, client->tel);
+
+    free(filter);
+    free(client);
 }
 
 void clients_u(void)  {
@@ -70,7 +77,7 @@ void clients_u(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Alterar                |\n");
     printf("|                                                               |\n");
-    printf("|              Filtro:(CPF, Nome, E-mail, Telefone)             |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -81,7 +88,7 @@ void clients_d(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Excluir                |\n");
     printf("|                                                               |\n");
-    printf("|              Filtro:(CPF, Nome, E-mail, Telefone)             |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");   
 }
 
@@ -92,6 +99,5 @@ void clients_list(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
-    printf("|              Filtro:(CPF, Nome, E-mail, Telefone)             |\n");
     printf("-----------------------------------------------------------------\n");
 }
