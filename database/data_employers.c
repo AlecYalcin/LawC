@@ -1,17 +1,26 @@
 #include <stdio.h> 
 #include <stdlib.h>
+#include <string.h>
 // Created Modules
 #include "../modules/employers.h"
 
 // Leitura (Read) de Arquivos
-void e_read_archive(char *ar_name, Employer *al) {
+Employer* e_read_archive(Employer *funcionario, char *ar_name, char *filter) {
     FILE *fp;
 
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
-        fread(al, sizeof(Employer), 1, fp);
+        while(!feof(fp)) {
+            fread(funcionario, sizeof(Employer), 1, fp);
+            if (!(strcmp(funcionario->cpf, filter))) {
+                fclose(fp);
+                return funcionario;
+            }
+        }
+
         fclose(fp);
+        return funcionario;
     } else {
         printf("\n>>> Erro na criação do arquivo!\n");
     }

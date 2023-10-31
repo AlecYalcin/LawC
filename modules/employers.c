@@ -54,14 +54,25 @@ void employer_c(void) {
 }
 
 void employer_r(void) {
+    Employer* funcionario = (Employer*) malloc(sizeof(Employer));
+    char* filter = (char*) malloc(12*sizeof(char));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Pesquisa               |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Escolha um filtro: ");
+    getchar(); gets(filter);
+
+    funcionario = e_read_archive(funcionario, e_ar_name, filter);
+    printf("CPF: %s", funcionario->cpf);
+
+    free(filter);
+    free(funcionario);
 }
 
 void employer_u(void) {
@@ -71,7 +82,7 @@ void employer_u(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Alterar                |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -82,7 +93,7 @@ void employer_d(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Excluir                |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
+    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -93,7 +104,6 @@ void employer_list(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(CPF, Nome, ID, Cargo)                 |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
