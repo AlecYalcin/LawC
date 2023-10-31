@@ -57,6 +57,7 @@ void employer_r(void) {
     Employer* funcionario = (Employer*) malloc(sizeof(Employer));
     char* filter = (char*) malloc(12*sizeof(char));
 
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -65,8 +66,10 @@ void employer_r(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("Digite o Nome: ");
-    scanf("%12[^\n]", filter);
+    printf("Digite o CPF: ");
+    fgets(filter, 12, stdin);
+
+    printf("Filter: %s\n", filter);
 
     funcionario = e_read_archive(funcionario, e_ar_name, filter);
     printf("CPF: %s", funcionario->cpf);

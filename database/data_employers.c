@@ -18,6 +18,7 @@ Employer* e_read_archive(Employer *funcionario, char *ar_name, char *filter) {
                 return funcionario;
             }
         }
+        printf("\n>>> Funcionario nao encontrado. \n");
 
         fclose(fp);
         return funcionario;

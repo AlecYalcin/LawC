@@ -1,3 +1,6 @@
+#include <stdio_ext.h> 
+
+void limpa_buffer(void);
 void get_name(char* _name);
 void get_birth(char* _birth_date);
 void get_cpf(char* _cpf);

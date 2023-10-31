@@ -9,12 +9,21 @@ void limpa_buffer() {
     fflush(stdin); __fpurge(stdin);
 }
 
+// Função para tirar pontuações com '\n'
+void change_last(char* text) {
+    if (text[strlen(text)-1] == '\n') {
+        text[strlen(text)-1] = '\0';
+    }
+}
+
 void get_name(char* _name){
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i; 
 
     do {
+        limpa_buffer();
         printf("> Nome....................: ");
         fgets(_name, 75, stdin);
+        change_last(_name);
 
         for (i = 0; i < strlen(_name); i++) {
             char letter = _name[i];
@@ -34,11 +43,13 @@ void get_name(char* _name){
 }
 
 void get_birth(char* _birth_date) {
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i;
 
     do {
+        limpa_buffer();
         printf("> Idade (DD/MM/AAAA)......: ");
-        fgets(_birth_date, 12, stdin);
+        fgets(_birth_date, 11, stdin);
+        change_last(_birth_date);
 
         // Verificar se tem 10 caracteres
         isValid = 1;
@@ -69,11 +80,13 @@ void get_birth(char* _birth_date) {
 }
 
 void get_cpf(char* _cpf) {
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i;
 
     do {
+        limpa_buffer();
         printf("> CPF (Somente Numeros)...: ");
         fgets(_cpf, 12, stdin);
+        change_last(_cpf);
 
         for (i = 0; i < strlen(_cpf); i++) {
             if (!isdigit(_cpf[i])) {
@@ -88,11 +101,13 @@ void get_cpf(char* _cpf) {
 }
 
 void get_email(char* _email) {
-    int isValid = 1; int aux; int i; limpa_buffer();
+    int isValid = 1; int aux; int i;
 
     do {
+        limpa_buffer();
         printf("> E-mail..................: ");
         fgets(_email, 75, stdin);
+        change_last(_email);
 
         // Variavel auxiliar para verificar integridade do E-mail
         aux = 0;
@@ -123,11 +138,13 @@ void get_email(char* _email) {
 }
 
 void get_tel(char* _tel) {
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i;
 
     do {
+        limpa_buffer();
         printf("> Telefone (Numerico).....: ");
         fgets(_tel, 12, stdin);
+        change_last(_tel);
 
         if (strlen(_tel) < 11 || strlen(_tel) > 12) {
             printf("Ha uma quantidade menor ou maior de informacoes no telefone do que deveria, por favor considere: 00900000000.\n");
@@ -148,11 +165,13 @@ void get_tel(char* _tel) {
 }
 
 void get_oab(char* _oab) {
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i;
 
     do {
+        limpa_buffer();
         printf("> OAB.....................: ");
         fgets(_oab, 100, stdin);
+        change_last(_oab);
 
         for(i = 0; i < strlen(_oab); i++) {
             char letter = _oab[i];
@@ -169,11 +188,13 @@ void get_oab(char* _oab) {
 }
 
 void get_role(char* _role) {
-    int isValid = 1; int i; limpa_buffer();
+    int isValid = 1; int i;
 
     do {
+        limpa_buffer();
         printf("> Cargo...................: ");
         fgets(_role, 75, stdin);
+        change_last(_role);
 
         for(i = 0; i < strlen(_role); i++) {
             if (!isalpha(_role[i]) && !isspace(_role[i])) {
@@ -188,16 +209,21 @@ void get_role(char* _role) {
 }
 
 void get_desc(char* _desc) {
+    limpa_buffer();
+    change_last(_desc);
     printf("> Descricao...............: ");
     fgets(_desc, 300, stdin);
 }
 
 void get_available_at(char* _available_at) {
+    limpa_buffer();
+    change_last(_available_at);
     printf("> Disponivel Em...........: ");
     fgets(_available_at, 300, stdin);
 }
 
 void get_value(float* _value) {
+    limpa_buffer();
     printf("> Valor................: R$");
     scanf("%f", _value);
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio_ext.h> 
 #include <stdlib.h>
 // Created Modules
 #include "utils.h"
@@ -52,6 +53,7 @@ void clients_r(void)  {
     Cliente* client = (Cliente*) malloc(sizeof(Cliente));
     char* filter = (char*) malloc(12*sizeof(char));
 
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -60,8 +62,10 @@ void clients_r(void)  {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("Digite o Nome: ");
-    scanf("%12[^\n]", filter);
+    printf("Digite o CPF: ");
+    fgets(filter, 12, stdin);
+
+    printf("Filter: %s\n", filter);
     
     client = c_read_archive(client, c_ar_name, filter);
     printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", client->name, client->birth_date, client->cpf, client->email, client->tel);
