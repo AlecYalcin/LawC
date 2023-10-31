@@ -65,8 +65,8 @@ void employer_r(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("Escolha um filtro: ");
-    getchar(); gets(filter);
+    printf("Digite o Nome: ");
+    scanf("%12[^\n]", filter);
 
     funcionario = e_read_archive(funcionario, e_ar_name, filter);
     printf("CPF: %s", funcionario->cpf);

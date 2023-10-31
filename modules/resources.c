@@ -43,14 +43,22 @@ void resources_c(void) {
 }
 
 void resources_r(void) {
+    Resource* recurso = (Resource*) malloc(sizeof(Resource));
+    char* filter = (char*) malloc(50*sizeof(char));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                 Modulo de Recursos - Pesquisa                 |\n");
     printf("|                                                               |\n");
-    printf("|                 Filtro:(Nome, Disponibilidade)                |\n");
+    printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    scanf("%50[^\n]", filter);
+
+    printf("Filtro: %s", filter);
+
 }
 
 void resources_u(void) {

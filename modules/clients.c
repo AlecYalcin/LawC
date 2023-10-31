@@ -60,9 +60,9 @@ void clients_r(void)  {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("Escolha um filtro: ");
-    getchar(); gets(filter);
-
+    printf("Digite o Nome: ");
+    scanf("%12[^\n]", filter);
+    
     client = c_read_archive(client, c_ar_name, filter);
     printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", client->name, client->birth_date, client->cpf, client->email, client->tel);
 
