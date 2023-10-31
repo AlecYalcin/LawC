@@ -25,6 +25,7 @@ void r_update_archive(char *ar_name, Resource *al) {
 
     if (!(fp == NULL)) {
         fwrite(al, sizeof(Resource), 1, fp);
+        printf("\n>>> Adicionando informacao...\n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo!\n");

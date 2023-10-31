@@ -21,14 +21,14 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
 
     // Coletar e Verificar nome;
-    new_client->name = (char*) malloc(sizeof(char));
+    new_client->name = (char*) malloc(75*sizeof(char));
     get_name(new_client->name);
     // Coletar e Verificar data de nascimento.
     get_birth(new_client->birth_date);
     // Coletar e Verificar CPF;
     get_cpf(new_client->cpf);
     // Coletar e Verificar o Email;
-    new_client->email = (char*) malloc(sizeof(char));
+    new_client->email = (char*) malloc(75*sizeof(char));
     get_email(new_client->email);
     // Coletar e Verificar o Contato;
     get_tel(new_client->tel);

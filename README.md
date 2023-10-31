@@ -93,9 +93,9 @@ altera eles, deleta eles, finaliza eles, designa, etc...
 7. Listar por Data
 
 ### Objeto: Agendamento
-- Funcionários: *Object Funcionario*<br>
-- Clientes: *Object Cliente*<br>
-- Recursos: *Object Recurso*<br>
-- Serviço: *Object Serviço*<br>
+- Funcionários: *Struct Funcionario*<br>
+- Clientes: *Struct Cliente*<br>
+- Recursos: *Struct Recurso*<br>
+- Serviço: *Struct Serviço*<br>
 - Data do Serviço: *Date*<br>
 - Valor Adicional: *float*<br>

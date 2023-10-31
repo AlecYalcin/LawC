@@ -22,7 +22,7 @@ void services_c(void) {
     new_service->name = (char*) malloc(50*sizeof(char));
     get_name(new_service->name);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
-    new_service->name = (char*) malloc(sizeof(char));
+    new_service->desc = (char*) malloc(300*sizeof(char));
     get_desc(new_service->desc);
     // Coletar e Verificar VALOR DO SERVIÇO;
     get_value(&new_service->value);

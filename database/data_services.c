@@ -25,6 +25,7 @@ void s_update_archive(char *ar_name, Service *al) {
 
     if (!(fp == NULL)) {
         fwrite(al, sizeof(Service), 1, fp);
+        printf("\n>>> Adicionando informacao...\n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo!\n");

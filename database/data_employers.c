@@ -25,6 +25,7 @@ void e_update_archive(char *ar_name, Employer *al) {
 
     if (!(fp == NULL)) {
         fwrite(al, sizeof(Employer), 1, fp);
+        printf("\n>>> Adicionando informacao...\n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo!\n");

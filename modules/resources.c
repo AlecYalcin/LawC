@@ -23,10 +23,10 @@ void resources_c(void) {
     new_resource->name = (char*) malloc(75*sizeof(char));
     get_name(new_resource->name);
     // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
-    new_resource->desc = (char*) malloc(sizeof(char));
+    new_resource->desc = (char*) malloc(300*sizeof(char));
     get_desc(new_resource->desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
-    new_resource->available_at = (char*) malloc(sizeof(char));
+    new_resource->available_at = (char*) malloc(200*sizeof(char));
     get_available_at(new_resource->available_at);
     printf("-----------------------------------------------------------------\n");
     printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource->name, new_resource->desc, new_resource->available_at);
