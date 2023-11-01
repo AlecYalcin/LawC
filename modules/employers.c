@@ -42,11 +42,11 @@ void employer_c(void) {
     // Criação de arquivos
     if (verify_archive(e_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        e_update_archive(e_ar_name, new_employer);
+        e_create_archive(e_ar_name, new_employer);
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(e_ar_name);
-        e_update_archive(e_ar_name, new_employer);
+        e_create_archive(e_ar_name, new_employer);
     }
 
     // Liberação de memória dinâmica

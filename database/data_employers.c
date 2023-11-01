@@ -14,12 +14,9 @@ Employer* e_read_archive(char *ar_name, char *filter) {
     if (!(fp == NULL)) {
 
         while(!feof(fp)) {
-            printf("\n !> Filtro: %s", filter);
+            // Lendo o Arquivo
             fread(emp_aux, sizeof(Employer), 1, fp);
-
-            printf("\n\n >>> Emp_aux: %s, CPF: %s", emp_aux->cpf, filter);
-            printf("\n      -> Comparação: %s", filter);
-
+            // Comparando as Strings
             if (!(strcmp(emp_aux->cpf, filter))) {
                 return emp_aux;
                 fclose(fp);
@@ -35,8 +32,8 @@ Employer* e_read_archive(char *ar_name, char *filter) {
     return NULL;
 }
 
-// Atualização (Update) de Arquivos
-void e_update_archive(char *ar_name, Employer *al) { 
+// Atualização (Create) de Arquivos
+void e_create_archive(char *ar_name, Employer *al) { 
     FILE *fp;
 
     fp = fopen(ar_name, "ab");
