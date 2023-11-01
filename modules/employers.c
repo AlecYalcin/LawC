@@ -80,9 +80,14 @@ void employer_r(void) {
     }
 
     
+
 }
 
-void employer_u(void) {
+void employer_u(void) { 
+    Employer* funcionario;
+    char filter[13];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -91,6 +96,41 @@ void employer_u(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o CPF: ");
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    funcionario = e_read_archive(e_ar_name, filter);
+    if (funcionario == NULL) {
+        printf("Funcionario não encontrado. \n");
+    } else {
+        Employer* new_employer = (Employer*) malloc(sizeof(Employer));
+        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", funcionario->name, funcionario->birth_date, funcionario->cpf, funcionario->email, funcionario->tel, funcionario->OAB, funcionario->role, funcionario->desc);
+        
+        printf(">> Preencher as Novas Informações... \n");
+        // Coletar e Verificar nome;
+        get_name(new_employer->name);
+        // Coletar e Verificar data de nascimento.
+        get_birth(new_employer->birth_date);
+        // Coletar e Verificar CPF;
+        get_cpf(new_employer->cpf);
+        // Coletar e Verificar o Email;
+        get_email(new_employer->email);
+        // Coletar e Verificar o Contato;
+        get_tel(new_employer->tel);
+        // Coletar e Verificar o OAB;
+        get_oab(new_employer->OAB);
+        // Coletar e Verificar o CARGO;
+        get_role(new_employer->role);
+        // Coletar e Verificar o DESCRIÇÃO;
+        get_desc(new_employer->desc);
+
+        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
+        
+        e_update_archive(e_ar_name, filter, new_employer);
+    }
+    
 }
 
 void employer_d(void) {
