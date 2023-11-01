@@ -28,7 +28,7 @@ void exe_breaker(void) {
     fflush(stdin);
 
     char aux;
-    printf("\n!!! Tecle <ENTER> para continuar...\n");
+    printf("\n\n!!! Tecle <ENTER> para continuar...\n\n");
     aux = getchar();
 }
 

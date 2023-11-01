@@ -210,16 +210,16 @@ void get_role(char* _role) {
 
 void get_desc(char* _desc) {
     limpa_buffer();
-    change_last(_desc);
     printf("> Descricao...............: ");
     fgets(_desc, 300, stdin);
+    change_last(_desc);
 }
 
 void get_available_at(char* _available_at) {
     limpa_buffer();
-    change_last(_available_at);
     printf("> Disponivel Em...........: ");
     fgets(_available_at, 300, stdin);
+    change_last(_available_at);
 }
 
 void get_value(float* _value) {

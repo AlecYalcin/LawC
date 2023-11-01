@@ -145,6 +145,7 @@ void employer_d(void) {
 }
 
 void employer_list(void) {
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -152,5 +153,6 @@ void employer_list(void) {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    e_list_archive(e_ar_name);
 }
 

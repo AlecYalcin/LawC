@@ -83,3 +83,32 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
     free(emp_aux);
     free(new_funcionario);
 }
+
+// Listagem (List) de Arquivos
+void e_list_archive(char *ar_name) {
+    FILE *fp; int loop = 0;
+    Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
+
+    fp = fopen(ar_name, "rb");
+
+    if (!(fp == NULL)) {
+        while(fread(emp_aux, sizeof(Employer), 1, fp)) {
+            // Lendo o Arquivo
+            printf("\n\n>>> ------------------------------ <<<");
+            printf("\n> Nome....................: %s", emp_aux->name);
+            printf("\n> Idade...................: %s", emp_aux->birth_date);
+            printf("\n> CPF.....................: %s", emp_aux->cpf);
+            printf("\n> E-mail..................: %s", emp_aux->email);
+            printf("\n> Telefone................: %s", emp_aux->tel);
+            printf("\n> OAB.....................: %s", emp_aux->OAB);
+            printf("\n> Funcao..................: %s", emp_aux->role);
+            printf("\n> Descricao...............: %s", emp_aux->desc);
+        }
+
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo!\n");
+    }
+
+    free(emp_aux);
+}
