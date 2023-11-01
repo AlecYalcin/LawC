@@ -224,6 +224,6 @@ void get_available_at(char* _available_at) {
 
 void get_value(float* _value) {
     limpa_buffer();
-    printf("> Valor................: R$");
+    printf("> Valor...................: R$");
     scanf("%f", _value);
 }

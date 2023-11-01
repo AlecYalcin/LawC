@@ -45,8 +45,8 @@ void services_c(void) {
 }
 
 void services_r(void) {
-    Service* funcionario;
-    char filter[50];
+    Service* service;
+    char filter[51];
 
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
@@ -55,11 +55,32 @@ void services_r(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                 Modulo de Servicos - Pesquisa                 |\n");
     printf("|                                                               |\n");
-    printf("|                     Filtro:(Nome, Valor)                      |\n");
+    printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    service = s_read_archive(s_ar_name, filter);
+    if (service == NULL) {
+        printf("Servico não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", service->name);
+        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Descricao...............: %s", service->desc);
+        
+        free(service);
+    }
+
 }
 
 void services_u(void) {
+    Service* service;
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -68,6 +89,35 @@ void services_u(void) {
     printf("|                                                               |\n");
     printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    service = s_read_archive(s_ar_name, filter);
+    if (service == NULL) {
+        printf("Servico não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", service->name);
+        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Descricao...............: %s", service->desc);
+        
+        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        // Coletar e Verificar o NOME DO SERVIÇO;
+        get_name(service->name);
+        // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
+        get_desc(service->desc);
+        // Coletar e Verificar VALOR DO SERVIÇO;
+        get_value(&service->value);
+
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", service->name);
+        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Descricao...............: %s", service->desc);        
+
+        s_update_archive(s_ar_name, filter, service);
+    }
 }
 
 void services_d(void) {
@@ -82,6 +132,7 @@ void services_d(void) {
 }
 
 void services_list(void) {
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -90,4 +141,5 @@ void services_list(void) {
     printf("|                                                               |\n");
     printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
+    s_list_archive(s_ar_name);
 }

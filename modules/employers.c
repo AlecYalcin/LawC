@@ -96,8 +96,6 @@ void employer_r(void) {
         free(funcionario);
     }
 
-    
-
 }
 
 void employer_u(void) { 
