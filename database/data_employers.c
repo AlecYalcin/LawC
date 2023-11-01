@@ -5,17 +5,17 @@
 #include "../modules/employers.h"
 
 // Atualização (Create) de Arquivos
-void e_create_archive(char *ar_name, Employer *al) { 
+void e_create_archive(char *ar_name, Employer *employer) { 
     FILE *fp;
 
     fp = fopen(ar_name, "ab");
 
     if (!(fp == NULL)) {
-        fwrite(al, sizeof(Employer), 1, fp);
-        printf("\n>>> Adicionando informacao...\n");
+        fwrite(employer, sizeof(Employer), 1, fp);
+        printf("\n\n>>> Adicionando informacao... <<<\n\n");
         fclose(fp);
     } else {
-        printf("\n>>> Erro na criação do arquivo!\n");
+        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 }
 
@@ -40,7 +40,7 @@ Employer* e_read_archive(char *ar_name, char *filter) {
 
         fclose(fp);
     } else {
-        printf("\n>>> Erro na criação do arquivo!\n");
+        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
     free(emp_aux);
@@ -70,14 +70,14 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
                 printf("\nCPF: %s", new_funcionario->cpf);
                 fwrite(new_funcionario, sizeof(Employer), 1, fp);
                 
-                printf("\n>>> Funcionário alterado!\n");
+                printf("\n\n>>> Funcionário alterado! <<<\n\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n>>> Erro na criação do arquivo!\n");
+        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
     free(emp_aux);
@@ -109,7 +109,7 @@ void e_delete_archive(char *ar_name, char *filter) {
  
         fclose(fp);
     } else {
-        printf("\n>>> Erro na criação do arquivo!\n");
+        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
     free(emp_aux);
@@ -138,7 +138,7 @@ void e_list_archive(char *ar_name) {
 
         fclose(fp);
     } else {
-        printf("\n>>> Erro na criação do arquivo!\n");
+        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
     free(emp_aux);

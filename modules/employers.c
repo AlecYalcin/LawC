@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 // Created Modules
 #include "utils.h"
 #include "../database/data_utils.h"
@@ -36,8 +37,15 @@ void employer_c(void) {
     // Coletar e Verificar o DESCRIÇÃO;
     get_desc(new_employer->desc);
 
-    printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
+    printf("\n\n>>> ------------------------------ <<<");
+    printf("\n> Nome....................: %s", new_employer->name);
+    printf("\n> Idade...................: %s", new_employer->birth_date);
+    printf("\n> CPF.....................: %s", new_employer->cpf);
+    printf("\n> E-mail..................: %s", new_employer->email);
+    printf("\n> Telefone................: %s", new_employer->tel);
+    printf("\n> OAB.....................: %s", new_employer->OAB);
+    printf("\n> Funcao..................: %s", new_employer->role);
+    printf("\n> Descricao...............: %s", new_employer->desc);
 
     // Criação de arquivos
     if (verify_archive(e_ar_name)) {
@@ -75,7 +83,16 @@ void employer_r(void) {
     if (funcionario == NULL) {
         printf("Funcionario não encontrado. \n");
     } else {
-        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", funcionario->name, funcionario->birth_date, funcionario->cpf, funcionario->email, funcionario->tel, funcionario->OAB, funcionario->role, funcionario->desc);
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome....................: %s", funcionario->name);
+        printf("\n> Idade...................: %s", funcionario->birth_date);
+        printf("\n> CPF.....................: %s", funcionario->cpf);
+        printf("\n> E-mail..................: %s", funcionario->email);
+        printf("\n> Telefone................: %s", funcionario->tel);
+        printf("\n> OAB.....................: %s", funcionario->OAB);
+        printf("\n> Funcao..................: %s", funcionario->role);
+        printf("\n> Descricao...............: %s", funcionario->desc);
+
         free(funcionario);
     }
 
