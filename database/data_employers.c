@@ -84,6 +84,37 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
     free(new_funcionario);
 }
 
+// Excluir (Delete) de Arquivos
+void e_delete_archive(char *ar_name, char *filter) {
+    FILE *fp;
+    Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
+
+    fp = fopen(ar_name, "rb");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(emp_aux, sizeof(Employer), 1, fp);
+            // Comparando as Strings
+            if (!(strcmp(emp_aux->cpf, filter))) {
+                // Após encontrar, alterar a localização do ponteiro
+                long pos = -1L;
+                fseek(fp, pos * sizeof(Employer), SEEK_CUR);
+                // Tendo reposicionado o ponteiro, atualizar.
+                fwrite(emp_aux, sizeof(Employer), 1, fp);
+                break;
+            }
+        }
+ 
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo!\n");
+    }
+
+    free(emp_aux);
+}
+
 // Listagem (List) de Arquivos
 void e_list_archive(char *ar_name) {
     FILE *fp; int loop = 0;

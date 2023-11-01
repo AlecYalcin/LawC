@@ -84,7 +84,7 @@ void employer_r(void) {
 }
 
 void employer_u(void) { 
-    Employer* funcionario;
+    Employer* funcionario = (Employer*) malloc(sizeof(Employer));
     char filter[13];
 
     limpa_buffer();
@@ -105,30 +105,45 @@ void employer_u(void) {
     if (funcionario == NULL) {
         printf("Funcionario não encontrado. \n");
     } else {
-        Employer* new_employer = (Employer*) malloc(sizeof(Employer));
-        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", funcionario->name, funcionario->birth_date, funcionario->cpf, funcionario->email, funcionario->tel, funcionario->OAB, funcionario->role, funcionario->desc);
-        
-        printf(">> Preencher as Novas Informações... \n");
-        // Coletar e Verificar nome;
-        get_name(new_employer->name);
-        // Coletar e Verificar data de nascimento.
-        get_birth(new_employer->birth_date);
-        // Coletar e Verificar CPF;
-        get_cpf(new_employer->cpf);
-        // Coletar e Verificar o Email;
-        get_email(new_employer->email);
-        // Coletar e Verificar o Contato;
-        get_tel(new_employer->tel);
-        // Coletar e Verificar o OAB;
-        get_oab(new_employer->OAB);
-        // Coletar e Verificar o CARGO;
-        get_role(new_employer->role);
-        // Coletar e Verificar o DESCRIÇÃO;
-        get_desc(new_employer->desc);
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome....................: %s", funcionario->name);
+        printf("\n> Idade...................: %s", funcionario->birth_date);
+        printf("\n> CPF.....................: %s", funcionario->cpf);
+        printf("\n> E-mail..................: %s", funcionario->email);
+        printf("\n> Telefone................: %s", funcionario->tel);
+        printf("\n> OAB.....................: %s", funcionario->OAB);
+        printf("\n> Funcao..................: %s", funcionario->role);
+        printf("\n> Descricao...............: %s", funcionario->desc);
 
-        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", new_employer->name, new_employer->birth_date, new_employer->cpf, new_employer->email, new_employer->tel, new_employer->OAB, new_employer->role, new_employer->desc);
-        
-        e_update_archive(e_ar_name, filter, new_employer);
+        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        // Coletar e Verificar nome;
+        get_name(funcionario->name);
+        // Coletar e Verificar data de nascimento.
+        get_birth(funcionario->birth_date);
+        // Coletar e Verificar CPF;
+        get_cpf(funcionario->cpf);
+        // Coletar e Verificar o Email;
+        get_email(funcionario->email);
+        // Coletar e Verificar o Contato;
+        get_tel(funcionario->tel);
+        // Coletar e Verificar o OAB;
+        get_oab(funcionario->OAB);
+        // Coletar e Verificar o CARGO;
+        get_role(funcionario->role);
+        // Coletar e Verificar o DESCRIÇÃO;
+        get_desc(funcionario->desc);
+
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome....................: %s", funcionario->name);
+        printf("\n> Idade...................: %s", funcionario->birth_date);
+        printf("\n> CPF.....................: %s", funcionario->cpf);
+        printf("\n> E-mail..................: %s", funcionario->email);
+        printf("\n> Telefone................: %s", funcionario->tel);
+        printf("\n> OAB.....................: %s", funcionario->OAB);
+        printf("\n> Funcao..................: %s", funcionario->role);
+        printf("\n> Descricao...............: %s", funcionario->desc);
+
+        e_update_archive(e_ar_name, filter, funcionario);
     }
     
 }
