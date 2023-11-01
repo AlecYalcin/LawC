@@ -1,6 +1,10 @@
 #include <stdio_ext.h> 
 
+// Funções de utilidade
 void limpa_buffer(void);
+void change_last(char*);
+
+// Funções de dados
 void get_name(char* _name);
 void get_birth(char* _birth_date);
 void get_cpf(char* _cpf);

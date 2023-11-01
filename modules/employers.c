@@ -54,8 +54,8 @@ void employer_c(void) {
 }
 
 void employer_r(void) {
-    Employer* funcionario = (Employer*) malloc(sizeof(Employer));
-    char* filter = (char*) malloc(12*sizeof(char));
+    Employer* funcionario;
+    char filter[13];
 
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
@@ -67,15 +67,19 @@ void employer_r(void) {
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Digite o CPF: ");
-    fgets(filter, 12, stdin);
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    funcionario = e_read_archive(e_ar_name, filter);
+    if (funcionario == NULL) {
+        printf("Funcionario não encontrado. \n");
+    } else {
+        printf("Nome: %s,\nData de Nascimento: %s,\nCPF: %s,\nE-mail: %s,\nTel: %s,\nOAB: %s,\nCargo: %s,\nDescricao: %s", funcionario->name, funcionario->birth_date, funcionario->cpf, funcionario->email, funcionario->tel, funcionario->OAB, funcionario->role, funcionario->desc);
+        free(funcionario);
+    }
 
-    printf("Filter: %s\n", filter);
-
-    funcionario = e_read_archive(funcionario, e_ar_name, filter);
-    printf("CPF: %s", funcionario->cpf);
-
-    free(filter);
-    free(funcionario);
+    
 }
 
 void employer_u(void) {

@@ -5,26 +5,34 @@
 #include "../modules/employers.h"
 
 // Leitura (Read) de Arquivos
-Employer* e_read_archive(Employer *funcionario, char *ar_name, char *filter) {
+Employer* e_read_archive(char *ar_name, char *filter) {
     FILE *fp;
+    Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
+
         while(!feof(fp)) {
-            fread(funcionario, sizeof(Employer), 1, fp);
-            if (!(strcmp(funcionario->cpf, filter))) {
+            printf("\n !> Filtro: %s", filter);
+            fread(emp_aux, sizeof(Employer), 1, fp);
+
+            printf("\n\n >>> Emp_aux: %s, CPF: %s", emp_aux->cpf, filter);
+            printf("\n      -> Comparação: %s", filter);
+
+            if (!(strcmp(emp_aux->cpf, filter))) {
+                return emp_aux;
                 fclose(fp);
-                return funcionario;
             }
         }
-        printf("\n>>> Funcionario nao encontrado. \n");
 
         fclose(fp);
-        return funcionario;
     } else {
         printf("\n>>> Erro na criação do arquivo!\n");
     }
+
+    free(emp_aux);
+    return NULL;
 }
 
 // Atualização (Update) de Arquivos
