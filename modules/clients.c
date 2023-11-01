@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdio_ext.h> 
 #include <stdlib.h>
 // Created Modules
 #include "utils.h"
