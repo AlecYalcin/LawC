@@ -8,17 +8,17 @@
 #include "modules/schedule.h"
 
 // Main Menu Functions
-void menu_main(void);
-void menu_system(void);
-void menu_project(void);
-void menu_devs(void);
+int menu_main(void);
+int menu_system(int);
+int menu_project(int);
+int menu_devs(int);
 
 // Modules Menu Functions
-void menu_employer(void);
-void menu_services(void);
-void menu_resources(void);
-void menu_clients(void);
-void menu_schedule(void);
+int menu_employer(int);
+int menu_services(int);
+int menu_resources(int);
+int menu_clients(int);
+int menu_schedule(int);
 
 /*
     Função feita somente para o "Digite ENTER" 
@@ -28,18 +28,42 @@ void exe_breaker(void) {
     fflush(stdin);
 
     char aux;
-    printf("\n\n>>> Tecle <ENTER> para continuar... <<<\n\n");
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     aux = getchar();
 }
 
 // Método Main
 int main(void) {
-    menu_main();
+    int option;
+    do {
+        option = menu_main();
+
+        if (option == 0) {
+            printf("\nSaindo do Sistema...\n");
+        } else {
+            // Entrando em um Novo Loop de Opções
+            do {
+                if (option == 1) {
+                    option = menu_system(option);
+                } else if (option == 2) {
+                    option = menu_project(option);
+                } else if (option == 3) {
+                    option = menu_devs(option);
+                } else {
+                    printf("\nMenu Padrão: Valor Invalido!\n");
+                    break;
+                }
+            } while(option != 0);
+            // Definindo qualquer valor diferente de [0,1,2,3] para continuar
+            option = 4;
+        }
+    } while(option != 0);
+
     return 0;
 }
 
 // Funções
-void menu_main(void) {
+int menu_main(void) {
     system("clear||cls");
 
     int option;
@@ -71,32 +95,12 @@ void menu_main(void) {
     scanf("%d", &option);
     getchar();
 
-    switch(option) {
-        case 0:
-        exit(0);
-        break;
-
-        case 1:
-        menu_system();
-        break;
-
-        case 2:
-        menu_project();
-        break;
-
-        case 3:
-        menu_devs();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-    }
+    return option;
 }
 
-void menu_system(void) {
+int menu_system(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -113,39 +117,32 @@ void menu_system(void) {
     scanf("%d", &option);
     getchar();
 
-    switch(option) {
-        case 0:
-        menu_main();
-        break;
-
-        case 1:
-        menu_employer();
-        break;
-
-        case 2:
-        menu_services();
-        break;
-
-        case 3:
-        menu_resources();
-        break;
-
-        case 4:
-        menu_clients();
-        break;
-
-        case 5:
-        menu_schedule();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        menu_system();
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu...\n");
+    } else {
+        do {
+            if (option == 1) {
+                option = menu_employer(option);
+            } else if (option == 2) {
+                option = menu_services(option);
+            } else if (option == 3) {
+                option = menu_resources(option);
+            } else if (option == 4) {
+                option = menu_clients(option);
+            } else if (option == 5) {
+                option = menu_schedule(option);
+            } else {
+                printf("\nMenu Sistemas: Valor Invalido!\n");
+                break;
+            }
+        } while(option != 0);
+        // Retornando o valor do próprio menu
+        option = 1;
     }
+    return option;
 }
 
-void menu_project(void) {
+int menu_project(int option) {
     system("clear||cls");
 
     printf("-----------------------------------------------------------------\n");
@@ -169,10 +166,11 @@ void menu_project(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     exe_breaker();
-    menu_main();
+
+    return 0;
 }
 
-void menu_devs(void) {
+int menu_devs(int option) {
     system("clear||cls");
 
     printf("-----------------------------------------------------------------\n");
@@ -194,15 +192,15 @@ void menu_devs(void) {
     printf("|                     Git:     alecyalcin                       |\n");
     printf("-----------------------------------------------------------------\n");
     exe_breaker();
-    menu_main();
+
+    return 0;
 }
 
 // MODULO 1 - Funções de Funcionário
 
-void menu_employer(void) {
+int menu_employer(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -220,43 +218,31 @@ void menu_employer(void) {
     scanf("%d", &option);
     getchar();
 
-    switch(option) {
-        case 0:
-        menu_system();
-        break;
-
-        case 1:
-        employer_c();
-        break;
-
-        case 2:
-        employer_r();
-        break;
-
-        case 3:
-        employer_u();
-        break;
-
-        case 4:
-        employer_d();
-        break;
-
-        case 5:
-        employer_list();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu de sistema...\n");
+        return option;
+    } else {
+        if (option == 1) {
+            employer_c();
+        } else if (option == 2) {
+            employer_r();
+        } else if (option == 3) {
+            employer_u();
+        } else if (option == 4) {
+            employer_d();
+        } else if (option == 5) {
+            employer_list();
+        } else {
+            printf("\nMenu Funcionários: Valor Invalido!\n");
+        }
     }
     exe_breaker();
-    menu_employer();
+    return 1;
 }
 
-void menu_resources(void) {
+int menu_resources(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -273,43 +259,32 @@ void menu_resources(void) {
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
 
-    switch(option) {
-        case 0:
-        menu_system();
-        break;
-
-        case 1:
-        resources_c();
-        break;
-
-        case 2:
-        resources_r();
-        break;
-
-        case 3:
-        resources_u();
-        break;
-
-        case 4:
-        resources_d();
-        break;
-
-        case 5:
-        resources_list();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu de sistema...\n");
+        return option;
+    } else {
+        if (option == 1) {
+            resources_c();
+        } else if (option == 2) {
+            resources_r();
+        } else if (option == 3) {
+            resources_u();
+        } else if (option == 4) {
+            resources_d();
+        } else if (option == 5) {
+            resources_list();
+        } else {
+            printf("\nMenu Recursos: Valor Invalido!\n");
+        }
     }
+
     exe_breaker();
-    menu_resources();
+    return 3;
 }
 
-void menu_services(void) {
+int menu_services(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -326,43 +301,32 @@ void menu_services(void) {
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
 
-    switch(option) {
-        case 0:
-        menu_system();
-        break;
-
-        case 1:
-        services_c();
-        break;
-
-        case 2:
-        services_r();
-        break;
-
-        case 3:
-        services_u();
-        break;
-
-        case 4:
-        services_d();
-        break;
-
-        case 5:
-        services_list();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu de sistema...\n");
+        return option;
+    } else {
+        if (option == 1) {
+            services_c();
+        } else if (option == 2) {
+            services_r();
+        } else if (option == 3) {
+            services_u();
+        } else if (option == 4) {
+            services_d();
+        } else if (option == 5) {
+            services_list();
+        } else {
+            printf("\nMenu de Serviços: Valor Invalido!\n");
+        }
     }
+
     exe_breaker();
-    menu_services();
+    return 2;
 }
 
-void menu_clients(void) {
+int menu_clients(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -379,43 +343,32 @@ void menu_clients(void) {
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
 
-    switch(option) {
-        case 0:
-        menu_system();
-        break;
-
-        case 1:
-        clients_c();
-        break;
-
-        case 2:
-        clients_r();
-        break;
-
-        case 3:
-        clients_u();
-        break;
-
-        case 4:
-        clients_d();
-        break;
-
-        case 5:
-        clients_list();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu de sistema...\n");
+        return option;
+    } else {
+        if (option == 1) {
+            clients_c();
+        } else if (option == 2) {
+            clients_r();
+        } else if (option == 3) {
+            clients_u();
+        } else if (option == 4) {
+            clients_d();
+        } else if (option == 5) {
+            clients_list();
+        } else {
+            printf("\nMenu de Clientes: Valor Invalido!\n");
+        }
     }
+
     exe_breaker();
-    menu_clients();
+    return 4;
 }
 
-void menu_schedule(void) {
+int menu_schedule(int option) {
     system("clear||cls");
 
-    int option;
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -434,43 +387,29 @@ void menu_schedule(void) {
     printf("Escolha uma opcao: ");
     scanf("%d", &option);
 
-    switch(option) {
-        case 0:
-        menu_system();
-        break;
-
-        case 1:
-        schedule_c();
-        break;
-
-        case 2:
-        schedule_r();
-        break;
-
-        case 3:
-        schedule_u();
-        break;
-
-        case 4:
-        schedule_d();
-        break;
-
-        case 5:
-        schedule_end();
-        break;
-
-        case 6:
-        schedule_list();
-        break;
-
-        case 7:
-        schedule_data();
-        break;
-
-        default:
-        printf("Valor Invalido!\n");
-        break;
+    if (option == 0) {
+        printf("\nVoltando ao menu de sistema...\n");
+        return option;
+    } else {
+        if (option == 1) {
+            schedule_c();
+        } else if (option == 2) {
+            schedule_r();
+        } else if (option == 3) {
+            schedule_u();
+        } else if (option == 4) {
+            schedule_d();
+        } else if (option == 5) {
+            schedule_end();
+        } else if (option == 6) {
+            schedule_list();
+        } else if (option == 7) {
+            schedule_data();
+        } else {
+            printf("\nMenu de Agendamentos: Valor Invalido!\n");
+        }
     }
+    
     exe_breaker();
-    menu_schedule();
+    return 5;
 }
