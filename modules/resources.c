@@ -25,17 +25,20 @@ void resources_c(void) {
     get_desc(new_resource->desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
     get_available_at(new_resource->available_at);
-    printf("-----------------------------------------------------------------\n");
-    printf("Nome: %s,\nDescricao: %s,\nDisponivel Em: %s", new_resource->name, new_resource->desc, new_resource->available_at);
+
+    printf("\n\n>>> ------------------------------ <<<");
+    printf("\n> Servico.................: %s", new_resource->name);
+    printf("\n> Descricao...............: %s", new_resource->desc);
+    printf("\n> Disponivel Em...........: %s", new_resource->available_at);
 
     // Criação de arquivos
     if (verify_archive(r_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        r_update_archive(r_ar_name, new_resource);
+        r_create_archive(r_ar_name, new_resource);
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(r_ar_name);
-        r_update_archive(r_ar_name, new_resource);
+        r_create_archive(r_ar_name, new_resource);
     }
 
     // Liberação de memória dinâmica
@@ -43,9 +46,10 @@ void resources_c(void) {
 }
 
 void resources_r(void) {
-    Resource* recurso = (Resource*) malloc(sizeof(Resource));
-    char* filter = (char*) malloc(50*sizeof(char));
+    Resource* resource;
+    char filter[51];
 
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -55,13 +59,29 @@ void resources_r(void) {
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Digite o Nome: ");
-    scanf("%50[^\n]", filter);
-
-    printf("Filtro: %s", filter);
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    resource = r_read_archive(r_ar_name, filter);
+    if (resource == NULL) {
+        printf("Servico não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Descricao...............: %s", resource->desc);
+        printf("\n> Disponivel Em...........: %s", resource->available_at);
+        
+        free(resource);
+    }
 
 }
 
 void resources_u(void) {
+    Resource* resource;
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -70,6 +90,36 @@ void resources_u(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    resource = r_read_archive(r_ar_name, filter);
+    if (resource == NULL) {
+        printf("Servico não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Descricao...............: %s", resource->desc);
+        printf("\n> Disponivel Em...........: %s", resource->available_at);
+        
+        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        // Coletar e Verificar o NOME DO RECURSO;
+        get_name(resource->name);
+        // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
+        get_desc(resource->desc);
+        // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
+        get_available_at(resource->available_at);
+
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Descricao...............: %s", resource->desc);
+        printf("\n> Disponivel Em...........: %s", resource->available_at);       
+
+        r_update_archive(r_ar_name, filter, resource);
+    }
+
 }
 
 void resources_d(void) {
@@ -84,6 +134,7 @@ void resources_d(void) {
 }
 
 void resources_list(void) {
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -92,4 +143,5 @@ void resources_list(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    r_list_archive(r_ar_name);
 }

@@ -61,13 +61,10 @@ void s_update_archive(char *ar_name, char *filter, Service* new_service) {
             fread(ser_aux, sizeof(Service), 1, fp);
             // Comparando as Strings
             if (!(strcmp(ser_aux->name, filter))) {
-                printf("\n      -> Apontador Antes: %p", fp);
                 // Após encontrar, alterar a localização do ponteiro
                 long pos = -1L;
                 fseek(fp, pos * sizeof(Service), SEEK_CUR);
-                printf("\n      -> Apontador Depois: %p", fp);
                 // Tendo reposicionado o ponteiro, atualizar.
-                printf("\nNome: %s", new_service->name);
                 fwrite(new_service, sizeof(Service), 1, fp);
                 
                 printf("\n\n>>> Servico alterado! <<<\n\n");
