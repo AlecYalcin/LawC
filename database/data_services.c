@@ -33,8 +33,8 @@ Service* s_read_archive(char *ar_name, char *filter) {
             fread(ser_aux, sizeof(Service), 1, fp);
             // Comparando as Strings
             if (!(strcmp(ser_aux->name, filter))) {
-                return ser_aux;
                 fclose(fp);
+                return ser_aux;
             }
         }
 
@@ -52,7 +52,7 @@ void s_update_archive(char *ar_name, char *filter, Service* new_service) {
     FILE *fp;
     Service* ser_aux = (Service*) malloc(sizeof(Service));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -62,8 +62,7 @@ void s_update_archive(char *ar_name, char *filter, Service* new_service) {
             // Comparando as Strings
             if (!(strcmp(ser_aux->name, filter))) {
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Service), SEEK_CUR);
+                fseek(fp, -1*sizeof(Service), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_service, sizeof(Service), 1, fp);
                 

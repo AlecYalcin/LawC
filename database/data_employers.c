@@ -52,7 +52,7 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
     FILE *fp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -62,8 +62,10 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
             // Comparando as Strings
             if (!(strcmp(emp_aux->cpf, filter))) {
                 // Após encontrar, alterar a localização do ponteiro
+                printf("\n>>>Ponteiro Antes:  %p", fp);
                 fseek(fp, -1*sizeof(Employer), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
+                printf("\n>>>Ponteiro Depois: %p", fp);
                 fwrite(new_funcionario, sizeof(Employer), 1, fp);
                 
                 printf("\n\n>>> Funcionário alterado! <<<\n\n");
@@ -77,7 +79,6 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
     }
 
     free(emp_aux);
-    free(new_funcionario);
 }
 
 // Excluir (Delete) de Arquivos

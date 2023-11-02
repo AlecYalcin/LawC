@@ -33,8 +33,8 @@ Resource* r_read_archive(char *ar_name, char *filter) {
             fread(res_aux, sizeof(Resource), 1, fp);
             // Comparando as Strings
             if (!(strcmp(res_aux->name, filter))) {
-                return res_aux;
                 fclose(fp);
+                return res_aux;
             }
         }
 
@@ -52,7 +52,7 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
     FILE *fp;
     Resource* res_aux = (Resource*) malloc(sizeof(Resource));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -62,8 +62,7 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
             // Comparando as Strings
             if (!(strcmp(res_aux->name, filter))) {
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Resource), SEEK_CUR);
+                fseek(fp, -1*sizeof(Resource), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_resource, sizeof(Resource), 1, fp);
                 

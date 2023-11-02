@@ -53,7 +53,7 @@ void c_update_archive(char *ar_name, char *filter, Cliente* new_Cliente) {
     FILE *fp;
     Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -63,8 +63,7 @@ void c_update_archive(char *ar_name, char *filter, Cliente* new_Cliente) {
             // Comparando as Strings
             if (!(strcmp(cli_aux->cpf, filter))) {
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Cliente), SEEK_CUR);
+                fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_Cliente, sizeof(Cliente), 1, fp);
                 
