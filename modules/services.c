@@ -21,14 +21,14 @@ void services_c(void) {
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO SERVIÇO;
     get_name(new_service->name);
+        // Coletar e Verificar VALOR DO SERVIÇO;
+    get_value(&new_service->value);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
     get_desc(new_service->desc);
-    // Coletar e Verificar VALOR DO SERVIÇO;
-    get_value(&new_service->value);
 
     printf("\n\n>>> ------------------------------ <<<");
     printf("\n> Servico.................: %s", new_service->name);
-    printf("\n> Valor...................: %.2f", new_service->value);
+    printf("\n> Valor...................: R$%.2f", new_service->value);
     printf("\n> Descricao...............: %s", new_service->desc);
 
     // Criação de arquivos
@@ -68,7 +68,7 @@ void services_r(void) {
     } else {
         printf("\n\n>>> ------------------------------ <<<");
         printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Valor...................: R$%.2f", service->value);
         printf("\n> Descricao...............: %s", service->desc);
         
         free(service);
@@ -100,7 +100,7 @@ void services_u(void) {
     } else {
         printf("\n\n>>> ------------------------------ <<<");
         printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Valor...................: R$%.2f", service->value);
         printf("\n> Descricao...............: %s", service->desc);
         
         printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
@@ -113,7 +113,7 @@ void services_u(void) {
 
         printf("\n\n>>> ------------------------------ <<<");
         printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: %.2f", service->value);
+        printf("\n> Valor...................: R$%.2f", service->value);
         printf("\n> Descricao...............: %s", service->desc);        
 
         s_update_archive(s_ar_name, filter, service);

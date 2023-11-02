@@ -123,7 +123,7 @@ void s_list_archive(char *ar_name) {
             // Lendo o Arquivo
             printf("\n\n>>> ------------------------------ <<<");
             printf("\n> Servico.................: %s", ser_aux->name);
-            printf("\n> Valor...................: %.2f", ser_aux->value);
+            printf("\n> Valor...................: R$%.2f", ser_aux->value);
             printf("\n> Descricao...............: %s", ser_aux->desc);
         }
 
