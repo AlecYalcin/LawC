@@ -108,8 +108,8 @@ void e_delete_archive(char *ar_name, Employer* employer) {
         fclose(fp);
 
         // Excluindo e Renomeando 
-        remove("database/_employers.dat");
-        rename("database/_temp.dat", ar_name);
+        remove(ar_name);
+        rename(temp_txt, ar_name);
 
         printf("\n>>>Excluido com Sucesso.\n");
 
