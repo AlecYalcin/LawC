@@ -81,7 +81,7 @@ void employer_r(void) {
     // Procurando os dados nos arquivos
     funcionario = e_read_archive(e_ar_name, filter);
     if (funcionario == NULL) {
-        printf("Funcionario não encontrado. \n");
+        printf("\n >>> Funcionario não encontrado. \n");
     } else {
         printf("\n\n>>> ------------------------------ <<<");
         printf("\n> Nome....................: %s", funcionario->name);

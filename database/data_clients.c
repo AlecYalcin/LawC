@@ -33,11 +33,12 @@ Cliente* c_read_archive(char *ar_name, char *filter) {
             fread(cli_aux, sizeof(Cliente), 1, fp);
             // Comparando as Strings
             if (!(strcmp(cli_aux->cpf, filter))) {
-                return cli_aux;
                 fclose(fp);
+                return cli_aux;
             }
         }
 
+        printf("\n >>> Funcionario não encontrado. \n");
         fclose(fp);
     } else {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
