@@ -31,17 +31,22 @@ void clients_c(void)  {
     // Coletar e Verificar o Contato;
     get_tel(new_client->tel);
 
-    printf("-----------------------------------------------------------------\n");
-    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", new_client->name, new_client->birth_date, new_client->cpf, new_client->email, new_client->tel);
+    printf("\n\n>>> ------------------------------ <<<");
+    printf("\n> Nome.................: %s", new_client->name);
+    printf("\n> Idade................: %s", new_client->birth_date);
+    printf("\n> CPF..................: %s", new_client->cpf);
+    printf("\n> Email................: %s", new_client->email);
+    printf("\n> Telefone.............: %s", new_client->tel);
+
 
     // Criação de arquivos
     if (verify_archive(c_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        c_update_archive(c_ar_name, new_client);
+        c_create_archive(c_ar_name, new_client);
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(c_ar_name);
-        c_update_archive(c_ar_name, new_client);
+        c_create_archive(c_ar_name, new_client);
     }
 
     // Liberação de memória dinâmica
@@ -49,8 +54,8 @@ void clients_c(void)  {
 }
 
 void clients_r(void)  {
-    Cliente* client = (Cliente*) malloc(sizeof(Cliente));
-    char* filter = (char*) malloc(12*sizeof(char));
+    Cliente* cliente;
+    char filter[13];
 
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
@@ -62,18 +67,30 @@ void clients_r(void)  {
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Digite o CPF: ");
-    fgets(filter, 12, stdin);
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    cliente = c_read_archive(c_ar_name, filter);
+    if (cliente == NULL) {
+        printf("Cliente não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome.................: %s", cliente->name);
+        printf("\n> Idade................: %s", cliente->birth_date);
+        printf("\n> CPF..................: %s", cliente->cpf);
+        printf("\n> Email................: %s", cliente->email);
+        printf("\n> Telefone.............: %s", cliente->tel);
 
-    printf("Filter: %s\n", filter);
-    
-    client = c_read_archive(client, c_ar_name, filter);
-    printf("Cliente: \n-> Nome: %s,\n-> Data de Nascimento: %s,\n-> CPF: %s,\n-> E-mail: %s\n-> Telefone: %s\n", client->name, client->birth_date, client->cpf, client->email, client->tel);
-
-    free(filter);
-    free(client);
+        free(cliente);
+    }
 }
 
 void clients_u(void)  {
+    Cliente* cliente;
+    char filter[13];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -82,6 +99,42 @@ void clients_u(void)  {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o CPF: ");
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    cliente = c_read_archive(c_ar_name, filter);
+    if (cliente == NULL) {
+        printf("Cliente não encontrado. \n");
+    } else {
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome.................: %s", cliente->name);
+        printf("\n> Idade................: %s", cliente->birth_date);
+        printf("\n> CPF..................: %s", cliente->cpf);
+        printf("\n> Email................: %s", cliente->email);
+        printf("\n> Telefone.............: %s", cliente->tel);
+
+        // Coletar e Verificar nome;
+        get_name(cliente->name);
+        // Coletar e Verificar data de nascimento.
+        get_birth(cliente->birth_date);
+        // Coletar e Verificar CPF;
+        get_cpf(cliente->cpf);
+        // Coletar e Verificar o Email;
+        get_email(cliente->email);
+        // Coletar e Verificar o Contato;
+        get_tel(cliente->tel);
+
+        printf("\n\n>>> ------------------------------ <<<");
+        printf("\n> Nome.................: %s", cliente->name);
+        printf("\n> Idade................: %s", cliente->birth_date);
+        printf("\n> CPF..................: %s", cliente->cpf);
+        printf("\n> Email................: %s", cliente->email);
+        printf("\n> Telefone.............: %s", cliente->tel);
+
+        c_update_archive(c_ar_name, filter, cliente);
+    }
 }
 
 void clients_d(void)  {
@@ -96,6 +149,7 @@ void clients_d(void)  {
 }
 
 void clients_list(void)  {
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -103,4 +157,5 @@ void clients_list(void)  {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    c_list_archive(c_ar_name);
 }

@@ -27,7 +27,7 @@ void resources_c(void) {
     get_available_at(new_resource->available_at);
 
     printf("\n\n>>> ------------------------------ <<<");
-    printf("\n> Servico.................: %s", new_resource->name);
+    printf("\n> Recurso.................: %s", new_resource->name);
     printf("\n> Descricao...............: %s", new_resource->desc);
     printf("\n> Disponivel Em...........: %s", new_resource->available_at);
 
@@ -65,10 +65,10 @@ void resources_r(void) {
     // Procurando os dados nos arquivos
     resource = r_read_archive(r_ar_name, filter);
     if (resource == NULL) {
-        printf("Servico não encontrado. \n");
+        printf("Recurso não encontrado. \n");
     } else {
         printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Recurso.................: %s", resource->name);
         printf("\n> Descricao...............: %s", resource->desc);
         printf("\n> Disponivel Em...........: %s", resource->available_at);
         
@@ -97,10 +97,10 @@ void resources_u(void) {
     // Procurando os dados nos arquivos
     resource = r_read_archive(r_ar_name, filter);
     if (resource == NULL) {
-        printf("Servico não encontrado. \n");
+        printf("Recurso não encontrado. \n");
     } else {
         printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Recurso.................: %s", resource->name);
         printf("\n> Descricao...............: %s", resource->desc);
         printf("\n> Disponivel Em...........: %s", resource->available_at);
         
@@ -113,7 +113,7 @@ void resources_u(void) {
         get_available_at(resource->available_at);
 
         printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", resource->name);
+        printf("\n> Recurso.................: %s", resource->name);
         printf("\n> Descricao...............: %s", resource->desc);
         printf("\n> Disponivel Em...........: %s", resource->available_at);       
 

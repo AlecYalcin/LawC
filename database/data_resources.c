@@ -67,7 +67,7 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_resource, sizeof(Resource), 1, fp);
                 
-                printf("\n\n>>> Servico alterado! <<<\n\n");
+                printf("\n\n>>> Recurso alterado! <<<\n\n");
                 break;
             }
         }
