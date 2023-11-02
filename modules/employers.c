@@ -164,6 +164,10 @@ void employer_u(void) {
 }
 
 void employer_d(void) {
+    Employer* funcionario = (Employer*) malloc(sizeof(Employer));
+    char filter[13];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -172,6 +176,18 @@ void employer_d(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o CPF: ");
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    funcionario = e_read_archive(e_ar_name, filter);
+    if (funcionario == NULL) {
+        printf("Funcionario não encontrado. \n");
+    } else {
+        // Excluindo o arquivo
+        e_delete_archive(e_ar_name, funcionario);  
+    }
 }
 
 void employer_list(void) {

@@ -33,8 +33,8 @@ Employer* e_read_archive(char *ar_name, char *filter) {
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
             if (!(strcmp(emp_aux->cpf, filter))) {
-                return emp_aux;
                 fclose(fp);
+                return emp_aux;
             }
         }
 
@@ -61,13 +61,9 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
             if (!(strcmp(emp_aux->cpf, filter))) {
-                printf("\n      -> Apontador Antes: %p", fp);
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Employer), SEEK_CUR);
-                printf("\n      -> Apontador Depois: %p", fp);
+                fseek(fp, -1*sizeof(Employer), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
-                printf("\nCPF: %s", new_funcionario->cpf);
                 fwrite(new_funcionario, sizeof(Employer), 1, fp);
                 
                 printf("\n\n>>> Funcionário alterado! <<<\n\n");
@@ -85,34 +81,44 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
 }
 
 // Excluir (Delete) de Arquivos
-void e_delete_archive(char *ar_name, char *filter) {
-    FILE *fp;
+void e_delete_archive(char *ar_name, Employer* employer) {
+    char* temp_txt = "database/_temp.dat";
+    // Criação dupla de arquivos, onde um vai ser a cópia MENOS um
+    FILE *fp, *fp_temp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
-    fp = fopen(ar_name, "rb");
+    fp      = fopen(ar_name, "rb");
+    fp_temp = fopen(temp_txt, "wb");
 
-    if (!(fp == NULL)) {
+    if (!(fp == NULL) && !(fp_temp == NULL)) {
 
         while(!feof(fp)) {
             // Lendo o Arquivo
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(emp_aux->cpf, filter))) {
-                // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Employer), SEEK_CUR);
-                // Tendo reposicionado o ponteiro, atualizar.
-                fwrite(emp_aux, sizeof(Employer), 1, fp);
+            if (strcmp(employer->cpf, emp_aux->cpf) != 0) {
+                // Somente colocar o que não for o que se quer excluir
+                fwrite(emp_aux, sizeof(Employer), 1, fp_temp);
                 break;
             }
         }
- 
+
+        // Fechando os arquivos
+        fclose(fp_temp);
         fclose(fp);
+
+        // Excluindo e Renomeando 
+        remove("database/_employers.dat");
+        rename("database/_temp.dat", ar_name);
+
+        printf("\n>>>Excluido com Sucesso.\n");
+
     } else {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
     free(emp_aux);
+    free(employer);
 }
 
 // Listagem (List) de Arquivos
