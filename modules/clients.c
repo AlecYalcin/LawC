@@ -30,6 +30,8 @@ void clients_c(void)  {
     get_email(new_client->email);
     // Coletar e Verificar o Contato;
     get_tel(new_client->tel);
+    // Adicionar Status
+    new_client->status = 1;
 
     printf("\n\n>>> ------------------------------ <<<");
     printf("\n> Nome.................: %s", new_client->name);
@@ -115,6 +117,7 @@ void clients_u(void)  {
         printf("\n> Email................: %s", cliente->email);
         printf("\n> Telefone.............: %s", cliente->tel);
 
+        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
         get_name(cliente->name);
         // Coletar e Verificar data de nascimento.
@@ -138,6 +141,10 @@ void clients_u(void)  {
 }
 
 void clients_d(void)  {
+    Cliente* cliente = (Cliente*) malloc(sizeof(Cliente));
+    char filter[13];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -146,6 +153,18 @@ void clients_d(void)  {
     printf("|                                                               |\n");
     printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");   
+    printf("Digite o CPF: ");
+    // Pegando dados e alterando
+    fgets(filter, 13, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    cliente = c_read_archive(c_ar_name, filter);
+    if (cliente == NULL) {
+        printf("Cliente não encontrado. \n");
+    } else {
+        // Excluindo o arquivo
+        c_delete_archive(c_ar_name, cliente);  
+    }
 }
 
 void clients_list(void)  {

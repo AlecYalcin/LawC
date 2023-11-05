@@ -111,8 +111,8 @@ void e_delete_archive(char *ar_name, Employer* employer) {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
-    free(emp_aux);
     free(employer);
+    free(emp_aux);
 }
 
 // Listagem (List) de Arquivos

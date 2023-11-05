@@ -32,13 +32,15 @@ Cliente* c_read_archive(char *ar_name, char *filter) {
             // Lendo o Arquivo
             fread(cli_aux, sizeof(Cliente), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(cli_aux->cpf, filter))) {
+            if (strcmp(cli_aux->cpf, filter) == 0 && cli_aux->status != 0) {
                 fclose(fp);
+
+                printf("\n\n>>> Cliente encontrado! <<<\n\n");
                 return cli_aux;
             }
         }
 
-        printf("\n >>> Funcionario não encontrado. \n");
+        printf("\n >>> Cliente não encontrado. \n");
         fclose(fp);
     } else {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
@@ -61,7 +63,7 @@ void c_update_archive(char *ar_name, char *filter, Cliente* new_Cliente) {
             // Lendo o Arquivo
             fread(cli_aux, sizeof(Cliente), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(cli_aux->cpf, filter))) {
+            if (strcmp(cli_aux->cpf, filter) == 0 && cli_aux->status != 0) {
                 // Após encontrar, alterar a localização do ponteiro
                 fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
@@ -82,11 +84,11 @@ void c_update_archive(char *ar_name, char *filter, Cliente* new_Cliente) {
 }
 
 // Excluir (Delete) de Arquivos
-void c_delete_archive(char *ar_name, char *filter) {
+void c_delete_archive(char *ar_name, Cliente* cliente) {
     FILE *fp;
     Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -94,12 +96,14 @@ void c_delete_archive(char *ar_name, char *filter) {
             // Lendo o Arquivo
             fread(cli_aux, sizeof(Cliente), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(cli_aux->cpf, filter))) {
+            if (strcmp(cli_aux->cpf, cliente->cpf) == 0 && cli_aux->status != 0) {
+                cliente->status = 0;
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Cliente), SEEK_CUR);
+                fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
-                fwrite(cli_aux, sizeof(Cliente), 1, fp);
+                fwrite(cliente, sizeof(Cliente), 1, fp);
+
+                printf("\n\n>>> Cliente excluído! <<<\n\n");
                 break;
             }
         }
@@ -109,6 +113,7 @@ void c_delete_archive(char *ar_name, char *filter) {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
+    free(cliente);
     free(cli_aux);
 }
 
@@ -122,12 +127,15 @@ void c_list_archive(char *ar_name) {
     if (!(fp == NULL)) {
         while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
             // Lendo o Arquivo
-            printf("\n\n>>> ------------------------------ <<<");
-            printf("\n> Nome.................: %s", cli_aux->name);
-            printf("\n> Idade................: %s", cli_aux->birth_date);
-            printf("\n> CPF..................: %s", cli_aux->cpf);
-            printf("\n> Email................: %s", cli_aux->email);
-            printf("\n> Telefone.............: %s", cli_aux->tel);
+
+            if (cli_aux->status != 0) {
+                printf("\n\n>>> ------------------------------ <<<");
+                printf("\n> Nome.................: %s", cli_aux->name);
+                printf("\n> Idade................: %s", cli_aux->birth_date);
+                printf("\n> CPF..................: %s", cli_aux->cpf);
+                printf("\n> Email................: %s", cli_aux->email);
+                printf("\n> Telefone.............: %s", cli_aux->tel);
+            }
         }
 
         fclose(fp);

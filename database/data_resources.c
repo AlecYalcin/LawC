@@ -112,6 +112,7 @@ void r_delete_archive(char *ar_name, Resource* resource) {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
 
+    free(resource);
     free(res_aux);
 }
 
