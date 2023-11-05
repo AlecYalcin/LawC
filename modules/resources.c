@@ -25,6 +25,8 @@ void resources_c(void) {
     get_desc(new_resource->desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
     get_available_at(new_resource->available_at);
+    // Alterar Status
+    new_resource->status = 1;
 
     printf("\n\n>>> ------------------------------ <<<");
     printf("\n> Recurso.................: %s", new_resource->name);
@@ -123,6 +125,10 @@ void resources_u(void) {
 }
 
 void resources_d(void) {
+    Resource* resource = (Resource*) malloc(sizeof(Resource));
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -131,6 +137,18 @@ void resources_d(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome do Recurso: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    resource = r_read_archive(r_ar_name, filter);
+    if (resource == NULL) {
+        printf("Recurso não encontrado. \n");
+    } else {
+        // Excluindo o arquivo
+        r_delete_archive(r_ar_name, resource);  
+    }
 }
 
 void resources_list(void) {

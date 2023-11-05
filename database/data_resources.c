@@ -32,8 +32,10 @@ Resource* r_read_archive(char *ar_name, char *filter) {
             // Lendo o Arquivo
             fread(res_aux, sizeof(Resource), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(res_aux->name, filter))) {
+            if (strcmp(res_aux->name, filter) == 0 && res_aux->status != 0) {
                 fclose(fp);
+
+                printf("\n\n>>> Recurso encontrado! <<<\n\n");
                 return res_aux;
             }
         }
@@ -60,7 +62,7 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
             // Lendo o Arquivo
             fread(res_aux, sizeof(Resource), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(res_aux->name, filter))) {
+            if (strcmp(res_aux->name, filter) == 0 && res_aux->status != 0) {
                 // Após encontrar, alterar a localização do ponteiro
                 fseek(fp, -1*sizeof(Resource), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
@@ -81,11 +83,11 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
 }
 
 // Excluir (Delete) de Arquivos
-void r_delete_archive(char *ar_name, char *filter) {
+void r_delete_archive(char *ar_name, Resource* resource) {
     FILE *fp;
     Resource* res_aux = (Resource*) malloc(sizeof(Resource));
 
-    fp = fopen(ar_name, "rb");
+    fp = fopen(ar_name, "r+b");
 
     if (!(fp == NULL)) {
 
@@ -93,12 +95,14 @@ void r_delete_archive(char *ar_name, char *filter) {
             // Lendo o Arquivo
             fread(res_aux, sizeof(Resource), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(res_aux->name, filter))) {
+            if (strcmp(res_aux->name, resource->name) == 0 && res_aux->status != 0) {
+                resource->status = 0;
                 // Após encontrar, alterar a localização do ponteiro
-                long pos = -1L;
-                fseek(fp, pos * sizeof(Resource), SEEK_CUR);
+                fseek(fp, -1L*sizeof(Resource), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
-                fwrite(res_aux, sizeof(Resource), 1, fp);
+                fwrite(resource, sizeof(Resource), 1, fp);
+
+                printf("\n\n>>> Recurso excluído! <<<\n\n");
                 break;
             }
         }
@@ -121,10 +125,12 @@ void r_list_archive(char *ar_name) {
     if (!(fp == NULL)) {
         while(fread(res_aux, sizeof(Resource), 1, fp)) {
             // Lendo o Arquivo
-            printf("\n\n>>> ------------------------------ <<<");
-            printf("\n> Servico.................: %s", res_aux->name);
-            printf("\n> Descricao...............: %s", res_aux->desc);
-            printf("\n> Disponivel Em...........: %s", res_aux->available_at);
+            if (res_aux->status !=0 ) {
+                printf("\n\n>>> ------------------------------ <<<");
+                printf("\n> Servico.................: %s", res_aux->name);
+                printf("\n> Descricao...............: %s", res_aux->desc);
+                printf("\n> Disponivel Em...........: %s", res_aux->available_at);
+            }
         }
 
         fclose(fp);

@@ -34,6 +34,8 @@ Employer* e_read_archive(char *ar_name, char *filter) {
             // Comparando as Strings
             if (strcmp(emp_aux->cpf, filter) == 0 && emp_aux->status != 0) {
                 fclose(fp);
+
+                printf("\n\n>>> Funcionário encontrado! <<<\n\n");
                 return emp_aux;
             }
         }
