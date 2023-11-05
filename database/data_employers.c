@@ -32,7 +32,7 @@ Employer* e_read_archive(char *ar_name, char *filter) {
             // Lendo o Arquivo
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(emp_aux->cpf, filter))) {
+            if (strcmp(emp_aux->cpf, filter) == 0 && emp_aux->status != 0) {
                 fclose(fp);
                 return emp_aux;
             }
@@ -60,12 +60,10 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
             // Lendo o Arquivo
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
-            if (!(strcmp(emp_aux->cpf, filter))) {
+            if (strcmp(emp_aux->cpf, filter) == 0 && emp_aux->status != 0) {
                 // Após encontrar, alterar a localização do ponteiro
-                printf("\n>>>Ponteiro Antes:  %p", fp);
                 fseek(fp, -1*sizeof(Employer), SEEK_CUR);
                 // Tendo reposicionado o ponteiro, atualizar.
-                printf("\n>>>Ponteiro Depois: %p", fp);
                 fwrite(new_funcionario, sizeof(Employer), 1, fp);
                 
                 printf("\n\n>>> Funcionário alterado! <<<\n\n");
@@ -83,37 +81,30 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
 
 // Excluir (Delete) de Arquivos
 void e_delete_archive(char *ar_name, Employer* employer) {
-    char* temp_txt = "database/_temp.dat";
-    // Criação dupla de arquivos, onde um vai ser a cópia MENOS um
-    FILE *fp, *fp_temp;
+    FILE *fp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
-    fp      = fopen(ar_name, "rb");
-    fp_temp = fopen(temp_txt, "wb");
+    fp = fopen(ar_name, "r+b");
 
-    if (!(fp == NULL) && !(fp_temp == NULL)) {
-
+    if (!(fp == NULL)) {
         while(!feof(fp)) {
             // Lendo o Arquivo
             fread(emp_aux, sizeof(Employer), 1, fp);
             // Comparando as Strings
-            if (strcmp(employer->cpf, emp_aux->cpf) != 0) {
-                // Somente colocar o que não for o que se quer excluir
-                fwrite(emp_aux, sizeof(Employer), 1, fp_temp);
+            if (strcmp(employer->cpf, emp_aux->cpf) == 0 && emp_aux->status != 0) {
+                employer->status = 0;
+                // Após encontrar, alterar a localização do ponteiro
+                fseek(fp, -1*sizeof(Employer), SEEK_CUR);
+                // Tendo reposicionado o ponteiro, atualizar.
+                fwrite(employer, sizeof(Employer), 1, fp);
+                
+                printf("\n\n>>> Funcionário excluído! <<<\n\n");
                 break;
             }
         }
 
         // Fechando os arquivos
-        fclose(fp_temp);
         fclose(fp);
-
-        // Excluindo e Renomeando 
-        remove(ar_name);
-        rename(temp_txt, ar_name);
-
-        printf("\n>>>Excluido com Sucesso.\n");
-
     } else {
         printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
     }
@@ -132,15 +123,17 @@ void e_list_archive(char *ar_name) {
     if (!(fp == NULL)) {
         while(fread(emp_aux, sizeof(Employer), 1, fp)) {
             // Lendo o Arquivo
-            printf("\n\n>>> ------------------------------ <<<");
-            printf("\n> Nome....................: %s", emp_aux->name);
-            printf("\n> Idade...................: %s", emp_aux->birth_date);
-            printf("\n> CPF.....................: %s", emp_aux->cpf);
-            printf("\n> E-mail..................: %s", emp_aux->email);
-            printf("\n> Telefone................: %s", emp_aux->tel);
-            printf("\n> OAB.....................: %s", emp_aux->OAB);
-            printf("\n> Funcao..................: %s", emp_aux->role);
-            printf("\n> Descricao...............: %s", emp_aux->desc);
+            if (emp_aux->status != 0) {
+                printf("\n\n>>> ------------------------------ <<<");
+                printf("\n> Nome....................: %s", emp_aux->name);
+                printf("\n> Idade...................: %s", emp_aux->birth_date);
+                printf("\n> CPF.....................: %s", emp_aux->cpf);
+                printf("\n> E-mail..................: %s", emp_aux->email);
+                printf("\n> Telefone................: %s", emp_aux->tel);
+                printf("\n> OAB.....................: %s", emp_aux->OAB);
+                printf("\n> Funcao..................: %s", emp_aux->role);
+                printf("\n> Descricao...............: %s", emp_aux->desc);
+            }
         }
 
         fclose(fp);

@@ -1,5 +1,6 @@
 typedef struct employer Employer;
 struct employer {
+    int status;
     char name[50];
     char birth_date[12];
     char cpf[12];

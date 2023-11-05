@@ -1,6 +1,7 @@
 typedef struct resource Resource;
 
 struct resource {
+    int status;
     char name[50];
     char desc[300];
     char available_at[100];

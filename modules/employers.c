@@ -36,16 +36,8 @@ void employer_c(void) {
     get_role(new_employer->role);
     // Coletar e Verificar o DESCRIÇÃO;
     get_desc(new_employer->desc);
-
-    printf("\n\n>>> ------------------------------ <<<");
-    printf("\n> Nome....................: %s", new_employer->name);
-    printf("\n> Idade...................: %s", new_employer->birth_date);
-    printf("\n> CPF.....................: %s", new_employer->cpf);
-    printf("\n> E-mail..................: %s", new_employer->email);
-    printf("\n> Telefone................: %s", new_employer->tel);
-    printf("\n> OAB.....................: %s", new_employer->OAB);
-    printf("\n> Funcao..................: %s", new_employer->role);
-    printf("\n> Descricao...............: %s", new_employer->desc);
+    // Alterar status
+    new_employer->status = 1;
 
     // Criação de arquivos
     if (verify_archive(e_ar_name)) {

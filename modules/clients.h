@@ -1,5 +1,6 @@
 typedef struct cliente Cliente;
 struct cliente {
+    int status;
     char name[50];
     char birth_date[12];
     char cpf[12];
