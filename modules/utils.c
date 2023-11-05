@@ -1,12 +1,12 @@
 #include <stdio.h>
-//#include <stdio_ext.h> 
+#include <stdio_ext.h> 
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
 
 void limpa_buffer() {
-    fflush(stdin); //__fpurge(stdin);
+    fflush(stdin); __fpurge(stdin);
 }
 
 // Função para tirar pontuações com '\n'
