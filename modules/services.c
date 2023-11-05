@@ -21,10 +21,12 @@ void services_c(void) {
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO SERVIÇO;
     get_name(new_service->name);
-        // Coletar e Verificar VALOR DO SERVIÇO;
+    // Coletar e Verificar VALOR DO SERVIÇO;
     get_value(&new_service->value);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
     get_desc(new_service->desc);
+    // Alterando Status 
+    new_service->status = 1;
 
     printf("\n\n>>> ------------------------------ <<<");
     printf("\n> Servico.................: %s", new_service->name);
@@ -107,9 +109,9 @@ void services_u(void) {
         // Coletar e Verificar o NOME DO SERVIÇO;
         get_name(service->name);
         // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
-        get_desc(service->desc);
-        // Coletar e Verificar VALOR DO SERVIÇO;
         get_value(&service->value);
+        // Coletar e Verificar VALOR DO SERVIÇO;
+        get_desc(service->desc);
 
         printf("\n\n>>> ------------------------------ <<<");
         printf("\n> Servico.................: %s", service->name);
@@ -121,6 +123,10 @@ void services_u(void) {
 }
 
 void services_d(void) {
+    Service* service = (Service*) malloc(sizeof(Service));
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -129,6 +135,18 @@ void services_d(void) {
     printf("|                                                               |\n");
     printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    service = s_read_archive(s_ar_name, filter);
+    if (service == NULL) {
+        printf("Servico não encontrado. \n");
+    } else {
+        // Excluir Serviço
+        s_delete_archive(s_ar_name, service);
+    }
 }
 
 void services_list(void) {
