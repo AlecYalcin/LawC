@@ -80,7 +80,7 @@ void resources_r(void) {
     // Procurando os dados nos arquivos
     resource = r_read_archive(r_ar_name, filter);
     if (resource == NULL) {
-        printf("Recurso não encontrado. \n");
+        printf("\n>>> Recurso não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Recurso.................: %s\n", resource->name);
@@ -112,7 +112,7 @@ void resources_u(void) {
     // Procurando os dados nos arquivos
     resource = r_read_archive(r_ar_name, filter);
     if (resource == NULL) {
-        printf("Recurso não encontrado. \n");
+        printf("\n>>> Recurso não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Recurso.................: %s\n", resource->name);

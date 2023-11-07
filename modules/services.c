@@ -78,7 +78,7 @@ void services_r(void) {
     // Procurando os dados nos arquivos
     service = s_read_archive(s_ar_name, filter);
     if (service == NULL) {
-        printf("Servico não encontrado. \n");
+        printf("\n>>> Servico não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Servico.................: %s\n",      service->name);
@@ -111,7 +111,7 @@ void services_u(void) {
     // Procurando os dados nos arquivos
     service = s_read_archive(s_ar_name, filter);
     if (service == NULL) {
-        printf("Servico não encontrado. \n");
+        printf("\n>>> Servico não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Servico.................: %s\n",      service->name);

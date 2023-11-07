@@ -86,7 +86,7 @@ void clients_r(void)  {
     // Procurando os dados nos arquivos
     cliente = c_read_archive(c_ar_name, filter);
     if (cliente == NULL) {
-        printf("Cliente não encontrado. \n");
+        printf("\n>>> Cliente não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome.................: %s\n", cliente->name);
@@ -119,7 +119,7 @@ void clients_u(void)  {
     // Procurando os dados nos arquivos
     cliente = c_read_archive(c_ar_name, filter);
     if (cliente == NULL) {
-        printf("Cliente não encontrado. \n");
+        printf("\n>>> Cliente não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome.................: %s\n", cliente->name);
@@ -171,7 +171,7 @@ void clients_d(void)  {
     // Procurando os dados nos arquivos
     cliente = c_read_archive(c_ar_name, filter);
     if (cliente == NULL) {
-        printf("Cliente não encontrado. \n");
+        printf("\n>>> Cliente não encontrado. \n");
     } else {
         // Excluindo o arquivo
         c_delete_archive(c_ar_name, cliente);  

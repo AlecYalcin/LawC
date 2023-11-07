@@ -86,7 +86,7 @@ void employer_r(void) {
     // Procurando os dados nos arquivos
     funcionario = e_read_archive(e_ar_name, filter);
     if (funcionario == NULL) {
-        printf("\n >>> Funcionario não encontrado. \n");
+        printf("\n >>> Funcionário não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome....................: %s\n", funcionario->name);
@@ -123,7 +123,7 @@ void employer_u(void) {
     // Procurando os dados nos arquivos
     funcionario = e_read_archive(e_ar_name, filter);
     if (funcionario == NULL) {
-        printf("Funcionario não encontrado. \n");
+        printf("\n>>> Funcionário não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome....................: %s\n", funcionario->name);
@@ -188,7 +188,7 @@ void employer_d(void) {
     // Procurando os dados nos arquivos
     funcionario = e_read_archive(e_ar_name, filter);
     if (funcionario == NULL) {
-        printf("Funcionario não encontrado. \n");
+        printf("\n>>> Funcionário não encontrado. \n");
     } else {
         // Excluindo o arquivo
         e_delete_archive(e_ar_name, funcionario);  
