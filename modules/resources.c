@@ -28,23 +28,36 @@ void resources_c(void) {
     // Alterar Status
     new_resource->status = 1;
 
-    printf("\n\n>>> ------------------------------ <<<");
-    printf("\n> Recurso.................: %s", new_resource->name);
-    printf("\n> Descricao...............: %s", new_resource->desc);
-    printf("\n> Disponivel Em...........: %s", new_resource->available_at);
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Recurso.................: %s\n", new_resource->name);
+    printf("> Descricao...............: %s\n", new_resource->desc);
+    printf("> Disponivel Em...........: %s\n", new_resource->available_at);
+
+    // Verificar existencia de cliente parecido
+    Resource* aux_resource = r_read_archive(r_ar_name, new_resource->name);
 
     // Criação de arquivos
     if (verify_archive(r_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        r_create_archive(r_ar_name, new_resource);
+        if (aux_resource == NULL) {
+            r_create_archive(r_ar_name, new_resource);
+        } else {
+            printf("\n>>> O Recurso cadastrado já existe.");
+        }
+
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(r_ar_name);
-        r_create_archive(r_ar_name, new_resource);
+        if (aux_resource == NULL) {
+            r_create_archive(r_ar_name, new_resource);
+        } else {
+            printf("\n>>> O Recurso cadastrado já existe.");
+        }
     }
 
     // Liberação de memória dinâmica
     free(new_resource);
+    free(aux_resource);
 }
 
 void resources_r(void) {
@@ -69,10 +82,10 @@ void resources_r(void) {
     if (resource == NULL) {
         printf("Recurso não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Recurso.................: %s", resource->name);
-        printf("\n> Descricao...............: %s", resource->desc);
-        printf("\n> Disponivel Em...........: %s", resource->available_at);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Recurso.................: %s\n", resource->name);
+        printf("> Descricao...............: %s\n", resource->desc);
+        printf("> Disponivel Em...........: %s\n", resource->available_at);
         
         free(resource);
     }
@@ -101,12 +114,12 @@ void resources_u(void) {
     if (resource == NULL) {
         printf("Recurso não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Recurso.................: %s", resource->name);
-        printf("\n> Descricao...............: %s", resource->desc);
-        printf("\n> Disponivel Em...........: %s", resource->available_at);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Recurso.................: %s\n", resource->name);
+        printf("> Descricao...............: %s\n", resource->desc);
+        printf("> Disponivel Em...........: %s\n", resource->available_at);
         
-        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO RECURSO;
         get_name(resource->name);
         // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
@@ -114,10 +127,10 @@ void resources_u(void) {
         // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
         get_available_at(resource->available_at);
 
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Recurso.................: %s", resource->name);
-        printf("\n> Descricao...............: %s", resource->desc);
-        printf("\n> Disponivel Em...........: %s", resource->available_at);       
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Recurso.................: %s\n", resource->name);
+        printf("> Descricao...............: %s\n", resource->desc);
+        printf("> Disponivel Em...........: %s\n", resource->available_at);     
 
         r_update_archive(r_ar_name, filter, resource);
     }
@@ -144,7 +157,7 @@ void resources_d(void) {
     // Procurando os dados nos arquivos
     resource = r_read_archive(r_ar_name, filter);
     if (resource == NULL) {
-        printf("Recurso não encontrado. \n");
+        printf("\n>>> Recurso não encontrado. \n");
     } else {
         // Excluindo o arquivo
         r_delete_archive(r_ar_name, resource);  

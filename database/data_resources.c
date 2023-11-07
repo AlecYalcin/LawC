@@ -12,10 +12,10 @@ void r_create_archive(char *ar_name, Resource *resource) {
 
     if (!(fp == NULL)) {
         fwrite(resource, sizeof(Resource), 1, fp);
-        printf("\n\n>>> Adicionando informacao... <<<\n\n");
+        printf("\n>>> Adicionando informacao... <<<\n");
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 }
 
@@ -35,14 +35,14 @@ Resource* r_read_archive(char *ar_name, char *filter) {
             if (strcmp(res_aux->name, filter) == 0 && res_aux->status != 0) {
                 fclose(fp);
 
-                printf("\n\n>>> Recurso encontrado! <<<\n\n");
+                printf("\n>>> Recurso encontrado! <<<\n");
                 return res_aux;
             }
         }
 
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(res_aux);
@@ -68,14 +68,14 @@ void r_update_archive(char *ar_name, char *filter, Resource* new_resource) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_resource, sizeof(Resource), 1, fp);
                 
-                printf("\n\n>>> Recurso alterado! <<<\n\n");
+                printf("\n>>> Recurso alterado! <<<\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(res_aux);
@@ -102,14 +102,14 @@ void r_delete_archive(char *ar_name, Resource* resource) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(resource, sizeof(Resource), 1, fp);
 
-                printf("\n\n>>> Recurso excluído! <<<\n\n");
+                printf("\n>>> Recurso excluído! <<<\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(resource);
@@ -127,16 +127,16 @@ void r_list_archive(char *ar_name) {
         while(fread(res_aux, sizeof(Resource), 1, fp)) {
             // Lendo o Arquivo
             if (res_aux->status !=0 ) {
-                printf("\n\n>>> ------------------------------ <<<");
-                printf("\n> Servico.................: %s", res_aux->name);
-                printf("\n> Descricao...............: %s", res_aux->desc);
-                printf("\n> Disponivel Em...........: %s", res_aux->available_at);
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Recurso.................: %s\n", res_aux->name);
+                printf("> Descricao...............: %s\n", res_aux->desc);
+                printf("> Disponivel Em...........: %s\n", res_aux->available_at);
             }
         }
 
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(res_aux);
