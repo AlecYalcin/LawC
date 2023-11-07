@@ -6,6 +6,7 @@
 #include "modules/services.h"
 #include "modules/clients.h"
 #include "modules/schedule.h"
+#include "modules/utils.h"
 
 // Main Menu Functions
 int menu_main(void);
@@ -25,10 +26,10 @@ int menu_schedule(int);
     Origem: https://github.com/FlaviusGorgonio/LinguaSolta/blob/main/ls.c
 */ 
 void exe_breaker(void) {
-    fflush(stdin);
+    limpa_buffer();
 
     char aux;
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+    printf("\n>>> Tecle <ENTER> para retornar <<<\n");
     aux = getchar();
 }
 
@@ -135,6 +136,7 @@ int menu_system(int option) {
                 printf("\nMenu Sistemas: Valor Invalido!\n");
                 break;
             }
+
         } while(option != 0);
         // Retornando o valor do próprio menu
         option = 1;

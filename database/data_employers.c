@@ -12,10 +12,10 @@ void e_create_archive(char *ar_name, Employer *employer) {
 
     if (!(fp == NULL)) {
         fwrite(employer, sizeof(Employer), 1, fp);
-        printf("\n\n>>> Adicionando informacao... <<<\n\n");
+        printf("\n>>> Adicionando informacao... <<<\n");
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 }
 
@@ -35,14 +35,14 @@ Employer* e_read_archive(char *ar_name, char *filter) {
             if (strcmp(emp_aux->cpf, filter) == 0 && emp_aux->status != 0) {
                 fclose(fp);
 
-                printf("\n\n>>> Funcionário encontrado! <<<\n\n");
+                printf("\n>>> Funcionário encontrado! <<<\n");
                 return emp_aux;
             }
         }
 
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(emp_aux);
@@ -68,14 +68,14 @@ void e_update_archive(char *ar_name, char *filter, Employer* new_funcionario) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_funcionario, sizeof(Employer), 1, fp);
                 
-                printf("\n\n>>> Funcionário alterado! <<<\n\n");
+                printf("\n>>> Funcionário alterado! <<<\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(emp_aux);
@@ -100,7 +100,7 @@ void e_delete_archive(char *ar_name, Employer* employer) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(employer, sizeof(Employer), 1, fp);
                 
-                printf("\n\n>>> Funcionário excluído! <<<\n\n");
+                printf("\n>>> Funcionário excluído! <<<\n");
                 break;
             }
         }
@@ -108,7 +108,7 @@ void e_delete_archive(char *ar_name, Employer* employer) {
         // Fechando os arquivos
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(employer);
@@ -126,21 +126,21 @@ void e_list_archive(char *ar_name) {
         while(fread(emp_aux, sizeof(Employer), 1, fp)) {
             // Lendo o Arquivo
             if (emp_aux->status != 0) {
-                printf("\n\n>>> ------------------------------ <<<");
-                printf("\n> Nome....................: %s", emp_aux->name);
-                printf("\n> Idade...................: %s", emp_aux->birth_date);
-                printf("\n> CPF.....................: %s", emp_aux->cpf);
-                printf("\n> E-mail..................: %s", emp_aux->email);
-                printf("\n> Telefone................: %s", emp_aux->tel);
-                printf("\n> OAB.....................: %s", emp_aux->OAB);
-                printf("\n> Funcao..................: %s", emp_aux->role);
-                printf("\n> Descricao...............: %s", emp_aux->desc);
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Nome....................: %s\n", emp_aux->name);
+                printf("> Idade...................: %s\n", emp_aux->birth_date);
+                printf("> CPF.....................: %s\n", emp_aux->cpf);
+                printf("> E-mail..................: %s\n", emp_aux->email);
+                printf("> Telefone................: %s\n", emp_aux->tel);
+                printf("> OAB.....................: %s\n", emp_aux->OAB);
+                printf("> Funcao..................: %s\n", emp_aux->role);
+                printf("> Descricao...............: %s\n", emp_aux->desc);
             }
         }
 
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(emp_aux);

@@ -40,19 +40,30 @@ void clients_c(void)  {
     printf("\n> Email................: %s", new_client->email);
     printf("\n> Telefone.............: %s", new_client->tel);
 
+    // Verificar existencia de cliente parecido
+    Cliente* aux_client = c_read_archive(c_ar_name, new_client->cpf);
 
     // Criação de arquivos
     if (verify_archive(c_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        c_create_archive(c_ar_name, new_client);
+        if (aux_client == NULL) {
+            c_create_archive(c_ar_name, new_client);
+        } else {
+            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+        }
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(c_ar_name);
-        c_create_archive(c_ar_name, new_client);
+        if (aux_client == NULL) {
+            c_create_archive(c_ar_name, new_client);
+        } else {
+            printf("\n>>> CPF cadastrado já está em uso, tente novamente.");
+        }
     }
 
     // Liberação de memória dinâmica
     free(new_client);
+    free(aux_client);
 }
 
 void clients_r(void)  {

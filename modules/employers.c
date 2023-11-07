@@ -39,18 +39,31 @@ void employer_c(void) {
     // Alterar status
     new_employer->status = 1;
 
+    // Verificar existencia de empregado parecido
+    Employer* aux_employer = e_read_archive(e_ar_name, new_employer->cpf);
+
     // Criação de arquivos
     if (verify_archive(e_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        e_create_archive(e_ar_name, new_employer);
+        if (aux_employer == NULL) {
+            e_create_archive(e_ar_name, new_employer);
+        } else {
+            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+        }
+
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(e_ar_name);
-        e_create_archive(e_ar_name, new_employer);
+        if (aux_employer == NULL) {
+            e_create_archive(e_ar_name, new_employer);
+        } else {
+            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+        }
     }
 
     // Liberação de memória dinâmica
     free(new_employer);
+    free(aux_employer);
 }
 
 void employer_r(void) {
@@ -75,15 +88,15 @@ void employer_r(void) {
     if (funcionario == NULL) {
         printf("\n >>> Funcionario não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome....................: %s", funcionario->name);
-        printf("\n> Idade...................: %s", funcionario->birth_date);
-        printf("\n> CPF.....................: %s", funcionario->cpf);
-        printf("\n> E-mail..................: %s", funcionario->email);
-        printf("\n> Telefone................: %s", funcionario->tel);
-        printf("\n> OAB.....................: %s", funcionario->OAB);
-        printf("\n> Funcao..................: %s", funcionario->role);
-        printf("\n> Descricao...............: %s", funcionario->desc);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome....................: %s\n", funcionario->name);
+        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> CPF.....................: %s\n", funcionario->cpf);
+        printf("> E-mail..................: %s\n", funcionario->email);
+        printf("> Telefone................: %s\n", funcionario->tel);
+        printf("> OAB.....................: %s\n", funcionario->OAB);
+        printf("> Funcao..................: %s\n", funcionario->role);
+        printf("> Descricao...............: %s\n", funcionario->desc);
 
         free(funcionario);
     }
@@ -112,15 +125,15 @@ void employer_u(void) {
     if (funcionario == NULL) {
         printf("Funcionario não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome....................: %s", funcionario->name);
-        printf("\n> Idade...................: %s", funcionario->birth_date);
-        printf("\n> CPF.....................: %s", funcionario->cpf);
-        printf("\n> E-mail..................: %s", funcionario->email);
-        printf("\n> Telefone................: %s", funcionario->tel);
-        printf("\n> OAB.....................: %s", funcionario->OAB);
-        printf("\n> Funcao..................: %s", funcionario->role);
-        printf("\n> Descricao...............: %s", funcionario->desc);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome....................: %s\n", funcionario->name);
+        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> CPF.....................: %s\n", funcionario->cpf);
+        printf("> E-mail..................: %s\n", funcionario->email);
+        printf("> Telefone................: %s\n", funcionario->tel);
+        printf("> OAB.....................: %s\n", funcionario->OAB);
+        printf("> Funcao..................: %s\n", funcionario->role);
+        printf("> Descricao...............: %s\n", funcionario->desc);
 
         printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
@@ -140,15 +153,15 @@ void employer_u(void) {
         // Coletar e Verificar o DESCRIÇÃO;
         get_desc(funcionario->desc);
 
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome....................: %s", funcionario->name);
-        printf("\n> Idade...................: %s", funcionario->birth_date);
-        printf("\n> CPF.....................: %s", funcionario->cpf);
-        printf("\n> E-mail..................: %s", funcionario->email);
-        printf("\n> Telefone................: %s", funcionario->tel);
-        printf("\n> OAB.....................: %s", funcionario->OAB);
-        printf("\n> Funcao..................: %s", funcionario->role);
-        printf("\n> Descricao...............: %s", funcionario->desc);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome....................: %s\n", funcionario->name);
+        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> CPF.....................: %s\n", funcionario->cpf);
+        printf("> E-mail..................: %s\n", funcionario->email);
+        printf("> Telefone................: %s\n", funcionario->tel);
+        printf("> OAB.....................: %s\n", funcionario->OAB);
+        printf("> Funcao..................: %s\n", funcionario->role);
+        printf("> Descricao...............: %s\n", funcionario->desc);
 
         e_update_archive(e_ar_name, filter, funcionario);
     }
