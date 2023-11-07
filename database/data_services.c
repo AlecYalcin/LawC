@@ -12,10 +12,10 @@ void s_create_archive(char *ar_name, Service *service) {
 
     if (!(fp == NULL)) {
         fwrite(service, sizeof(Service), 1, fp);
-        printf("\n\n>>> Adicionando informacao... <<<\n\n");
+        printf("\n>>> Adicionando informacao... <<<\n");
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 }
 
@@ -35,15 +35,13 @@ Service* s_read_archive(char *ar_name, char *filter) {
             if (strcmp(ser_aux->name, filter) == 0 && ser_aux->status != 0) {
                 fclose(fp);
 
-                printf("\n\n>>> Serviço encontrado! <<<\n\n");
+                printf("\n>>> Serviço encontrado! <<<\n");
                 return ser_aux;
             }
         }
-
-        printf("\n >>> Cliente não encontrado. \n");
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(ser_aux);
@@ -69,14 +67,14 @@ void s_update_archive(char *ar_name, char *filter, Service* new_service) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(new_service, sizeof(Service), 1, fp);
                 
-                printf("\n\n>>> Servico alterado! <<<\n\n");
+                printf("\n>>> Servico alterado! <<<\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(ser_aux);
@@ -103,14 +101,14 @@ void s_delete_archive(char *ar_name, Service* service) {
                 // Tendo reposicionado o ponteiro, atualizar.
                 fwrite(service, sizeof(Service), 1, fp);
 
-                printf("\n\n>>> Serviço excluído! <<<\n\n");
+                printf("\n>>> Serviço excluído! <<<\n");
                 break;
             }
         }
  
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(ser_aux);
@@ -128,16 +126,16 @@ void s_list_archive(char *ar_name) {
             // Lendo o Arquivo
 
             if (ser_aux->status != 0) {
-                printf("\n\n>>> ------------------------------ <<<");
-                printf("\n> Servico.................: %s", ser_aux->name);
-                printf("\n> Valor...................: R$%.2f", ser_aux->value);
-                printf("\n> Descricao...............: %s", ser_aux->desc);
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Servico.................: %s\n",      ser_aux->name);
+                printf("> Valor...................: R$%.2f\n",  ser_aux->value);
+                printf("> Descricao...............: %s\n",      ser_aux->desc);
             }
         }
 
         fclose(fp);
     } else {
-        printf("\n\n>>> Erro na criação do arquivo! <<<\n\n");
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 
     free(ser_aux);

@@ -28,22 +28,34 @@ void services_c(void) {
     // Alterando Status 
     new_service->status = 1;
 
-    printf("\n\n>>> ------------------------------ <<<");
-    printf("\n> Servico.................: %s", new_service->name);
-    printf("\n> Valor...................: R$%.2f", new_service->value);
-    printf("\n> Descricao...............: %s", new_service->desc);
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Servico.................: %s\n",      new_service->name);
+    printf("> Valor...................: R$%.2f\n",  new_service->value);
+    printf("> Descricao...............: %s\n",      new_service->desc);
+
+    // Verificar existencia de cliente parecido
+    Service* aux_service = s_read_archive(s_ar_name, new_service->name);
 
     // Criação de arquivos
     if (verify_archive(s_ar_name)) {
         // Se o arquivo existe, apenas adicione.
-        s_create_archive(s_ar_name, new_service);
+        if (aux_service == NULL) {
+            s_create_archive(s_ar_name, new_service);
+        } else {
+            printf("\n>>> O Serviço cadastrado já existe.");
+        }
     } else {
         // Se o arquivo não existe, crie e adicione.
         create_archive(s_ar_name);
-        s_create_archive(s_ar_name, new_service);
+        if (aux_service == NULL) {
+            s_create_archive(s_ar_name, new_service);
+        } else {
+            printf("\n>>> O Serviço cadastrado já existe.");
+        }
     }
     // Liberação de memória dinâmica
     free(new_service);
+    free(aux_service);
 }
 
 void services_r(void) {
@@ -68,10 +80,11 @@ void services_r(void) {
     if (service == NULL) {
         printf("Servico não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: R$%.2f", service->value);
-        printf("\n> Descricao...............: %s", service->desc);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Servico.................: %s\n",      service->name);
+        printf("> Valor...................: R$%.2f\n",  service->value);
+        printf("> Descricao...............: %s\n",      service->desc);
+
         
         free(service);
     }
@@ -100,12 +113,12 @@ void services_u(void) {
     if (service == NULL) {
         printf("Servico não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: R$%.2f", service->value);
-        printf("\n> Descricao...............: %s", service->desc);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Servico.................: %s\n",      service->name);
+        printf("> Valor...................: R$%.2f\n",  service->value);
+        printf("> Descricao...............: %s\n",      service->desc);
         
-        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO SERVIÇO;
         get_name(service->name);
         // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
@@ -113,10 +126,10 @@ void services_u(void) {
         // Coletar e Verificar VALOR DO SERVIÇO;
         get_desc(service->desc);
 
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Servico.................: %s", service->name);
-        printf("\n> Valor...................: R$%.2f", service->value);
-        printf("\n> Descricao...............: %s", service->desc);        
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Servico.................: %s\n",      service->name);
+        printf("> Valor...................: R$%.2f\n",  service->value);
+        printf("> Descricao...............: %s\n",      service->desc);    
 
         s_update_archive(s_ar_name, filter, service);
     }
@@ -142,7 +155,7 @@ void services_d(void) {
     // Procurando os dados nos arquivos
     service = s_read_archive(s_ar_name, filter);
     if (service == NULL) {
-        printf("Servico não encontrado. \n");
+        printf("\n>>> Serviço não encontrado. \n");
     } else {
         // Excluir Serviço
         s_delete_archive(s_ar_name, service);
