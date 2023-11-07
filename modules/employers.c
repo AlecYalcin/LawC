@@ -48,7 +48,7 @@ void employer_c(void) {
         if (aux_employer == NULL) {
             e_create_archive(e_ar_name, new_employer);
         } else {
-            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+            printf("\n>>> O CPF cadastrado já está em uso, tente outro.");
         }
 
     } else {
@@ -57,7 +57,7 @@ void employer_c(void) {
         if (aux_employer == NULL) {
             e_create_archive(e_ar_name, new_employer);
         } else {
-            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+            printf("\n>>> O CPF cadastrado já está em uso, tente outro.");
         }
     }
 
@@ -135,7 +135,7 @@ void employer_u(void) {
         printf("> Funcao..................: %s\n", funcionario->role);
         printf("> Descricao...............: %s\n", funcionario->desc);
 
-        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
         get_name(funcionario->name);
         // Coletar e Verificar data de nascimento.

@@ -33,12 +33,12 @@ void clients_c(void)  {
     // Adicionar Status
     new_client->status = 1;
 
-    printf("\n\n>>> ------------------------------ <<<");
-    printf("\n> Nome.................: %s", new_client->name);
-    printf("\n> Idade................: %s", new_client->birth_date);
-    printf("\n> CPF..................: %s", new_client->cpf);
-    printf("\n> Email................: %s", new_client->email);
-    printf("\n> Telefone.............: %s", new_client->tel);
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Nome.................: %s\n", new_client->name);
+    printf("> Idade................: %s\n", new_client->birth_date);
+    printf("> CPF..................: %s\n", new_client->cpf);
+    printf("> Email................: %s\n", new_client->email);
+    printf("> Telefone.............: %s\n", new_client->tel);
 
     // Verificar existencia de cliente parecido
     Cliente* aux_client = c_read_archive(c_ar_name, new_client->cpf);
@@ -49,7 +49,7 @@ void clients_c(void)  {
         if (aux_client == NULL) {
             c_create_archive(c_ar_name, new_client);
         } else {
-            printf("\n>>> O CPF cadastrado já está em uso, tente novamente.");
+            printf("\n>>> O CPF cadastrado já está em uso, tente outro.");
         }
     } else {
         // Se o arquivo não existe, crie e adicione.
@@ -57,7 +57,7 @@ void clients_c(void)  {
         if (aux_client == NULL) {
             c_create_archive(c_ar_name, new_client);
         } else {
-            printf("\n>>> CPF cadastrado já está em uso, tente novamente.");
+            printf("\n>>> CPF cadastrado já está em uso, tente outro.");
         }
     }
 
@@ -88,12 +88,12 @@ void clients_r(void)  {
     if (cliente == NULL) {
         printf("Cliente não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome.................: %s", cliente->name);
-        printf("\n> Idade................: %s", cliente->birth_date);
-        printf("\n> CPF..................: %s", cliente->cpf);
-        printf("\n> Email................: %s", cliente->email);
-        printf("\n> Telefone.............: %s", cliente->tel);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome.................: %s\n", cliente->name);
+        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> CPF..................: %s\n", cliente->cpf);
+        printf("> Email................: %s\n", cliente->email);
+        printf("> Telefone.............: %s\n", cliente->tel);
 
         free(cliente);
     }
@@ -121,14 +121,14 @@ void clients_u(void)  {
     if (cliente == NULL) {
         printf("Cliente não encontrado. \n");
     } else {
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome.................: %s", cliente->name);
-        printf("\n> Idade................: %s", cliente->birth_date);
-        printf("\n> CPF..................: %s", cliente->cpf);
-        printf("\n> Email................: %s", cliente->email);
-        printf("\n> Telefone.............: %s", cliente->tel);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome.................: %s\n", cliente->name);
+        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> CPF..................: %s\n", cliente->cpf);
+        printf("> Email................: %s\n", cliente->email);
+        printf("> Telefone.............: %s\n", cliente->tel);
 
-        printf("\n\n>>> Preencher as Novas Informacoes <<<\n");
+        printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
         get_name(cliente->name);
         // Coletar e Verificar data de nascimento.
@@ -140,12 +140,12 @@ void clients_u(void)  {
         // Coletar e Verificar o Contato;
         get_tel(cliente->tel);
 
-        printf("\n\n>>> ------------------------------ <<<");
-        printf("\n> Nome.................: %s", cliente->name);
-        printf("\n> Idade................: %s", cliente->birth_date);
-        printf("\n> CPF..................: %s", cliente->cpf);
-        printf("\n> Email................: %s", cliente->email);
-        printf("\n> Telefone.............: %s", cliente->tel);
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Nome.................: %s\n", cliente->name);
+        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> CPF..................: %s\n", cliente->cpf);
+        printf("> Email................: %s\n", cliente->email);
+        printf("> Telefone.............: %s\n", cliente->tel);
 
         c_update_archive(c_ar_name, filter, cliente);
     }
