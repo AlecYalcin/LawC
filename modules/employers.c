@@ -39,6 +39,16 @@ void employer_c(void) {
     // Alterar status
     new_employer->status = 1;
 
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Nome....................: %s\n", new_employer->name);
+    printf("> Idade...................: %s (%d)\n", new_employer->birth_date, return_age(new_employer->birth_date)); 
+    printf("> CPF.....................: %s\n", new_employer->cpf);
+    printf("> E-mail..................: %s\n", new_employer->email);
+    printf("> Telefone................: %s\n", new_employer->tel);
+    printf("> OAB.....................: %s\n", new_employer->OAB);
+    printf("> Funcao..................: %s\n", new_employer->role);
+    printf("> Descricao...............: %s\n", new_employer->desc);
+
     // Verificar existencia de empregado parecido
     Employer* aux_employer = e_read_archive(e_ar_name, new_employer->cpf);
 
@@ -90,7 +100,7 @@ void employer_r(void) {
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
         printf("> CPF.....................: %s\n", funcionario->cpf);
         printf("> E-mail..................: %s\n", funcionario->email);
         printf("> Telefone................: %s\n", funcionario->tel);
@@ -127,7 +137,7 @@ void employer_u(void) {
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
         printf("> CPF.....................: %s\n", funcionario->cpf);
         printf("> E-mail..................: %s\n", funcionario->email);
         printf("> Telefone................: %s\n", funcionario->tel);
@@ -155,7 +165,7 @@ void employer_u(void) {
 
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade...................: %s\n", funcionario->birth_date);
+        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
         printf("> CPF.....................: %s\n", funcionario->cpf);
         printf("> E-mail..................: %s\n", funcionario->email);
         printf("> Telefone................: %s\n", funcionario->tel);

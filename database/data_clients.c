@@ -132,7 +132,7 @@ void c_list_archive(char *ar_name) {
             if (cli_aux->status != 0) {
                 printf("\n>>> ------------------------------ <<<\n");
                 printf("> Nome.................: %s\n", cli_aux->name);
-                printf("> Idade................: %d (%s)\n", return_age(cli_aux->birth_date), cli_aux->birth_date); 
+                printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
                 printf("> CPF..................: %s\n", cli_aux->cpf);
                 printf("> Email................: %s\n", cli_aux->email);
                 printf("> Telefone.............: %s\n", cli_aux->tel);
