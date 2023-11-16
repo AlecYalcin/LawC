@@ -3,6 +3,7 @@
 #include <string.h>
 // Created Modules
 #include "../modules/employers.h"
+#include "../database/data_utils.h"
 
 // Atualização (Create) de Arquivos
 void e_create_archive(char *ar_name, Employer *employer) { 
@@ -128,7 +129,7 @@ void e_list_archive(char *ar_name) {
             if (emp_aux->status != 0) {
                 printf("\n>>> ------------------------------ <<<\n");
                 printf("> Nome....................: %s\n", emp_aux->name);
-                printf("> Idade...................: %s\n", emp_aux->birth_date);
+                printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
                 printf("> CPF.....................: %s\n", emp_aux->cpf);
                 printf("> E-mail..................: %s\n", emp_aux->email);
                 printf("> Telefone................: %s\n", emp_aux->tel);

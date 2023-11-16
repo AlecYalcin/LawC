@@ -35,7 +35,7 @@ void clients_c(void)  {
 
     printf("\n>>> ------------------------------ <<<\n");
     printf("> Nome.................: %s\n", new_client->name);
-    printf("> Idade................: %s\n", new_client->birth_date);
+    printf("> Idade................: %s (%d)\n", new_client->birth_date, return_age(new_client->birth_date)); 
     printf("> CPF..................: %s\n", new_client->cpf);
     printf("> Email................: %s\n", new_client->email);
     printf("> Telefone.............: %s\n", new_client->tel);
@@ -90,7 +90,7 @@ void clients_r(void)  {
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
         printf("> CPF..................: %s\n", cliente->cpf);
         printf("> Email................: %s\n", cliente->email);
         printf("> Telefone.............: %s\n", cliente->tel);
@@ -123,7 +123,7 @@ void clients_u(void)  {
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
         printf("> CPF..................: %s\n", cliente->cpf);
         printf("> Email................: %s\n", cliente->email);
         printf("> Telefone.............: %s\n", cliente->tel);
@@ -142,7 +142,7 @@ void clients_u(void)  {
 
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s\n", cliente->birth_date);
+        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
         printf("> CPF..................: %s\n", cliente->cpf);
         printf("> Email................: %s\n", cliente->email);
         printf("> Telefone.............: %s\n", cliente->tel);
