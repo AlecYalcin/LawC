@@ -1,5 +1,4 @@
 #include <stdio.h> 
-#include <stdio_ext.h> 
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -82,7 +81,7 @@ int return_age(char* birth_date) {
     // Calcule a Idade Final
     int age = today_year - birth_info[2];
     // Limpando o Buffer
-    fflush(stdin); __fpurge(stdin);
+    fflush(stdin);
 
     return age;
 }
