@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <time.h>
 
+// Função que limpa o STD
 void limpa_buffer() {
     fflush(stdin); //__fpurge(stdin);
 }
@@ -16,6 +17,7 @@ void change_last(char* text) {
     }
 }
 
+// Funções relacionadas a Pegar Dados
 void get_name(char* _name){
     int isValid = 1; int i; 
 
