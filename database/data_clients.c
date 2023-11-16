@@ -3,6 +3,7 @@
 #include <string.h>
 // Created Modules
 #include "../modules/clients.h"
+#include "../database/data_utils.h"
 
 // Atualização (Create) de Arquivos
 void c_create_archive(char *ar_name, Cliente *cliente) { 
@@ -131,7 +132,7 @@ void c_list_archive(char *ar_name) {
             if (cli_aux->status != 0) {
                 printf("\n>>> ------------------------------ <<<\n");
                 printf("> Nome.................: %s\n", cli_aux->name);
-                printf("> Idade................: %s\n", cli_aux->birth_date);
+                printf("> Idade................: %d (%s)\n", return_age(cli_aux->birth_date), cli_aux->birth_date); 
                 printf("> CPF..................: %s\n", cli_aux->cpf);
                 printf("> Email................: %s\n", cli_aux->email);
                 printf("> Telefone.............: %s\n", cli_aux->tel);
