@@ -18,6 +18,13 @@ int verify_archive(char* ar_name) {
     }
 }
 
+// Função para tirar pontuações com '\n'
+void change_last_2(char* text) {
+    if (text[strlen(text)-1] == '\n') {
+        text[strlen(text)-1] = '\0';
+    }
+}
+
 // Criação/Reset de Arquivos
 void create_archive(char* ar_name) {
     FILE *fp;

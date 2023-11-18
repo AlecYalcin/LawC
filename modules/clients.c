@@ -179,13 +179,22 @@ void clients_d(void)  {
 }
 
 void clients_list(void)  {
+    int choice;
+
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Funcionarios - Listar                |\n");
-    printf("|                                                               |\n");
+    printf("|                      Selecione o Filtro!                      |\n");
     printf("-----------------------------------------------------------------\n");
-    c_list_archive(c_ar_name);
+    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[2] - Filtro de Idade\n");
+    printf("[3] - Filtro de Nome\n");
+    printf("Digite a Letra do Filtro: ");
+    scanf("%d", &choice);
+    getchar();
+
+    c_list_archive(c_ar_name, choice);
 }
