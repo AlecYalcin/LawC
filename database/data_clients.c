@@ -42,7 +42,7 @@ Cliente* c_read_archive(char *ar_name, char *filter) {
             }
         }
 
-        printf("\n >>> Cliente não encontrado. \n");
+        printf("\n>>> Cliente não encontrado. \n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo! <<<\n");
@@ -128,6 +128,7 @@ void c_list_archive(char *ar_name, int fil_choice) {
 
     if (!(fp == NULL)) {
         char ord; int num;
+        char* name = (char*) malloc(sizeof(char));
 
         // Coletando os Dados de Filtro
         if (fil_choice == 2) {
@@ -138,20 +139,22 @@ void c_list_archive(char *ar_name, int fil_choice) {
                 printf("> [>Numero] - Maior ou igual a Numero, Ex: >5, >27, >60\n");
                 printf("> [<Numero] - Menor ou igual a Numero, Ex: <6, <60, <35\n");
                 printf("> Qualquer outra ordem sera considerada invalida.\n");
-                printf("\n>> Digite Primeiro a Ordem ('>' ou '<'): ");
+                printf("\n> Digite a Ordem ('>' ou '<').....: ");
                 scanf(" %c", &ord);
 
                 if (!(ord == '>' || ord == '<')) {
                     printf("\n>>> Ordem invalida. \n");
                 } else {
-                    printf("\n>> Digite o numero: ");
+                    printf("\n> Digite o numero.................: ");
                     scanf("%d", &num); getchar();
                     aux = 0;
                 }
             }
-        } //else if (fil_choice == 3) {
-
-        // }
+        } else if (fil_choice == 3) {
+            printf("> Nome a Pesquisar................: ");
+            fgets(name, 51, stdin);
+            change_last_2(name);
+        }
 
         while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
             // Filtro A - Listagem Completa
@@ -186,13 +189,21 @@ void c_list_archive(char *ar_name, int fil_choice) {
                 }
             // Filtro C - Listagem por Idade
             } else if (cli_aux->status != 0 && fil_choice == 3) {
-
+                if (!(strncmp(cli_aux->name, name, strlen(name)))) {
+                    printf("\n>>> ------------------------------ <<<\n");
+                    printf("> Nome.................: %s\n", cli_aux->name);
+                    printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
+                    printf("> CPF..................: %s\n", cli_aux->cpf);
+                    printf("> Email................: %s\n", cli_aux->email);
+                    printf("> Telefone.............: %s\n", cli_aux->tel);
+                }
             } else if (fil_choice > 3 || fil_choice < 0) {
                 printf("\n>>> Opção inválida, voltando a tela de Funcionários...\n");
                 break;
             }
-
         }
+
+        free(name);
 
         fclose(fp);
     } else {
