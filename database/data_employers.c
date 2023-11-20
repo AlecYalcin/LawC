@@ -211,6 +211,8 @@ void e_list_archive(char *ar_name, int fil_choice) {
             }
         }
 
+        free(name);
+
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo! <<<\n");
