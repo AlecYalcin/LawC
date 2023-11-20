@@ -206,6 +206,8 @@ void employer_d(void) {
 }
 
 void employer_list(void) {
+    int choice;
+
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -214,6 +216,13 @@ void employer_list(void) {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
-    e_list_archive(e_ar_name);
+    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[2] - Filtro de Idade\n");
+    printf("[3] - Filtro de Nome\n");
+    printf("Digite o Numero do Filtro: ");
+    scanf("%d", &choice);
+    getchar();
+    
+    e_list_archive(e_ar_name, choice);
 }
 

@@ -117,16 +117,45 @@ void e_delete_archive(char *ar_name, Employer* employer) {
 }
 
 // Listagem (List) de Arquivos
-void e_list_archive(char *ar_name) {
-    FILE *fp; int loop = 0;
+void e_list_archive(char *ar_name, int fil_choice) {
+    FILE *fp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
+        char ord; int num;
+        char* name = (char*) malloc(sizeof(char));
+
+        // Coletando os Dados de Filtro
+        if (fil_choice == 2) {
+            int aux = 1;
+
+            while(aux) {
+                printf("\n> Para filtrar por idade, por favor digite na seguinte ordem:\n");
+                printf("> [>Numero] - Maior ou igual a Numero, Ex: >5, >27, >60\n");
+                printf("> [<Numero] - Menor ou igual a Numero, Ex: <6, <60, <35\n");
+                printf("> Qualquer outra ordem sera considerada invalida.\n");
+                printf("\n> Digite a Ordem ('>' ou '<').....: ");
+                scanf(" %c", &ord);
+
+                if (!(ord == '>' || ord == '<')) {
+                    printf("\n>>> Ordem invalida. \n");
+                } else {
+                    printf("\n> Digite o numero.................: ");
+                    scanf("%d", &num); getchar();
+                    aux = 0;
+                }
+            }
+        } else if (fil_choice == 3) {
+            printf("> Nome a Pesquisar................: ");
+            fgets(name, 51, stdin);
+            change_last_2(name);
+        }
+
         while(fread(emp_aux, sizeof(Employer), 1, fp)) {
-            // Lendo o Arquivo
-            if (emp_aux->status != 0) {
+            // Filtro A - Listagem Completa
+            if (emp_aux->status != 0 && fil_choice == 1) {
                 printf("\n>>> ------------------------------ <<<\n");
                 printf("> Nome....................: %s\n", emp_aux->name);
                 printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
@@ -136,6 +165,49 @@ void e_list_archive(char *ar_name) {
                 printf("> OAB.....................: %s\n", emp_aux->OAB);
                 printf("> Funcao..................: %s\n", emp_aux->role);
                 printf("> Descricao...............: %s\n", emp_aux->desc);
+            // Filtro B - Listagem por Idade
+            } else if (emp_aux->status != 0 && fil_choice == 2) {
+                if (ord == '>') {
+                    if (return_age(emp_aux->birth_date) >= num) {
+                        printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Nome....................: %s\n", emp_aux->name);
+                        printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
+                        printf("> CPF.....................: %s\n", emp_aux->cpf);
+                        printf("> E-mail..................: %s\n", emp_aux->email);
+                        printf("> Telefone................: %s\n", emp_aux->tel);
+                        printf("> OAB.....................: %s\n", emp_aux->OAB);
+                        printf("> Funcao..................: %s\n", emp_aux->role);
+                        printf("> Descricao...............: %s\n", emp_aux->desc);
+                    } 
+                } else if(ord == '<') {
+                    if (return_age(emp_aux->birth_date) <= num) {
+                        printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Nome....................: %s\n", emp_aux->name);
+                        printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
+                        printf("> CPF.....................: %s\n", emp_aux->cpf);
+                        printf("> E-mail..................: %s\n", emp_aux->email);
+                        printf("> Telefone................: %s\n", emp_aux->tel);
+                        printf("> OAB.....................: %s\n", emp_aux->OAB);
+                        printf("> Funcao..................: %s\n", emp_aux->role);
+                        printf("> Descricao...............: %s\n", emp_aux->desc);
+                    }
+                }
+            // Filtro C - Listagem por Idade
+            } else if (emp_aux->status != 0 && fil_choice == 3) {
+                if (!(strncmp(emp_aux->name, name, strlen(name)))) {
+                    printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Nome....................: %s\n", emp_aux->name);
+                        printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
+                        printf("> CPF.....................: %s\n", emp_aux->cpf);
+                        printf("> E-mail..................: %s\n", emp_aux->email);
+                        printf("> Telefone................: %s\n", emp_aux->tel);
+                        printf("> OAB.....................: %s\n", emp_aux->OAB);
+                        printf("> Funcao..................: %s\n", emp_aux->role);
+                        printf("> Descricao...............: %s\n", emp_aux->desc);
+                }
+            } else if (fil_choice > 3 || fil_choice < 0) {
+                printf("\n>>> Opção inválida, voltando a tela de Funcionários...\n");
+                break;
             }
         }
 
