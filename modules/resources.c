@@ -165,6 +165,8 @@ void resources_d(void) {
 }
 
 void resources_list(void) {
+    int choice;
+
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -172,7 +174,13 @@ void resources_list(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                 Modulo de Recursos - Listar                   |\n");
     printf("|                                                               |\n");
-    printf("|                         Filtro:(Nome)                         |\n");
     printf("-----------------------------------------------------------------\n");
-    r_list_archive(r_ar_name);
+    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[2] - Filtro de Nome\n");
+    printf("[3] - Filtro de Disponibilidade\n");
+    printf("Digite o Numero do Filtro: ");
+    scanf("%d", &choice);
+    getchar();
+
+    r_list_archive(r_ar_name, choice);
 }
