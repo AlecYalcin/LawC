@@ -192,7 +192,7 @@ void clients_list(void)  {
     printf("[1] - Sem Filtro, Listagem Geral\n");
     printf("[2] - Filtro de Idade\n");
     printf("[3] - Filtro de Nome\n");
-    printf("Digite a Letra do Filtro: ");
+    printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
 

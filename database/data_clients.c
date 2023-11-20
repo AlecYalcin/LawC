@@ -198,7 +198,7 @@ void c_list_archive(char *ar_name, int fil_choice) {
                     printf("> Telefone.............: %s\n", cli_aux->tel);
                 }
             } else if (fil_choice > 3 || fil_choice < 0) {
-                printf("\n>>> Opção inválida, voltando a tela de Funcionários...\n");
+                printf("\n>>> Opção inválida, voltando a tela de Clientes...\n");
                 break;
             }
         }
