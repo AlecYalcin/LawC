@@ -1,4 +1,4 @@
-//#include <stdio_ext.h> 
+#include <stdio_ext.h> 
 
 // Funções de utilidade
 void limpa_buffer(void);
