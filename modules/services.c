@@ -163,6 +163,8 @@ void services_d(void) {
 }
 
 void services_list(void) {
+    int choice;
+
     limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
@@ -170,7 +172,13 @@ void services_list(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                  Modulo de Servicos - Listar                  |\n");
     printf("|                                                               |\n");
-    printf("|                     Filtro:(Nome, Valor)                      |\n");
     printf("-----------------------------------------------------------------\n");
-    s_list_archive(s_ar_name);
+    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[2] - Filtro de Valor\n");
+    printf("[3] - Filtro de Nome\n");
+    printf("Digite o Numero do Filtro: ");
+    scanf("%d", &choice);
+    getchar();
+
+    s_list_archive(s_ar_name, choice);
 }
