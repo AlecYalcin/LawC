@@ -125,7 +125,7 @@ void r_list_archive(char *ar_name, int fil_choice) {
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
-        char* name = (char*) malloc(sizeof(char));
+        char* name = (char*) malloc(51*sizeof(char));
 
         if (fil_choice == 2 || fil_choice == 3) {
             printf("> Nome a Pesquisar................: ");

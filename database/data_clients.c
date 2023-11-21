@@ -128,7 +128,7 @@ void c_list_archive(char *ar_name, int fil_choice) {
 
     if (!(fp == NULL)) {
         char ord; int num;
-        char* name = (char*) malloc(sizeof(char));
+        char* name = (char*) malloc(51*sizeof(char));
 
         // Coletando os Dados de Filtro
         if (fil_choice == 2) {
