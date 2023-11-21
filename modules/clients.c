@@ -21,11 +21,11 @@ void clients_c(void)  {
     printf("-----------------------------------------------------------------\n");
 
     // Coletar e Verificar nome;
-    get_name(new_client->name);
+    get_name(new_client->name, 1);
     // Coletar e Verificar data de nascimento.
     get_birth(new_client->birth_date, 1);
     // Coletar e Verificar CPF;
-    get_cpf(new_client->cpf);
+    get_cpf(new_client->cpf, 0);
     // Coletar e Verificar o Email;
     get_email(new_client->email);
     // Coletar e Verificar o Contato;
@@ -130,11 +130,11 @@ void clients_u(void)  {
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
-        get_name(cliente->name);
+        get_name(cliente->name, 1);
         // Coletar e Verificar data de nascimento.
         get_birth(cliente->birth_date, 1);
         // Coletar e Verificar CPF;
-        get_cpf(cliente->cpf);
+        get_cpf(cliente->cpf, 0);
         // Coletar e Verificar o Email;
         get_email(cliente->email);
         // Coletar e Verificar o Contato;

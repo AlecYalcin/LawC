@@ -20,7 +20,7 @@ void resources_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO RECURSO;
-    get_name(new_resource->name);
+    get_name(new_resource->name, 1);
     // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
     get_desc(new_resource->desc);
     // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
@@ -121,7 +121,7 @@ void resources_u(void) {
         
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO RECURSO;
-        get_name(resource->name);
+        get_name(resource->name, 1);
         // Coletar e Verificar a DESCRIÇÃO DO RECURSO;
         get_desc(resource->desc);
         // Coletar e Verificar ONDE ENCONTRAR O RECURSO;

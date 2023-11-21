@@ -18,12 +18,21 @@ void change_last(char* text) {
 }
 
 // Funções relacionadas a Pegar Dados
-void get_name(char* _name){
+void get_name(char* _name, int print_changer){
     int isValid = 1; int i; 
 
     do {
+        char* string_aux;
         limpa_buffer();
-        printf("> Nome....................: ");
+
+        // Print para Pegar Dados
+        if (print_changer) {
+            printf("> Nome....................: ");
+        // Print para Pegar Serviço
+        } else {
+            printf("> Nome do Serviço.........: ");
+        }
+
         fgets(_name, 75, stdin);
         change_last(_name);
 
@@ -49,6 +58,7 @@ void get_birth(char* _birth_date, int print_changer) {
 
     do {
         limpa_buffer();
+
         if (print_changer) {
             printf("> Idade (DD/MM/AAAA)......: ");
         } else {
@@ -86,12 +96,20 @@ void get_birth(char* _birth_date, int print_changer) {
     } while (!isValid);
 }
 
-void get_cpf(char* _cpf) {
+void get_cpf(char* _cpf, int print_changer) {
     int isValid = 1; int i;
 
     do {
         limpa_buffer();
-        printf("> CPF (Somente Numeros)...: ");
+
+        if (print_changer == 0) {
+            printf("> CPF (Somente Numeros)...: ");
+        } else if (print_changer == 1) {
+            printf("> CPF do Funcionario......: ");
+        } else if (print_changer == 2) {
+            printf("> CPF do Cliente..........: ");
+        }
+
         fgets(_cpf, 12, stdin);
         change_last(_cpf);
 

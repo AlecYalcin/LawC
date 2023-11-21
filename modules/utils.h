@@ -5,9 +5,9 @@ void limpa_buffer(void);
 void change_last(char*);
 
 // Funções de dados
-void get_name(char* _name);
+void get_name(char* _name, int);
 void get_birth(char* _birth_date, int);
-void get_cpf(char* _cpf);
+void get_cpf(char* _cpf, int);
 void get_email(char* _email);
 void get_tel(char* _tel);
 void get_oab(char* _oab);

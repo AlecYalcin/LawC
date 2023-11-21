@@ -26,15 +26,15 @@ void schedule_c(void) {
     printf("|                     Valor:                                    |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar Nome (Identificação) do Encontro
-    get_name(new_schedule->name);
+    get_name(new_schedule->name, 1);
     // Coletar e Verificar a DESCRIÇÃO
     get_desc(new_schedule->desc);
     // Coletar os dados do CPF dos Funcionarios Envolvidos
-    get_cpf(new_schedule->id_employer);
+    get_cpf(new_schedule->id_employer, 1);
     // Coletar os dados do CPF dos Clientes Envolvidos
-    get_cpf(new_schedule->id_client);
+    get_cpf(new_schedule->id_client, 2);
     // Coletar os dados do NOME dos Serviços Envolvidos
-    get_name(new_schedule->id_service);
+    get_name(new_schedule->id_service, 0);
     // Coleta a Data do Encontro
     get_birth(new_schedule->date, 0);
     // Alterar Status

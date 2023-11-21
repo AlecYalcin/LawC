@@ -21,11 +21,11 @@ void employer_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar nome;
-    get_name(new_employer->name);
+    get_name(new_employer->name, 1);
     // Coletar e Verificar data de nascimento.
     get_birth(new_employer->birth_date, 1);
     // Coletar e Verificar CPF;
-    get_cpf(new_employer->cpf);
+    get_cpf(new_employer->cpf, 0);
     // Coletar e Verificar o Email;
     get_email(new_employer->email);
     // Coletar e Verificar o Contato;
@@ -147,11 +147,11 @@ void employer_u(void) {
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
-        get_name(funcionario->name);
+        get_name(funcionario->name, 1);
         // Coletar e Verificar data de nascimento.
         get_birth(funcionario->birth_date, 1);
         // Coletar e Verificar CPF;
-        get_cpf(funcionario->cpf);
+        get_cpf(funcionario->cpf, 0);
         // Coletar e Verificar o Email;
         get_email(funcionario->email);
         // Coletar e Verificar o Contato;

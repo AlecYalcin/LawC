@@ -20,7 +20,7 @@ void services_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar o NOME DO SERVIÇO;
-    get_name(new_service->name);
+    get_name(new_service->name, 1);
     // Coletar e Verificar VALOR DO SERVIÇO;
     get_value(&new_service->value);
     // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
@@ -120,7 +120,7 @@ void services_u(void) {
         
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO SERVIÇO;
-        get_name(service->name);
+        get_name(service->name, 1);
         // Coletar e Verificar a DESCRIÇÃO DO SERVIÇO;
         get_value(&service->value);
         // Coletar e Verificar VALOR DO SERVIÇO;
