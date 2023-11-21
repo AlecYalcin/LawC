@@ -48,6 +48,8 @@ void schedule_c(void) {
     printf("> Serviço..............: %s\n", new_schedule->id_service);
     printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
     //printf("> Valor................: %.2f\n", new_schedule->value?);
+
+    free(new_schedule);
 }
 
 void schedule_r(void) {
