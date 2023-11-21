@@ -1,3 +1,14 @@
+typedef struct schedule Schedule;
+
+struct schedule {
+    int status;
+    char id_employer[12]; // CPF
+    char id_client[12];   // CPF
+    char id_service[51];     // Nome
+    char date[12];
+    // Valor apartir do serviço
+};
+
 void schedule_c(void);
 void schedule_r(void);
 void schedule_u(void);

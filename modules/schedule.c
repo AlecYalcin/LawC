@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+// Created Modules
+#include "utils.h"
+#include "../database/data_utils.h"
+#include "../database/data_schedule.h" //data_clients já tem o include de clients
 
 void schedule_c(void) {
     printf("-----------------------------------------------------------------\n");
@@ -24,7 +28,6 @@ void schedule_r(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Agendamento - Pesquisar               |\n");
     printf("|                                                               |\n");
-    printf("|             Filtro:(Cliente, Funcionario, Serviço)            |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -35,7 +38,6 @@ void schedule_u(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Agendamento - Alterar                |\n");
     printf("|                                                               |\n");
-    printf("|             Filtro:(Cliente, Funcionario, Serviço)            |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -46,7 +48,6 @@ void schedule_d(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Agendamento - Excluir                |\n");
     printf("|                                                               |\n");
-    printf("|             Filtro:(Cliente, Funcionario, Serviço)            |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -57,7 +58,6 @@ void schedule_end(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Agendamento - Finalizar               |\n");
     printf("|                                                               |\n");
-    printf("|             Filtro:(Cliente, Funcionario, Serviço)            |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
@@ -68,7 +68,6 @@ void schedule_list(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Agendamento - Listar                 |\n");
     printf("|                                                               |\n");
-    printf("|             Filtro:(Cliente, Funcionario, Serviço)            |\n");
     printf("-----------------------------------------------------------------\n");
 }
 
