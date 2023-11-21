@@ -44,19 +44,24 @@ void get_name(char* _name){
     } while (!isValid);
 }
 
-void get_birth(char* _birth_date) {
+void get_birth(char* _birth_date, int print_changer) {
     int isValid = 1; int i;
 
     do {
         limpa_buffer();
-        printf("> Idade (DD/MM/AAAA)......: ");
+        if (print_changer) {
+            printf("> Idade (DD/MM/AAAA)......: ");
+        } else {
+            printf("> Data (DD/MM/AAAA).......: ");
+        }
+
         fgets(_birth_date, 11, stdin);
         change_last(_birth_date);
 
         // Verificar se tem 10 caracteres
         isValid = 1;
         if (strlen(_birth_date) < 10) {
-            printf("\nSua data de aniversario nao contem caracteres o suficiente.\n");
+            printf("\nSua data nao contem caracteres o suficiente.\n");
             isValid = 0;
         }
 
@@ -68,12 +73,12 @@ void get_birth(char* _birth_date) {
             // Verificar formatação do slash.
             if(i == 2 || i == 5) {
                 if (letter != '/') {
-                    printf("\nCaso 01: Sua data de aniversario e invalida. Tente Novamente.\n");
+                    printf("\nCaso 01: Sua data é invalida. Tente Novamente.\n");
                     isValid = 0;
                     break;
                 }
             } else if (!is_Number) {
-                printf("\nCaso 02: Sua data de aniversario e invalida. Tente Novamente.\n");
+                printf("\nCaso 02: Sua data é invalida. Tente Novamente.\n");
                 isValid = 0;
                 break;
             }

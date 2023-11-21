@@ -23,7 +23,7 @@ void employer_c(void) {
     // Coletar e Verificar nome;
     get_name(new_employer->name);
     // Coletar e Verificar data de nascimento.
-    get_birth(new_employer->birth_date);
+    get_birth(new_employer->birth_date, 1);
     // Coletar e Verificar CPF;
     get_cpf(new_employer->cpf);
     // Coletar e Verificar o Email;
@@ -149,7 +149,7 @@ void employer_u(void) {
         // Coletar e Verificar nome;
         get_name(funcionario->name);
         // Coletar e Verificar data de nascimento.
-        get_birth(funcionario->birth_date);
+        get_birth(funcionario->birth_date, 1);
         // Coletar e Verificar CPF;
         get_cpf(funcionario->cpf);
         // Coletar e Verificar o Email;

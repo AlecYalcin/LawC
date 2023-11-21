@@ -5,7 +5,13 @@
 #include "../database/data_utils.h"
 #include "../database/data_schedule.h" //data_clients já tem o include de clients
 
+typedef struct schedule Schedule;
+// Arquivo de database
+char* sc_ar_name = "database/_schedule.dat";
+
 void schedule_c(void) {
+    Schedule* new_schedule = (Schedule*) malloc(sizeof(Schedule));
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -19,6 +25,29 @@ void schedule_c(void) {
     printf("|                     Data:                                     |\n");
     printf("|                     Valor:                                    |\n");
     printf("-----------------------------------------------------------------\n");
+    // Coletar e Verificar Nome (Identificação) do Encontro
+    get_name(new_schedule->name);
+    // Coletar e Verificar a DESCRIÇÃO
+    get_desc(new_schedule->desc);
+    // Coletar os dados do CPF dos Funcionarios Envolvidos
+    get_cpf(new_schedule->id_employer);
+    // Coletar os dados do CPF dos Clientes Envolvidos
+    get_cpf(new_schedule->id_client);
+    // Coletar os dados do NOME dos Serviços Envolvidos
+    get_name(new_schedule->id_service);
+    // Coleta a Data do Encontro
+    get_birth(new_schedule->date, 0);
+    // Alterar Status
+    new_schedule->status = 1;
+
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Encontro.............: %s\n", new_schedule->name);
+    printf("> Descricao............: %s\n", new_schedule->desc);
+    printf("> Funcionario..........: %s\n", new_schedule->id_employer);
+    printf("> Cliente..............: %s\n", new_schedule->id_client);
+    printf("> Serviço..............: %s\n", new_schedule->id_service);
+    printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
+    //printf("> Valor................: %.2f\n", new_schedule->value?);
 }
 
 void schedule_r(void) {

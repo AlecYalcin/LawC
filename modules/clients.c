@@ -23,7 +23,7 @@ void clients_c(void)  {
     // Coletar e Verificar nome;
     get_name(new_client->name);
     // Coletar e Verificar data de nascimento.
-    get_birth(new_client->birth_date);
+    get_birth(new_client->birth_date, 1);
     // Coletar e Verificar CPF;
     get_cpf(new_client->cpf);
     // Coletar e Verificar o Email;
@@ -132,7 +132,7 @@ void clients_u(void)  {
         // Coletar e Verificar nome;
         get_name(cliente->name);
         // Coletar e Verificar data de nascimento.
-        get_birth(cliente->birth_date);
+        get_birth(cliente->birth_date, 1);
         // Coletar e Verificar CPF;
         get_cpf(cliente->cpf);
         // Coletar e Verificar o Email;

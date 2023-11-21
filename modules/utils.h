@@ -6,7 +6,7 @@ void change_last(char*);
 
 // Funções de dados
 void get_name(char* _name);
-void get_birth(char* _birth_date);
+void get_birth(char* _birth_date, int);
 void get_cpf(char* _cpf);
 void get_email(char* _email);
 void get_tel(char* _tel);
