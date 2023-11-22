@@ -18,12 +18,6 @@ void schedule_c(void) {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Agendamento - Criacao                |\n");
     printf("|                                                               |\n");
-    printf("|                     Funcionários:                             |\n");
-    printf("|                     Clientes:                                 |\n");
-    printf("|                     Recursos:                                 |\n");
-    printf("|                     Serviço:                                  |\n");
-    printf("|                     Data:                                     |\n");
-    printf("|                     Valor:                                    |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar Nome (Identificação) do Encontro
     get_name(new_schedule->name, 1);
@@ -49,10 +43,38 @@ void schedule_c(void) {
     printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
     //printf("> Valor................: %.2f\n", new_schedule->value?);
 
+    // Verificar existencia de cliente parecido
+    Schedule* aux_schedule = sc_read_archive(sc_ar_name, new_schedule->name);
+
+    // Criação de arquivos
+    if (verify_archive(sc_ar_name)) {
+        // Se o arquivo existe, apenas adicione.
+        if (aux_schedule == NULL) {
+            sc_create_archive(sc_ar_name, new_schedule);
+        } else {
+            printf("\n>>> O Nome cadastrado já está em uso, tente outro.");
+        }
+    } else {
+        // Se o arquivo não existe, crie e adicione.
+        create_archive(sc_ar_name);
+        if (aux_schedule == NULL) {
+            sc_create_archive(sc_ar_name, new_schedule);
+        } else {
+            printf("\n>>> O Nome cadastrado já está em uso, tente outro.");
+        }
+    }
+
+    // Liberação de memória dinâmica
     free(new_schedule);
+    free(aux_schedule);
 }
 
 void schedule_r(void) {
+    Schedule* schedule;
+    char filter[51];
+
+    limpa_buffer();
+
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -60,6 +82,24 @@ void schedule_r(void) {
     printf("|               Modulo de Agendamento - Pesquisar               |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    schedule = sc_read_archive(sc_ar_name, filter);
+    if (schedule == NULL) {
+        printf("\n>>> schedule não encontrado. \n");
+    } else {
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Encontro.............: %s\n", schedule->name);
+        printf("> Descricao............: %s\n", schedule->desc);
+        printf("> Funcionario..........: %s\n", schedule->id_employer);
+        printf("> Cliente..............: %s\n", schedule->id_client);
+        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+        free(schedule);
+    }
 }
 
 void schedule_u(void) {

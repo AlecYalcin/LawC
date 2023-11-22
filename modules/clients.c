@@ -77,7 +77,6 @@ void clients_r(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                 Modulo de Clientes - Pesquisa                 |\n");
     printf("|                                                               |\n");
-    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Digite o CPF: ");
     // Pegando dados e alterando
@@ -110,7 +109,6 @@ void clients_u(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Alterar                |\n");
     printf("|                                                               |\n");
-    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Digite o CPF: ");
     // Pegando dados e alterando
@@ -162,7 +160,6 @@ void clients_d(void)  {
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|               Modulo de Funcionarios - Excluir                |\n");
     printf("|                                                               |\n");
-    printf("|                         Filtro:(CPF)                          |\n");
     printf("-----------------------------------------------------------------\n");   
     printf("Digite o CPF: ");
     // Pegando dados e alterando
