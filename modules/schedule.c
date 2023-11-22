@@ -183,22 +183,22 @@ void schedule_d(void) {
     }
 }
 
-void schedule_end(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|               Modulo de Agendamento - Finalizar               |\n");
-    printf("|                                                               |\n");
-    printf("-----------------------------------------------------------------\n");
-}
-
 void schedule_list(void) {
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
     printf("|                     Sistema de Advocacia                      |\n");
     printf("|                Modulo de Agendamento - Listar                 |\n");
+    printf("|                                                               |\n");
+    printf("-----------------------------------------------------------------\n");
+}
+
+void schedule_end(void) {
+    printf("-----------------------------------------------------------------\n");
+    printf("|                                                               |\n");
+    printf("|                             Law-C                             |\n");
+    printf("|                     Sistema de Advocacia                      |\n");
+    printf("|               Modulo de Agendamento - Finalizar               |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
 }
