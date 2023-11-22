@@ -25,7 +25,7 @@ void schedule_c(void) {
     get_desc(new_schedule->desc);
     // Coletar os dados do CPF dos Funcionarios Envolvidos
     get_cpf(new_schedule->id_employer, 1);
-    // Coletar os dados do CPF dos Clientes Envolvidos
+    // Coletar os dados do CPF dos Clientes Envolvidos        get_tel(cliente->tel);
     get_cpf(new_schedule->id_client, 2);
     // Coletar os dados do NOME dos Serviços Envolvidos
     get_name(new_schedule->id_service, 0);
@@ -74,7 +74,6 @@ void schedule_r(void) {
     char filter[51];
 
     limpa_buffer();
-
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -103,6 +102,10 @@ void schedule_r(void) {
 }
 
 void schedule_u(void) {
+    Schedule* schedule;
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -110,6 +113,48 @@ void schedule_u(void) {
     printf("|                Modulo de Agendamento - Alterar                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    schedule = sc_read_archive(sc_ar_name, filter);
+    if (schedule == NULL) {
+        printf("\n>>> schedule não encontrado. \n");
+    } else {
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Encontro.............: %s\n", schedule->name);
+        printf("> Descricao............: %s\n", schedule->desc);
+        printf("> Funcionario..........: %s\n", schedule->id_employer);
+        printf("> Cliente..............: %s\n", schedule->id_client);
+        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+
+        printf("\n>>> Preencher as Novas Informacoes <<<\n");
+        
+        // Coletar e Verificar Nome (Identificação) do Encontro
+        get_name(schedule->name, 1);
+        // Coletar e Verificar a DESCRIÇÃO
+        get_desc(schedule->desc);
+        // Coletar os dados do CPF dos Funcionarios Envolvidos
+        get_cpf(schedule->id_employer, 1);
+        // Coletar os dados do CPF dos Clientes Envolvidos
+        get_cpf(schedule->id_client, 2);
+        // Coletar os dados do NOME dos Serviços Envolvidos
+        get_name(schedule->id_service, 0);
+        // Coleta a Data do Encontro
+        get_birth(schedule->date, 0);
+
+        printf("\n>>> ------------------------------ <<<\n");
+        printf("> Encontro.............: %s\n", schedule->name);
+        printf("> Descricao............: %s\n", schedule->desc);
+        printf("> Funcionario..........: %s\n", schedule->id_employer);
+        printf("> Cliente..............: %s\n", schedule->id_client);
+        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+
+        sc_update_archive(sc_ar_name, filter, schedule);
+    }
 }
 
 void schedule_d(void) {

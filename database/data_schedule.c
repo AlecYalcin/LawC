@@ -50,3 +50,36 @@ Schedule* sc_read_archive(char *ar_name, char *filter) {
     free(sche_aux);
     return NULL;
 }
+
+// Alteração (Update) de Arquivos
+void sc_update_archive(char *ar_name, char *filter, Schedule* new_schedule) {
+    FILE *fp;
+    Schedule* sche_aux = (Schedule*) malloc(sizeof(Schedule));
+
+    fp = fopen(ar_name, "r+b");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(sche_aux, sizeof(Schedule), 1, fp);
+            // Comparando as Strings
+            if (strcmp(sche_aux->name, filter) == 0 && sche_aux->status != 0) {
+                // Após encontrar, alterar a localização do ponteiro
+                fseek(fp, -1*sizeof(Schedule), SEEK_CUR);
+                // Tendo reposicionado o ponteiro, atualizar.
+                fwrite(new_schedule, sizeof(Schedule), 1, fp);
+                
+                printf("\n>>> Agendamento alterado! <<<\n");
+                break;
+            }
+        }
+ 
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(sche_aux);
+    free(new_schedule);
+}
