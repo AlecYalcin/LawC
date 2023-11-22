@@ -3,9 +3,7 @@
 // Created Modules
 #include "utils.h"
 #include "../database/data_utils.h"
-#include "../database/data_clients.h" //data_clients já tem o include de clients
 
-typedef struct cliente Cliente;
 // Arquivo de database
 char* c_ar_name = "database/_clients.dat";
 

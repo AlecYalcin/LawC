@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+// Coletando os structs
+#include "data_clients.h"
+#include "data_employers.h"
+#include "data_services.h"
+
 
 // Verificação de Arquivos
 int verify_archive(char* ar_name) {
@@ -92,4 +97,86 @@ int return_age(char* birth_date) {
     fflush(stdin); __fpurge(stdin);
 
     return age;
+}
+
+// Funções GET para pegar informações dos STRUCTS
+Cliente* get_client(char* cpf) {
+    FILE *fp;
+    Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
+
+    fp = fopen("_clients.dat", "rb");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(cli_aux, sizeof(Cliente), 1, fp);
+            // Comparando as Strings
+            if (strcmp(cli_aux->cpf, cpf) == 0 && cli_aux->status != 0) {
+                fclose(fp);
+                return cli_aux;
+            }
+        }
+
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(cli_aux);
+    return NULL;
+}
+
+Employer* get_employer(char* cpf) {
+    FILE *fp;
+    Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
+
+    fp = fopen("_employers.dat", "rb");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(emp_aux, sizeof(Employer), 1, fp);
+            // Comparando as Strings
+            if (strcmp(emp_aux->cpf, cpf) == 0 && emp_aux->status != 0) {
+                fclose(fp);
+                return emp_aux;
+            }
+        }
+        
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(emp_aux);
+    return NULL;
+}
+
+Service* get_service(char* name) {
+    FILE *fp;
+    Service* ser_aux = (Service*) malloc(sizeof(Service));
+
+    fp = fopen("_services.dat", "rb");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(ser_aux, sizeof(Service), 1, fp);
+            // Comparando as Strings
+            if (strcmp(ser_aux->name, name) == 0 && ser_aux->status != 0) {
+                fclose(fp);
+                return ser_aux;
+            }
+        }
+        
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(ser_aux);
+    return NULL;
 }

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 // Created Modules
-#include "../modules/employers.h"
 #include "../database/data_utils.h"
 
 // Atualização (Create) de Arquivos

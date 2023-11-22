@@ -19,7 +19,11 @@
         "utility": "c",
         "stdlib.h": "c",
         "clients.h": "c",
-        "memory_resource": "c"
+        "memory_resource": "c",
+        "data_clients.h": "c",
+        "schedule.h": "c",
+        "data_utils.h": "c",
+        "data_services.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
