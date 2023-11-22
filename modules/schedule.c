@@ -3,7 +3,7 @@
 // Created Modules
 #include "utils.h"
 #include "../database/data_utils.h"
-#include "../database/data_schedule.h" //data_clients já tem o include de clients
+#include "../database/data_schedule.h"
 
 typedef struct schedule Schedule;
 // Arquivo de database
@@ -25,21 +25,44 @@ void schedule_c(void) {
     get_desc(new_schedule->desc);
     // Coletar os dados do CPF dos Funcionarios Envolvidos
     get_cpf(new_schedule->id_employer, 1);
-    // Coletar os dados do CPF dos Clientes Envolvidos        get_tel(cliente->tel);
+
+    while(get_employer(new_schedule->id_employer) == NULL) {
+        printf("\n!!! Esse funcionario NÃO existe. Tente Novamente. !!!\n");
+        get_cpf(new_schedule->id_employer, 1);
+    }
+
+    // Coletar os dados do CPF dos Clientes Envolvidos
     get_cpf(new_schedule->id_client, 2);
+
+    while(get_client(new_schedule->id_client) == NULL) {
+        printf("\n!!! Esse cliente NÃO existe. Tente Novamente. !!!\n");
+        get_cpf(new_schedule->id_client, 2);
+    }
+
     // Coletar os dados do NOME dos Serviços Envolvidos
     get_name(new_schedule->id_service, 0);
+
+    while(get_service(new_schedule->id_service) == NULL) {
+        printf("\n!!! Esse serviço NÃO existe. Tente Novamente. !!!\n");
+        get_cpf(new_schedule->id_service, 2);
+    }
+
     // Coleta a Data do Encontro
     get_birth(new_schedule->date, 0);
     // Alterar Status
     new_schedule->status = 1;
+    new_schedule->finalizado = 0;
+
+    Employer* employer = get_employer(new_schedule->id_employer);
+    Cliente* client   = get_client(new_schedule->id_client);
+    Service* service  = get_service(new_schedule->id_service);
 
     printf("\n>>> ------------------------------ <<<\n");
     printf("> Encontro.............: %s\n", new_schedule->name);
     printf("> Descricao............: %s\n", new_schedule->desc);
-    printf("> Funcionario..........: %s\n", new_schedule->id_employer);
-    printf("> Cliente..............: %s\n", new_schedule->id_client);
-    printf("> Serviço..............: %s\n", new_schedule->id_service);
+    printf("> Funcionario..........: %s (%s)\n", employer->name, new_schedule->id_employer);
+    printf("> Cliente..............: %s (%s)\n", client->name, new_schedule->id_client);
+    printf("> Serviço..............: %s (R$%.2f)\n", new_schedule->id_service, service->value);
     printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
     //printf("> Valor................: %.2f\n", new_schedule->value?);
 

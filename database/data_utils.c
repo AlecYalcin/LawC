@@ -104,7 +104,7 @@ Cliente* get_client(char* cpf) {
     FILE *fp;
     Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
 
-    fp = fopen("_clients.dat", "rb");
+    fp = fopen("database/_clients.dat", "rb");
 
     if (!(fp == NULL)) {
 
@@ -131,7 +131,7 @@ Employer* get_employer(char* cpf) {
     FILE *fp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
-    fp = fopen("_employers.dat", "rb");
+    fp = fopen("database/_employers.dat", "rb");
 
     if (!(fp == NULL)) {
 
@@ -158,7 +158,7 @@ Service* get_service(char* name) {
     FILE *fp;
     Service* ser_aux = (Service*) malloc(sizeof(Service));
 
-    fp = fopen("_services.dat", "rb");
+    fp = fopen("database/_services.dat", "rb");
 
     if (!(fp == NULL)) {
 
