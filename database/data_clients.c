@@ -42,7 +42,6 @@ Cliente* c_read_archive(char *ar_name, char *filter) {
             }
         }
 
-        printf("\n>>> Cliente não encontrado. \n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo! <<<\n");

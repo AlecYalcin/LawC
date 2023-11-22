@@ -41,7 +41,6 @@ Schedule* sc_read_archive(char *ar_name, char *filter) {
             }
         }
 
-        printf("\n>>> Agendamento não encontrado. \n");
         fclose(fp);
     } else {
         printf("\n>>> Erro na criação do arquivo! <<<\n");
@@ -82,4 +81,38 @@ void sc_update_archive(char *ar_name, char *filter, Schedule* new_schedule) {
 
     free(sche_aux);
     free(new_schedule);
+}
+
+// Excluir (Delete) de Arquivos
+void sc_delete_archive(char *ar_name, Schedule* schedule) {
+    FILE *fp;
+    Schedule* sche_aux = (Schedule*) malloc(sizeof(Schedule));
+
+    fp = fopen(ar_name, "r+b");
+
+    if (!(fp == NULL)) {
+
+        while(!feof(fp)) {
+            // Lendo o Arquivo
+            fread(sche_aux, sizeof(Schedule), 1, fp);
+            // Comparando as Strings
+            if (strcmp(sche_aux->name, schedule->name) == 0 && sche_aux->status != 0) {
+                schedule->status = 0;
+                // Após encontrar, alterar a localização do ponteiro
+                fseek(fp, -1*sizeof(Schedule), SEEK_CUR);
+                // Tendo reposicionado o ponteiro, atualizar.
+                fwrite(schedule, sizeof(Schedule), 1, fp);
+
+                printf("\n>>> Agendamento excluído! <<<\n");
+                break;
+            }
+        }
+ 
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(schedule);
+    free(sche_aux);
 }

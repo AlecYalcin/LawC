@@ -88,7 +88,7 @@ void schedule_r(void) {
     // Procurando os dados nos arquivos
     schedule = sc_read_archive(sc_ar_name, filter);
     if (schedule == NULL) {
-        printf("\n>>> schedule não encontrado. \n");
+        printf("\n>>> Agendamento não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Encontro.............: %s\n", schedule->name);
@@ -120,7 +120,7 @@ void schedule_u(void) {
     // Procurando os dados nos arquivos
     schedule = sc_read_archive(sc_ar_name, filter);
     if (schedule == NULL) {
-        printf("\n>>> schedule não encontrado. \n");
+        printf("\n>>> Agendamento não encontrado. \n");
     } else {
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Encontro.............: %s\n", schedule->name);
@@ -158,6 +158,10 @@ void schedule_u(void) {
 }
 
 void schedule_d(void) {
+    Schedule* schedule;
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -165,6 +169,18 @@ void schedule_d(void) {
     printf("|                Modulo de Agendamento - Excluir                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    schedule = sc_read_archive(sc_ar_name, filter);
+    if (schedule == NULL) {
+        printf("\n>>> Agendamento não encontrado. \n");
+    } else {
+        // Excluindo o arquivo
+        sc_delete_archive(sc_ar_name, schedule);  
+    }
 }
 
 void schedule_end(void) {
