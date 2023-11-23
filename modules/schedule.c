@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 // Created Modules
 #include "utils.h"
 #include "../database/data_utils.h"
@@ -44,7 +45,7 @@ void schedule_c(void) {
 
     while(get_service(new_schedule->id_service) == NULL) {
         printf("\n!!! Esse serviço NÃO existe. Tente Novamente. !!!\n");
-        get_cpf(new_schedule->id_service, 2);
+        get_name(new_schedule->id_service, 2);
     }
 
     // Coleta a Data do Encontro
@@ -64,7 +65,6 @@ void schedule_c(void) {
     printf("> Cliente..............: %s (%s)\n", client->name, new_schedule->id_client);
     printf("> Serviço..............: %s (R$%.2f)\n", new_schedule->id_service, service->value);
     printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
-    //printf("> Valor................: %.2f\n", new_schedule->value?);
 
     // Verificar existencia de cliente parecido
     Schedule* aux_schedule = sc_read_archive(sc_ar_name, new_schedule->name);
@@ -113,12 +113,16 @@ void schedule_r(void) {
     if (schedule == NULL) {
         printf("\n>>> Agendamento não encontrado. \n");
     } else {
+        Employer* employer = get_employer(schedule->id_employer);
+        Cliente* client    = get_client(schedule->id_client);
+        Service* service   = get_service(schedule->id_service);
+
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Encontro.............: %s\n", schedule->name);
         printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s\n", schedule->id_employer);
-        printf("> Cliente..............: %s\n", schedule->id_client);
-        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
+        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
+        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
         printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
         free(schedule);
     }
@@ -145,12 +149,16 @@ void schedule_u(void) {
     if (schedule == NULL) {
         printf("\n>>> Agendamento não encontrado. \n");
     } else {
+        Employer* employer = get_employer(schedule->id_employer);
+        Cliente* client   = get_client(schedule->id_client);
+        Service* service  = get_service(schedule->id_service);
+
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Encontro.............: %s\n", schedule->name);
         printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s\n", schedule->id_employer);
-        printf("> Cliente..............: %s\n", schedule->id_client);
-        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
+        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
+        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
         printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
@@ -168,12 +176,16 @@ void schedule_u(void) {
         // Coleta a Data do Encontro
         get_birth(schedule->date, 0);
 
+        employer = get_employer(schedule->id_employer);
+        client   = get_client(schedule->id_client);
+        service  = get_service(schedule->id_service);
+
         printf("\n>>> ------------------------------ <<<\n");
         printf("> Encontro.............: %s\n", schedule->name);
         printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s\n", schedule->id_employer);
-        printf("> Cliente..............: %s\n", schedule->id_client);
-        printf("> Serviço..............: %s\n", schedule->id_service);
+        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
+        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
+        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
         printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
 
         sc_update_archive(sc_ar_name, filter, schedule);
@@ -214,6 +226,7 @@ void schedule_list(void) {
     printf("|                Modulo de Agendamento - Listar                 |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    sc_list_archive(sc_ar_name, 1);
 }
 
 void schedule_end(void) {
