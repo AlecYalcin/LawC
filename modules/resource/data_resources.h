@@ -1,4 +1,4 @@
-#include "../modules/resources.h"
+#include "resources.h"
 
 void r_create_archive(char*, Resource*);
 Resource* r_read_archive(char*, char*);

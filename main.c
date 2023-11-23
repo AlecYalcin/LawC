@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Created Modules
-#include "modules/employers.h"
-#include "modules/resources.h"
-#include "modules/services.h"
-#include "modules/clients.h"
-#include "modules/schedule.h"
+#include "modules/employer/employers.h"
+#include "modules/resource/resources.h"
+#include "modules/service/services.h"
+#include "modules/client/clients.h"
+#include "modules/schedule/schedule.h"
 #include "modules/utils.h"
 
 // Main Menu Functions

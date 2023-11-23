@@ -2,13 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 // Created Modules
-#include "utils.h"
-#include "../database/data_utils.h"
-#include "../database/data_schedule.h"
+#include "../utils.h"
+#include "../data_utils.h"
 
 typedef struct schedule Schedule;
 // Arquivo de database
-char* sc_ar_name = "database/_schedule.dat";
+char* sc_ar_name = "modules/schedule/_schedule.dat";
 
 void schedule_c(void) {
     Schedule* new_schedule = (Schedule*) malloc(sizeof(Schedule));

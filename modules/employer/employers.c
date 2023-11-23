@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 // Created Modules
-#include "utils.h"
-#include "../database/data_utils.h"
+#include "../utils.h"
+#include "../data_utils.h"
 
 // Arquivo de database
-char* e_ar_name = "database/_employers.dat";
+char* e_ar_name = "modules/employer/_employers.dat";
 
 void employer_c(void) {
     Employer* new_employer = (Employer*) malloc(sizeof(Employer));

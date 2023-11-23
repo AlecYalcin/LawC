@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 // Created Modules
-#include "../modules/resources.h"
-#include "../database/data_utils.h"
+#include "../data_utils.h"
 
 // Atualização (Create) de Arquivos
 void r_create_archive(char *ar_name, Resource *resource) { 

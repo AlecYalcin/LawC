@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Created Modules
-#include "utils.h"
-#include "../database/data_utils.h"
-#include "../database/data_resources.h" //data_clients já tem o include de resources
+#include "../utils.h"
+#include "../data_utils.h"
 
 typedef struct resource Resource;
 // Arquivo de database
-char* r_ar_name = "database/_resources.dat";
+char* r_ar_name = "modules/resource/_resources.dat";
 
 void resources_c(void) {
     Resource* new_resource = (Resource*) malloc(sizeof(Resource));

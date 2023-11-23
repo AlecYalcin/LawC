@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Created Modules
-#include "utils.h"
-#include "../database/data_utils.h"
+#include "../utils.h"
+#include "../data_utils.h"
 
 // Arquivo de database
-char* c_ar_name = "database/_clients.dat";
+char* c_ar_name = "modules/client/_clients.dat";
 
 void clients_c(void)  {
     Cliente* new_client = (Cliente*) malloc(sizeof(Cliente));

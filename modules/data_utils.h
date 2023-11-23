@@ -1,7 +1,9 @@
 // Coletando os structs
-#include "data_clients.h"
-#include "data_employers.h"
-#include "data_services.h"
+#include "client/data_clients.h"
+#include "employer/data_employers.h"
+#include "service/data_services.h"
+#include "resource/data_resources.h"
+#include "schedule/data_schedules.h"
 
 int verify_archive(char*);
 void change_last_2(char*);

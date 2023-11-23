@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h> 
 // Created Modules
-#include "../database/data_utils.h"
+#include "../data_utils.h"
 
 // Atualização (Create) de Arquivos
 void c_create_archive(char *ar_name, Cliente *cliente) { 

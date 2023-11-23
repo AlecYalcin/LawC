@@ -23,7 +23,8 @@
         "data_clients.h": "c",
         "schedule.h": "c",
         "data_utils.h": "c",
-        "data_services.h": "c"
+        "data_services.h": "c",
+        "utils.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

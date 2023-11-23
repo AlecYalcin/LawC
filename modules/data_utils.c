@@ -4,10 +4,7 @@
 #include <string.h>
 #include <time.h>
 // Coletando os structs
-#include "data_clients.h"
-#include "data_employers.h"
-#include "data_services.h"
-
+#include "data_utils.h"
 
 // Verificação de Arquivos
 int verify_archive(char* ar_name) {
@@ -104,7 +101,7 @@ Cliente* get_client(char* cpf) {
     FILE *fp;
     Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
 
-    fp = fopen("database/_clients.dat", "rb");
+    fp = fopen("modules/client/_clients.dat", "rb");
 
     if (!(fp == NULL)) {
 
@@ -131,7 +128,7 @@ Employer* get_employer(char* cpf) {
     FILE *fp;
     Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
 
-    fp = fopen("database/_employers.dat", "rb");
+    fp = fopen("modules/employer/_employers.dat", "rb");
 
     if (!(fp == NULL)) {
 
@@ -158,7 +155,7 @@ Service* get_service(char* name) {
     FILE *fp;
     Service* ser_aux = (Service*) malloc(sizeof(Service));
 
-    fp = fopen("database/_services.dat", "rb");
+    fp = fopen("modules/service/_services.dat", "rb");
 
     if (!(fp == NULL)) {
 

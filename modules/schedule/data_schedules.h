@@ -1,4 +1,4 @@
-#include "../modules/schedule.h"
+#include "schedule.h"
 
 void sc_create_archive(char*, Schedule*);
 Schedule* sc_read_archive(char*, char*);

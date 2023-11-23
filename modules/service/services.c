@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 // Created Modules
-#include "utils.h"
-#include "../database/data_utils.h"
+#include "../utils.h"
+#include "../data_utils.h"
 
 // Arquivo de database
-char* s_ar_name = "database/_services.dat";
+char* s_ar_name = "modules/service/_services.dat";
 void services_c(void) {
     Service* new_service = (Service*) malloc(sizeof(Service));
 
