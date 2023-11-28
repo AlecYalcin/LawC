@@ -218,6 +218,9 @@ void schedule_d(void) {
 }
 
 void schedule_list(void) {
+    int choice;
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -225,7 +228,13 @@ void schedule_list(void) {
     printf("|                Modulo de Agendamento - Listar                 |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
-    sc_list_archive(sc_ar_name, 1);
+    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[2] - Filtro de Data\n");
+    printf("Digite o Numero do Filtro: ");
+    scanf(" %d", &choice);
+    getchar();
+
+    sc_list_archive(sc_ar_name, choice);
 }
 
 void schedule_end(void) {

@@ -124,26 +124,82 @@ void sc_list_archive(char *ar_name, int fil_choice) {
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
+        int choice; int date_value;
+
+        if (fil_choice == 2) {
+            do {
+                printf("\n> Para filtrar a data, escolha o dia, mês ou ano para ser o dado da filtragem.\n");
+                printf("[1] - Dia\n");
+                printf("[2] - Mês\n");
+                printf("[3] - Ano\n");
+                printf("> Sua escolha: ");
+                scanf(" %d", &choice);
+            } while(choice < 1 || choice > 3);
+
+            printf("> Digite agora o valor de dia/mês/ano: ");
+            scanf(" %d", &date_value);
+        }
 
         while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
             Employer* employer;
             Cliente* client;
             Service* service;
 
-            // Filtro A - Listagem Completa
-            if (sche_aux->status != 0) {
-                employer  = get_employer(sche_aux->id_employer);
-                client    = get_client(sche_aux->id_client);
-                service   = get_service(sche_aux->id_service);
+            employer  = get_employer(sche_aux->id_employer);
+            client    = get_client(sche_aux->id_client);
+            service   = get_service(sche_aux->id_service);
 
+            // Filtro A - Listagem Completa
+            if (sche_aux->status != 0 && fil_choice == 1) {
                 printf("\n>>> ------------------------------ <<<\n");
-                printf("> Encontro.............: %s\n", sche_aux->name);
+                printf("> Encontro........                employer  = get_employer(sche_aux->id_employer);
+                client    = get_client(sche_aux->id_client);
+                service   = get_service(sche_aux->id_service);.....: %s\n", sche_aux->name);
                 printf("> Descricao............: %s\n", sche_aux->desc);
                 printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
                 printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
                 printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
-                printf("> Data.................: %s\n", sche_aux->date); // Fazer função pra calcular qnt tempo falta
-            } 
+                printf("> Data.................: %s\n", sche_aux->date);
+            // Filtro B - Listagem por Data           
+            } else if (sche_aux->status != 0 && fil_choice == 2) {
+                int* date = todays_date();
+                int* schedule_date = date_numeric(sche_aux->date);
+
+                if(choice == 1) {
+                    if(schedule_date[0] == date_value) {
+                        printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Encontro.............: %s\n", sche_aux->name);
+                        printf("> Descricao............: %s\n", sche_aux->desc);
+                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
+                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
+                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
+                        printf("> Data.................: %s\n", sche_aux->date);
+                    }
+                } else if (choice == 2) {
+                    if (schedule_date[1] == date_value) {
+                        printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Encontro.............: %s\n", sche_aux->name);
+                        printf("> Descricao............: %s\n", sche_aux->desc);
+                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
+                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
+                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
+                        printf("> Data.................: %s\n", sche_aux->date);
+                    }
+                } else if (choice == 3) {
+                    if (schedule_date[2] == date_value) {
+                        printf("\n>>> ------------------------------ <<<\n");
+                        printf("> Encontro.............: %s\n", sche_aux->name);
+                        printf("> Descricao............: %s\n", sche_aux->desc);
+                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
+                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
+                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
+                        printf("> Data.................: %s\n", sche_aux->date);
+                    }
+                } else {
+                    printf("\n!!! Aconteceu algum erro, cancelando operação. !!!\n");
+                    break;
+                }
+            }
         }
 
         fclose(fp);

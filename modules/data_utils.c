@@ -41,7 +41,6 @@ void create_archive(char* ar_name) {
     }
 }
 
-
 // Funções para transformar dados em outros
 int return_age(char* birth_date) {
     // A função mais abaixo strtok acaba por 'danificar' o apontador original, sendo assim
@@ -94,6 +93,53 @@ int return_age(char* birth_date) {
     fflush(stdin); __fpurge(stdin);
 
     return age;
+}
+
+// Função para pegar a data atual e transformar em um valor numérico
+int* todays_date() {
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    int today_year    = tm.tm_year + 1900;
+    int today_month   = tm.tm_mon + 1;
+    int today_day     = tm.tm_mday;
+
+    int info[] = {today_day, today_month, today_year};
+
+    int* sum_year = info;
+
+    return sum_year;
+}
+
+// Função para pegar uma data e transformar em valor numérico
+int* date_numeric(char* birth_date) {
+    // É criado outro para não ser modificado o valor original com memória dinâmica.
+    char* original_date = (char*) malloc((strlen(birth_date)+1)*sizeof(char)); 
+    strcpy(original_date, birth_date);
+
+    // Criando um delimitador e uma variável que ira pegar os valores individuais da data
+    const char delimeter[2] = "/";
+    char* birth_values;
+
+    // Pos 0 - Dia, Pos 1 - Mês, Pos 2 - Ano
+    int birth_info[] = {0,0,0}; 
+
+    // Strtok pega a primeira string antes do delimitador, e depois retorna ponteiros nulos com o restante da String
+    birth_values = strtok(original_date, delimeter);
+    // Enquanto birth_value não for um ponteiro nulo sem retorno, continue
+    int index = 0;
+    while(birth_values != NULL) {
+        // Coletando e Convertendo os valores de String das Datas
+        birth_info[index] = atoi(birth_values);
+        birth_values = strtok(NULL, delimeter);
+        index++;
+    }
+
+    // Liberando memória dinâmica
+    free(original_date);
+
+    int* sum_year = birth_info;
+
+    return sum_year;
 }
 
 // Funções GET para pegar informações dos STRUCTS
@@ -177,3 +223,4 @@ Service* get_service(char* name) {
     free(ser_aux);
     return NULL;
 }
+

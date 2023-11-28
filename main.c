@@ -381,8 +381,8 @@ int menu_schedule(int option) {
     printf("|                     2. Pesquisar Agendamento                  |\n");
     printf("|                     3. Alterar Agendamento                    |\n");
     printf("|                     4. Excluir Agendamento                    |\n");
-    printf("|                     5. Finalizar Agendamentos                 |\n");
-    printf("|                     6. Listar Agendamentos                    |\n");
+    printf("|                     5. Listar Agendamentos                    |\n");
+    printf("|                     6. Finalizar Agendamentos                 |\n");
     printf("|                     7. Calendario de Agendamentos             |\n");
     printf("|                     0. Voltar ao Menu                         |\n");
     printf("-----------------------------------------------------------------\n");
@@ -402,9 +402,9 @@ int menu_schedule(int option) {
         } else if (option == 4) {
             schedule_d();
         } else if (option == 5) {
-            schedule_end();
-        } else if (option == 6) {
             schedule_list();
+        } else if (option == 6) {
+            schedule_end();
         } else if (option == 7) {
             schedule_data();
         } else {
