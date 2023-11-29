@@ -152,9 +152,7 @@ void sc_list_archive(char *ar_name, int fil_choice) {
             // Filtro A - Listagem Completa
             if (sche_aux->status != 0 && fil_choice == 1) {
                 printf("\n>>> ------------------------------ <<<\n");
-                printf("> Encontro........                employer  = get_employer(sche_aux->id_employer);
-                client    = get_client(sche_aux->id_client);
-                service   = get_service(sche_aux->id_service);.....: %s\n", sche_aux->name);
+                printf("> Encontro.............: %s\n", sche_aux->name);
                 printf("> Descricao............: %s\n", sche_aux->desc);
                 printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
                 printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
