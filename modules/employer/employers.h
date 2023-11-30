@@ -1,10 +1,10 @@
 typedef struct employer Employer;
 struct employer {
     int status;
-    char name[50];
+    char name[75];
     char birth_date[12];
     char cpf[12];
-    char email[50];
+    char email[75];
     char tel[12];
     char OAB[100];
     char role[75];

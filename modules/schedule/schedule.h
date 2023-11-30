@@ -3,11 +3,11 @@ typedef struct schedule Schedule;
 struct schedule {
     int status;
     int finalizado;
-    char name[51];
+    char name[75];
     char desc[200];
     char id_employer[12]; // CPF
     char id_client[12];   // CPF
-    char id_service[51];  // Nome
+    char id_service[75];  // Nome
     char date[12];
     // Valor apartir do serviço
 };

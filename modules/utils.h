@@ -4,6 +4,10 @@
 void limpa_buffer(void);
 void change_last(char*);
 
+// Funções de Coleta Dinâmica
+static char* scan_dynamic(void);
+char* replicate_string(char*);
+
 // Funções de dados
 void get_name(char* _name, int);
 void get_birth(char* _birth_date, int);
