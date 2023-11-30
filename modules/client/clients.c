@@ -184,13 +184,20 @@ void clients_list(void)  {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                      Selecione o Filtro!                      |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[1] - Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Idade\n");
     printf("[3] - Filtro de Nome\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[4] - Ordenação de Nome\n");
+    printf("[5] - Ordenação de Idade\n");
     printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
 
-    c_dylist_archive(c_ar_name);
-    //c_list_archive(c_ar_name, choice);
+    if (!(choice >= 4 && choice <= 5)) {
+        c_list_archive(c_ar_name, choice);
+    } else {
+        c_dylist_archive(c_ar_name, choice);
+    }
 }

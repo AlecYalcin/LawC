@@ -2,7 +2,7 @@ typedef struct cliente Cliente;
 struct cliente {
     // Código de Exclusão
     int status;
-    // Estruturas Dinâmicas
+    // Estruturas Fixas
     char name [75];
     char email [75];
     char birth_date[12];
