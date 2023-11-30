@@ -17,12 +17,6 @@ void change_last(char* text) {
 }
 
 // Funções para Alocação Dinâmica de Texto
-static char* scan_dynamic(void) {
-    char line[255];
-    fgets(line, 256, stdin);
-    change_last(line);
-    return replicate_string(line);
-}
 
 char* replicate_string(char* line) {
     int n = strlen(line) + 1;
@@ -31,6 +25,12 @@ char* replicate_string(char* line) {
     return replicated;
 }
 
+static char* scan_dynamic(void) {
+    char line[255];
+    fgets(line, 255, stdin);
+    change_last(line);
+    return replicate_string(line);
+}
 
 // Funções relacionadas a Pegar Dados
 void get_name(char* _name, int print_changer){
