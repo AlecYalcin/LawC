@@ -191,5 +191,6 @@ void clients_list(void)  {
     scanf("%d", &choice);
     getchar();
 
-    c_list_archive(c_ar_name, choice);
+    c_dylist_archive(c_ar_name);
+    //c_list_archive(c_ar_name, choice);
 }

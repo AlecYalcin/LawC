@@ -210,3 +210,44 @@ void c_list_archive(char *ar_name, int fil_choice) {
 
     free(cli_aux);
 }
+
+// Criação de Listagem Dinâmica
+
+void c_dylist_archive(char *ar_name) {
+    FILE *fp;
+
+    fp = fopen(ar_name, "rb");
+
+    if (!(fp == NULL)) {
+        Cliente* cli_aux;
+        Cliente* cli_list = NULL;
+
+        while(!feof(fp)) {
+            // Criando Memória + Lendo Cliente
+            cli_aux = (Cliente*) malloc(sizeof(Cliente));
+            fread(cli_aux, sizeof(Cliente), 1, fp);
+            // Processo de Locação de Apontadores
+            cli_aux->prox = cli_list;
+            cli_list = cli_aux;
+        }
+        
+        // Exibindo os Clientes
+        printf("\n>>> Lista de Clientes\n");
+        cli_aux = cli_list->prox;
+        while(cli_aux != NULL) {
+            printf("\nEndereço atual: %p\n", cli_aux);
+            printf("Nome do Cliente: %s\n", cli_aux->name);
+            printf("Próximo Endereço: %p\n", cli_aux->prox);
+            cli_aux = cli_aux->prox;
+        }
+
+        // Liberando a memória
+        cli_aux = cli_list;
+        while(cli_list != NULL) {
+            cli_list = cli_list->prox;
+            free(cli_aux);
+            cli_aux = cli_list;
+        }
+        fclose(fp);
+    }
+}

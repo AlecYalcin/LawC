@@ -17,7 +17,6 @@ void change_last(char* text) {
 }
 
 // Funções para Alocação Dinâmica de Texto
-
 char* replicate_string(char* line) {
     int n = strlen(line) + 1;
     char* replicated = (char*) malloc(n*sizeof(char));
