@@ -25,10 +25,7 @@ void services_c(void) {
     // Alterando Status 
     new_service->status = 1;
 
-    printf("\n>>> ------------------------------ <<<\n");
-    printf("> Servico.................: %s\n",      new_service->name);
-    printf("> Valor...................: R$%.2f\n",  new_service->value);
-    printf("> Descricao...............: %s\n",      new_service->desc);
+    s_print_info(new_service);
 
     // Verificar existencia de cliente parecido
     Service* aux_service = s_read_archive(s_ar_name, new_service->name);
@@ -77,10 +74,7 @@ void services_r(void) {
     if (service == NULL) {
         printf("\n>>> Servico não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Servico.................: %s\n",      service->name);
-        printf("> Valor...................: R$%.2f\n",  service->value);
-        printf("> Descricao...............: %s\n",      service->desc);
+        s_print_info(service);
 
         
         free(service);
@@ -110,10 +104,7 @@ void services_u(void) {
     if (service == NULL) {
         printf("\n>>> Servico não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Servico.................: %s\n",      service->name);
-        printf("> Valor...................: R$%.2f\n",  service->value);
-        printf("> Descricao...............: %s\n",      service->desc);
+        s_print_info(service);
         
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO SERVIÇO;
@@ -123,10 +114,7 @@ void services_u(void) {
         // Coletar e Verificar VALOR DO SERVIÇO;
         get_desc(service->desc);
 
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Servico.................: %s\n",      service->name);
-        printf("> Valor...................: R$%.2f\n",  service->value);
-        printf("> Descricao...............: %s\n",      service->desc);    
+        s_print_info(service);    
 
         s_update_archive(s_ar_name, filter, service);
     }
@@ -171,11 +159,19 @@ void services_list(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Valor\n");
     printf("[3] - Filtro de Nome\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[4] - Ordenação de Nome\n");
+    printf("[5] - Ordenação de Valor\n");
     printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
 
-    s_list_archive(s_ar_name, choice);
+    if (!(choice >= 4 && choice <= 5)) {
+        s_list_archive(s_ar_name, choice);
+    } else {
+        s_dylist_archive(s_ar_name, choice);
+    }
 }

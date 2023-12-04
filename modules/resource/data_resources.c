@@ -236,6 +236,8 @@ void r_dylist_archive(char *ar_name, int fil_choice) {
         }
 
         fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
 }
 
