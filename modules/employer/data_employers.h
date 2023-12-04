@@ -5,3 +5,5 @@ Employer* e_read_archive(char*, char*);
 void e_update_archive(char*, char*, Employer*);
 void e_delete_archive(char*, Employer*);
 void e_list_archive(char*, int);
+void e_dylist_archive(char*, int);
+void e_print_info(Employer*);

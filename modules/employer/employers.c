@@ -37,15 +37,7 @@ void employer_c(void) {
     // Alterar status
     new_employer->status = 1;
 
-    printf("\n>>> ------------------------------ <<<\n");
-    printf("> Nome....................: %s\n", new_employer->name);
-    printf("> Idade...................: %s (%d)\n", new_employer->birth_date, return_age(new_employer->birth_date)); 
-    printf("> CPF.....................: %s\n", new_employer->cpf);
-    printf("> E-mail..................: %s\n", new_employer->email);
-    printf("> Telefone................: %s\n", new_employer->tel);
-    printf("> OAB.....................: %s\n", new_employer->OAB);
-    printf("> Funcao..................: %s\n", new_employer->role);
-    printf("> Descricao...............: %s\n", new_employer->desc);
+    e_print_info(new_employer);
 
     // Verificar existencia de empregado parecido
     Employer* aux_employer = e_read_archive(e_ar_name, new_employer->cpf);
@@ -96,15 +88,7 @@ void employer_r(void) {
     if (funcionario == NULL) {
         printf("\n >>> Funcionário não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
-        printf("> CPF.....................: %s\n", funcionario->cpf);
-        printf("> E-mail..................: %s\n", funcionario->email);
-        printf("> Telefone................: %s\n", funcionario->tel);
-        printf("> OAB.....................: %s\n", funcionario->OAB);
-        printf("> Funcao..................: %s\n", funcionario->role);
-        printf("> Descricao...............: %s\n", funcionario->desc);
+        e_print_info(funcionario);
 
         free(funcionario);
     }
@@ -133,15 +117,7 @@ void employer_u(void) {
     if (funcionario == NULL) {
         printf("\n>>> Funcionário não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
-        printf("> CPF.....................: %s\n", funcionario->cpf);
-        printf("> E-mail..................: %s\n", funcionario->email);
-        printf("> Telefone................: %s\n", funcionario->tel);
-        printf("> OAB.....................: %s\n", funcionario->OAB);
-        printf("> Funcao..................: %s\n", funcionario->role);
-        printf("> Descricao...............: %s\n", funcionario->desc);
+        e_print_info(funcionario);
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
@@ -161,15 +137,7 @@ void employer_u(void) {
         // Coletar e Verificar o DESCRIÇÃO;
         get_desc(funcionario->desc);
 
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome....................: %s\n", funcionario->name);
-        printf("> Idade................: %s (%d)\n", funcionario->birth_date, return_age(funcionario->birth_date)); 
-        printf("> CPF.....................: %s\n", funcionario->cpf);
-        printf("> E-mail..................: %s\n", funcionario->email);
-        printf("> Telefone................: %s\n", funcionario->tel);
-        printf("> OAB.....................: %s\n", funcionario->OAB);
-        printf("> Funcao..................: %s\n", funcionario->role);
-        printf("> Descricao...............: %s\n", funcionario->desc);
+        e_print_info(funcionario);
 
         e_update_archive(e_ar_name, filter, funcionario);
     }
@@ -214,13 +182,22 @@ void employer_list(void) {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[1] - Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Idade\n");
     printf("[3] - Filtro de Nome\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[4] - Ordenação de Nome\n");
+    printf("[5] - Ordenação de Idade\n");
     printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
+
+    if (!(choice >= 4 && choice <= 5)) {
+        e_list_archive(e_ar_name, choice);
+    } else {
+        e_dylist_archive(e_ar_name, choice);
+    }
     
-    e_list_archive(e_ar_name, choice);
 }
 

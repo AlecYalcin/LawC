@@ -7,4 +7,4 @@ void c_delete_archive(char*, Cliente*);
 void c_list_archive(char*, int);
 void c_dylist_archive(char*, int);
 
-void print_info(Cliente*);
+void c_print_info(Cliente*);

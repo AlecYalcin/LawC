@@ -157,23 +157,23 @@ void c_list_archive(char *ar_name, int fil_choice) {
         while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
             // Filtro A - Listagem Completa
             if (cli_aux->status != 0 && fil_choice == 1) {
-                print_info(cli_aux);
+                c_print_info(cli_aux);
             
             // Filtro B - Listagem por Idade
             } else if (cli_aux->status != 0 && fil_choice == 2) {
                 if (ord == '>') {
                     if (return_age(cli_aux->birth_date) >= num) {
-                        print_info(cli_aux);
+                        c_print_info(cli_aux);
                     } 
                 } else if(ord == '<') {
                     if (return_age(cli_aux->birth_date) <= num) {
-                        print_info(cli_aux);
+                        c_print_info(cli_aux);
                     }
                 }
             // Filtro C - Listagem por Idade
             } else if (cli_aux->status != 0 && fil_choice == 3) {
                 if (!(strncmp(cli_aux->name, name, strlen(name)))) {
-                    print_info(cli_aux);
+                    c_print_info(cli_aux);
                 }
             } else if (fil_choice > 3 || fil_choice < 0) {
                 printf("\n>>> Opção inválida, voltando a tela de Clientes...\n");
@@ -255,7 +255,7 @@ void c_dylist_archive(char *ar_name, int choice) {
         printf("\n>>> Lista de Clientes\n");
         cli_aux = cli_list;
         while(cli_aux != NULL) {
-            print_info(cli_aux);
+            c_print_info(cli_aux);
             cli_aux = cli_aux->prox;
         }
 
@@ -274,7 +274,7 @@ void c_dylist_archive(char *ar_name, int choice) {
 }
 
 // Função para Mostrar Dados
-void print_info(Cliente* cliente) {
+void c_print_info(Cliente* cliente) {
     printf("\n>>> ------------------------------ <<<\n");
     printf("> Nome.................: %s\n", cliente->name);
     printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
