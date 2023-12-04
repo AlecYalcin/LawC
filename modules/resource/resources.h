@@ -1,10 +1,14 @@
 typedef struct resource Resource;
 
 struct resource {
+    // Código de Exclusão
     int status;
+    // Estruturas Fixas
     char name[75];
     char desc[300];
     char available_at[100];
+    // Apontador de Lista
+    Resource* prox; 
 };
 
 void resources_c(void);

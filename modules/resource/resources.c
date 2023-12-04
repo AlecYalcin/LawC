@@ -27,10 +27,7 @@ void resources_c(void) {
     // Alterar Status
     new_resource->status = 1;
 
-    printf("\n>>> ------------------------------ <<<\n");
-    printf("> Recurso.................: %s\n", new_resource->name);
-    printf("> Descricao...............: %s\n", new_resource->desc);
-    printf("> Disponivel Em...........: %s\n", new_resource->available_at);
+    r_print_info(new_resource);
 
     // Verificar existencia de cliente parecido
     Resource* aux_resource = r_read_archive(r_ar_name, new_resource->name);
@@ -81,10 +78,7 @@ void resources_r(void) {
     if (resource == NULL) {
         printf("\n>>> Recurso não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Recurso.................: %s\n", resource->name);
-        printf("> Descricao...............: %s\n", resource->desc);
-        printf("> Disponivel Em...........: %s\n", resource->available_at);
+        r_print_info(resource);
         
         free(resource);
     }
@@ -113,10 +107,7 @@ void resources_u(void) {
     if (resource == NULL) {
         printf("\n>>> Recurso não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Recurso.................: %s\n", resource->name);
-        printf("> Descricao...............: %s\n", resource->desc);
-        printf("> Disponivel Em...........: %s\n", resource->available_at);
+        r_print_info(resource);
         
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar o NOME DO RECURSO;
@@ -126,10 +117,7 @@ void resources_u(void) {
         // Coletar e Verificar ONDE ENCONTRAR O RECURSO;
         get_available_at(resource->available_at);
 
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Recurso.................: %s\n", resource->name);
-        printf("> Descricao...............: %s\n", resource->desc);
-        printf("> Disponivel Em...........: %s\n", resource->available_at);     
+        r_print_info(resource);     
 
         r_update_archive(r_ar_name, filter, resource);
     }
@@ -175,11 +163,19 @@ void resources_list(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Nome\n");
     printf("[3] - Filtro de Disponibilidade\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[4] - Ordenação de Nome\n");
+    printf("[5] - Ordenação de Disponibilidade\n");
     printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
 
-    r_list_archive(r_ar_name, choice);
+    if (!(choice >= 4 && choice <= 5)) {
+        r_list_archive(r_ar_name, choice);
+    } else {
+        r_dylist_archive(r_ar_name, choice);
+    }
 }
