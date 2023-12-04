@@ -1,6 +1,6 @@
 all: employers.o resources.o services.o clients.o schedule.o utils.o data_employers.o data_resources.o data_services.o data_clients.o data_schedules.o data_utils.o
 	gcc -o main *.o main.c
-	rm -rf *.o
+	del *.o
 
 employers.o: 
 	gcc -c modules/employer/employers.c
