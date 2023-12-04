@@ -53,17 +53,7 @@ void schedule_c(void) {
     new_schedule->status = 1;
     new_schedule->finalizado = 0;
 
-    Employer* employer = get_employer(new_schedule->id_employer);
-    Cliente* client   = get_client(new_schedule->id_client);
-    Service* service  = get_service(new_schedule->id_service);
-
-    printf("\n>>> ------------------------------ <<<\n");
-    printf("> Encontro.............: %s\n", new_schedule->name);
-    printf("> Descricao............: %s\n", new_schedule->desc);
-    printf("> Funcionario..........: %s (%s)\n", employer->name, new_schedule->id_employer);
-    printf("> Cliente..............: %s (%s)\n", client->name, new_schedule->id_client);
-    printf("> Serviço..............: %s (R$%.2f)\n", new_schedule->id_service, service->value);
-    printf("> Data.................: %s\n", new_schedule->date); // Fazer função pra calcular qnt tempo falta
+    sc_print_info(new_schedule);
 
     // Verificar existencia de cliente parecido
     Schedule* aux_schedule = sc_read_archive(sc_ar_name, new_schedule->name);
@@ -112,17 +102,7 @@ void schedule_r(void) {
     if (schedule == NULL) {
         printf("\n>>> Agendamento não encontrado. \n");
     } else {
-        Employer* employer = get_employer(schedule->id_employer);
-        Cliente* client    = get_client(schedule->id_client);
-        Service* service   = get_service(schedule->id_service);
-
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Encontro.............: %s\n", schedule->name);
-        printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
-        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
-        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
-        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+       sc_print_info(schedule);
         free(schedule);
     }
 }
@@ -148,17 +128,7 @@ void schedule_u(void) {
     if (schedule == NULL) {
         printf("\n>>> Agendamento não encontrado. \n");
     } else {
-        Employer* employer = get_employer(schedule->id_employer);
-        Cliente* client   = get_client(schedule->id_client);
-        Service* service  = get_service(schedule->id_service);
-
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Encontro.............: %s\n", schedule->name);
-        printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
-        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
-        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
-        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+        sc_print_info(schedule);
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         
@@ -175,17 +145,7 @@ void schedule_u(void) {
         // Coleta a Data do Encontro
         get_birth(schedule->date, 0);
 
-        employer = get_employer(schedule->id_employer);
-        client   = get_client(schedule->id_client);
-        service  = get_service(schedule->id_service);
-
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Encontro.............: %s\n", schedule->name);
-        printf("> Descricao............: %s\n", schedule->desc);
-        printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
-        printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
-        printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
-        printf("> Data.................: %s\n", schedule->date); // Fazer função pra calcular qnt tempo falta
+        sc_print_info(schedule);
 
         sc_update_archive(sc_ar_name, filter, schedule);
     }
@@ -229,12 +189,21 @@ void schedule_list(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Data\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[3] - Ordenação de Nome\n");
+    printf("[4] - Ordenação de Data\n");
     printf("Digite o Numero do Filtro: ");
     scanf(" %d", &choice);
     getchar();
 
     sc_list_archive(sc_ar_name, choice);
+    if (!(choice >= 3 && choice <= 4)) {
+        sc_list_archive(sc_ar_name, choice);
+    } else {
+        sc_dylist_archive(sc_ar_name, choice);
+    }
 }
 
 void schedule_end(void) {
