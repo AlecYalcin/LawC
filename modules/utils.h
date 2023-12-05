@@ -3,6 +3,7 @@
 // Funções de utilidade
 void limpa_buffer(void);
 void change_last(char*);
+void clear_database(void);
 
 // Funções de Coleta Dinâmica
 static char* scan_dynamic(void);

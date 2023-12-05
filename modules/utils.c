@@ -16,6 +16,29 @@ void change_last(char* text) {
     }
 }
 
+// Função para limpar Database (Facilidade)
+void clear_database(void) {
+    char* archives[5] = {
+        "modules/client/_clients.dat",
+        "modules/employer/_employers.dat",
+        "modules/resource/_resources.dat",
+        "modules/service/_services.dat",
+        "modules/schedule/_schedule.dat"
+    };
+
+    int i, length;
+
+    for(i = 0; i < 5; i++) {
+        printf("Arquivo do Módulo: %s...", archives[i]);
+        if(remove(archives[i])) {
+            printf("Deletado com sucesso!\n");
+        } else {
+            printf("Houve algum problema!\n");
+        }
+    }
+    getchar();
+}
+
 // Funções para Alocação Dinâmica de Texto
 char* replicate_string(char* line) {
     int n = strlen(line) + 1;
