@@ -210,10 +210,10 @@ void sc_dylist_archive(char *ar_name, int fil_choice) {
                 sche_aux = (Schedule*) malloc(sizeof(Schedule));
             }
         } else {
-            // Ordenação por Idade
+            // Ordenação por Data
             while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
                 // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
-                if((sche_list == NULL) || (return_age(sche_aux->date) <= return_age(sche_list->date))) {
+                if((sche_list == NULL) || (return_day(sche_aux->date) <= return_day(sche_list->date))) {
                     sche_aux->prox = sche_list;
                     sche_list = sche_aux;
                 // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
@@ -222,7 +222,7 @@ void sc_dylist_archive(char *ar_name, int fil_choice) {
                     Schedule* sche_anterior = sche_list;
                     Schedule* sche_atual    = sche_list->prox;
                     // Comparando o Schedule atual da lista com o Schedule lido
-                    while((sche_atual != NULL) && (return_age(sche_atual->date) < return_age(sche_aux->date))) {
+                    while((sche_atual != NULL) && (return_day(sche_atual->date) < return_day(sche_aux->date))) {
                         sche_anterior = sche_atual;
                         sche_atual = sche_atual->prox;
                     }

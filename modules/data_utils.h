@@ -9,6 +9,7 @@ int verify_archive(char*);
 void change_last_2(char*);
 void create_archive(char*);
 int return_age(char*);
+int return_day(char*);
 int* todays_date();
 int* date_numeric(char*);
 

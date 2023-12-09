@@ -52,12 +52,6 @@ int return_age(char* birth_date) {
     const char delimeter[2] = "/";
     char* birth_values;
 
-    // Pegando valores de data
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    int today_year    = tm.tm_year + 1900;
-    int today_month   = tm.tm_mon + 1;
-    int today_day     = tm.tm_mday;
     // Pos 0 - Dia, Pos 1 - Mês, Pos 2 - Ano
     int birth_info[] = {0,0,0}; 
 
@@ -71,28 +65,69 @@ int return_age(char* birth_date) {
         birth_values = strtok(NULL, delimeter);
         index++;
     }
-
     // Liberando memória dinâmica
     free(original_date);
-
+    
+    // Pegando valores de data
+    int* actual_year = todays_date();
     // Calculando a Idade, Baseado no Código a Seguir: https://www.tutorialspoint.com/c-program-to-calculate-age
-    if (birth_info[1] > today_month) {
+    if (birth_info[1] > actual_year[1]) {
         // Se o MÊS DE NASCIMENTO > MÊS ATUAL, então ainda não chegou o aniversário. Diminua o Ano em -1 (Pois não completou)
-        today_year = today_year - 1;
-    } else if (birth_info[1] == today_month ) {
+        actual_year[2] = actual_year[2] - 1;
+    } else if (birth_info[1] == actual_year[1] ) {
         // Se o MÊS DE NASCIMENTO == MÊS ATUAL, então está no mês do aniversário, verifique se já completou.
-        if (birth_info[0] > today_day) {
+        if (birth_info[0] > actual_year[0]) {
             // Se o DIA DE NASCIMENTO > DIA DE HOJE, então não chegou no aniversário. Diminua o ANo em -1 (Pois não completou)
-            today_year = today_year -1;
+            actual_year[2] = actual_year[2] -1;
         }
     }
 
     // Calcule a Idade Final
-    int age = today_year - birth_info[2];
+    int age = actual_year[2] - birth_info[2];
     // Limpando o Buffer
     fflush(stdin); //__fpurge(stdin);
 
     return age;
+}
+
+int return_day(char* birth_date) {
+    // A função mais abaixo strtok acaba por 'danificar' o apontador original, sendo assim
+    // É criado outro para não ser modificado o valor original com memória dinâmica.
+    char* original_date = (char*) malloc((strlen(birth_date)+1)*sizeof(char)); 
+    strcpy(original_date, birth_date);
+
+    // Criando um delimitador e uma variável que ira pegar os valores individuais da data
+    const char delimeter[2] = "/";
+    char* birth_values;
+
+    // Pos 0 - Dia, Pos 1 - Mês, Pos 2 - Ano
+    int birth_info[] = {0,0,0}; 
+
+    // Strtok pega a primeira string antes do delimitador, e depois retorna ponteiros nulos com o restante da String
+    birth_values = strtok(original_date, delimeter);
+    // Enquanto birth_value não for um ponteiro nulo sem retorno, continue
+    int index = 0;
+    while(birth_values != NULL) {
+        // Coletando e Convertendo os valores de String das Datas
+        birth_info[index] = atoi(birth_values);
+        birth_values = strtok(NULL, delimeter);
+        index++;
+    }
+    // Liberando memória dinâmica
+    free(original_date);
+    
+    // Pegando valores de data
+    int* actual_year = todays_date();
+    
+    // Calculando os Dias
+    int person_day = birth_info[0] + birth_info[1] * 30 + birth_info[2] * 365;
+    int todays_day = actual_year[0] + actual_year[1] * 30 + actual_year[2] * 365;
+    int diference_in_day = person_day - todays_day;
+
+    // Limpando o Buffer
+    fflush(stdin); //__fpurge(stdin);
+
+    return diference_in_day;
 }
 
 // Função para pegar a data atual e transformar em um valor numérico
@@ -104,7 +139,6 @@ int* todays_date() {
     int today_day     = tm.tm_mday;
 
     int info[] = {today_day, today_month, today_year};
-
     int* sum_year = info;
 
     return sum_year;
