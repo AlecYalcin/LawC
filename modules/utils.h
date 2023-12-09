@@ -10,13 +10,15 @@ static char* scan_dynamic(void);
 char* replicate_string(char*);
 
 // Funções de dados
-void get_name(char* _name, int);
-void get_birth(char* _birth_date, int);
-void get_cpf(char* _cpf, int);
-void get_email(char* _email);
-void get_tel(char* _tel);
-void get_oab(char* _oab);
-void get_role(char* _role);
-void get_desc(char* _desc);
-void get_available_at(char* _available_at);
-void get_value(float* _value);
+void get_name(char*, int);
+void get_birth(char*, int);
+void get_cpf(char*, int);
+void get_email(char*);
+void get_tel(char*);
+void get_oab(char*);
+void get_role(char*);
+void get_desc(char*);
+void get_recurso(char*);
+void get_schedule(char*);
+void get_available_at(char*);
+void get_value(float*);

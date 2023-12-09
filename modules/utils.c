@@ -277,6 +277,20 @@ void get_desc(char* _desc) {
     change_last(_desc);
 }
 
+void get_recurso(char* _nome) {
+    limpa_buffer();
+    printf("> Nome do Recurso.........: ");
+    fgets(_nome, 75, stdin);
+    change_last(_nome);
+}
+
+void get_schedule(char* _nome) {
+    limpa_buffer();
+    printf("> Nome do Agendamento.....: ");
+    fgets(_nome, 75, stdin);
+    change_last(_nome);
+}
+
 void get_available_at(char* _available_at) {
     limpa_buffer();
     printf("> Disponivel Em...........: ");

@@ -20,7 +20,7 @@ void schedule_c(void) {
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
     // Coletar e Verificar Nome (Identificação) do Encontro
-    get_name(new_schedule->name, 1);
+    get_schedule(new_schedule->name);
     // Coletar e Verificar a DESCRIÇÃO
     get_desc(new_schedule->desc);
     // Coletar os dados do CPF dos Funcionarios Envolvidos
@@ -133,7 +133,7 @@ void schedule_u(void) {
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         
         // Coletar e Verificar Nome (Identificação) do Encontro
-        get_name(schedule->name, 1);
+        get_schedule(schedule->name);
         // Coletar e Verificar a DESCRIÇÃO
         get_desc(schedule->desc);
         // Coletar os dados do CPF dos Funcionarios Envolvidos
