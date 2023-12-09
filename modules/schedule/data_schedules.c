@@ -138,6 +138,11 @@ void sc_list_archive(char *ar_name, int fil_choice) {
 
             printf("> Digite agora o valor de dia/mês/ano: ");
             scanf(" %d", &date_value);
+        } else if (fil_choice == 4) {
+            do {
+                printf("\n> Você deseja filtrar por Finalizados[0] ou Não-finalizados[1]: ");
+                scanf(" %d", &choice);
+            } while(choice < 0 || choice > 1);
         }
 
         while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
@@ -165,6 +170,10 @@ void sc_list_archive(char *ar_name, int fil_choice) {
                     printf("\n!!! Aconteceu algum erro, cancelando operação. !!!\n");
                     break;
                 }
+            } else if (sche_aux->status != 0 && fil_choice == 3) {
+                sc_print_info(sche_aux); 
+            } else if ((sche_aux->status != 0 && sche_aux->finalizado == choice && fil_choice == 4)) {
+                sc_print_info(sche_aux);
             }
         }
 
@@ -185,7 +194,7 @@ void sc_dylist_archive(char *ar_name, int fil_choice) {
         Schedule* sche_aux = (Schedule*) malloc(sizeof(Schedule));
         Schedule* sche_list = NULL;
 
-        if (fil_choice == 3) {
+        if (fil_choice == 5) {
             // Ordenação por Nome
             while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
                 // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
@@ -307,6 +316,6 @@ void sc_print_info(Schedule* schedule) {
     printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
     printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
     printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
-    printf("> Data.................: %s\n", schedule->date);
+    printf("> Data.................: %s (Faltam: %d dias)\n", schedule->date, return_day(schedule->date));
     printf("> Finalizado...........: %s\n", finalizado);
 }

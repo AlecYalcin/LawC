@@ -200,14 +200,16 @@ void schedule_list(void) {
     printf("[1] - Sem Filtro, Listagem Geral\n");
     printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Data\n");
+    printf("[3] - Filtro de Ativos\n");
+    printf("[4] - Filtro de Finalizados\n");
     printf("----------------------- Relatório Ordenado ----------------------\n");
-    printf("[3] - Ordenação de Nome\n");
-    printf("[4] - Ordenação de Data\n");
+    printf("[5] - Ordenação de Nome\n");
+    printf("[6] - Ordenação de Data\n");
     printf("Digite o Numero do Filtro: ");
     scanf(" %d", &choice);
     getchar();
 
-    if (!(choice >= 3 && choice <= 4)) {
+    if (!(choice >= 5 && choice <= 6)) {
         sc_list_archive(sc_ar_name, choice);
     } else {
         sc_dylist_archive(sc_ar_name, choice);
@@ -239,14 +241,4 @@ void schedule_end(void) {
     }
 
     free(schedule);
-}
-
-void schedule_data(void) {
-    printf("-----------------------------------------------------------------\n");
-    printf("|                                                               |\n");
-    printf("|                             Law-C                             |\n");
-    printf("|                     Sistema de Advocacia                      |\n");
-    printf("|              Modulo de Agendamento - Calendario               |\n");
-    printf("|                                                               |\n");
-    printf("-----------------------------------------------------------------\n");
 }

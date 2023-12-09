@@ -408,8 +408,6 @@ int menu_schedule(int option) {
             schedule_list();
         } else if (option == 6) {
             schedule_end();
-        } else if (option == 7) {
-            schedule_data();
         } else {
             printf("\nMenu de Agendamentos: Valor Invalido!\n");
         }
