@@ -28,6 +28,9 @@ void schedule_c(void) {
 
     while(get_employer(new_schedule->id_employer) == NULL) {
         printf("\n!!! Esse funcionario NÃO existe. Tente Novamente. !!!\n");
+        printf("\n>>> Aqui estão alguns resultados aproximados... \n");
+        list_employer(new_schedule->id_employer);
+        printf("\n");
         get_cpf(new_schedule->id_employer, 1);
     }
 
@@ -36,6 +39,9 @@ void schedule_c(void) {
 
     while(get_client(new_schedule->id_client) == NULL) {
         printf("\n!!! Esse cliente NÃO existe. Tente Novamente. !!!\n");
+        printf("\n>>> Aqui estão alguns resultados aproximados... \n");
+        list_client(new_schedule->id_client);
+        printf("\n");
         get_cpf(new_schedule->id_client, 2);
     }
 
@@ -44,6 +50,9 @@ void schedule_c(void) {
 
     while(get_service(new_schedule->id_service) == NULL) {
         printf("\n!!! Esse serviço NÃO existe. Tente Novamente. !!!\n");
+        printf("\n>>> Aqui estão alguns resultados aproximados... \n");
+        list_service(new_schedule->id_service);
+        printf("\n");
         get_name(new_schedule->id_service, 2);
     }
 
@@ -198,7 +207,6 @@ void schedule_list(void) {
     scanf(" %d", &choice);
     getchar();
 
-    sc_list_archive(sc_ar_name, choice);
     if (!(choice >= 3 && choice <= 4)) {
         sc_list_archive(sc_ar_name, choice);
     } else {

@@ -17,3 +17,6 @@ int* date_numeric(char*);
 Cliente* get_client(char*);
 Employer* get_employer(char*);
 Service* get_service(char*);
+void list_client(char*);
+void list_employer(char*);
+void list_service(char*);

@@ -167,7 +167,7 @@ void e_list_archive(char *ar_name, int fil_choice) {
                         e_print_info(emp_aux);
                     }
                 }
-            // Filtro C - Listagem por Idade
+            // Filtro C - Listagem por Nome
             } else if (emp_aux->status != 0 && fil_choice == 3) {
                 if (!(strncmp(emp_aux->name, name, strlen(name)))) {
                     e_print_info(emp_aux);

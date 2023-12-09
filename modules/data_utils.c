@@ -258,3 +258,105 @@ Service* get_service(char* name) {
     return NULL;
 }
 
+void list_client(char* cpf) {
+    FILE *fp;
+    Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
+
+    fp = fopen("modules/client/_clients.dat", "rb");
+
+    if (!(fp == NULL)) {
+        int index = 0;
+        while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
+            // Comparando as Strings
+            if (!(strncmp(cli_aux->cpf, cpf, strlen(cpf))) && cli_aux->status != 0) {
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Nome.................: %s\n", cli_aux->name);
+                printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
+                printf("> CPF..................: %s\n", cli_aux->cpf);
+                printf("> Email................: %s\n", cli_aux->email);
+                printf("> Telefone.............: %s\n", cli_aux->tel);
+
+                index++;
+            }
+        }
+
+        if(index == 0) {
+            printf("\n>>> Não há resultados parecidos.\n");
+        }
+
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(cli_aux);
+}
+
+void list_employer(char* cpf) {
+    FILE *fp;
+    Employer* emp_aux = (Employer*) malloc(sizeof(Employer));
+
+    fp = fopen("modules/employer/_employers.dat", "rb");
+
+    if (!(fp == NULL)) {
+        int index = 0;
+        while(fread(emp_aux, sizeof(Employer), 1, fp)) {
+            // Comparando as Strings
+            if (!(strncmp(emp_aux->cpf, cpf, strlen(cpf))) && emp_aux->status != 0) {
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Nome....................: %s\n", emp_aux->name);
+                printf("> Idade...................: %s (%d)\n", emp_aux->birth_date, return_age(emp_aux->birth_date)); 
+                printf("> CPF.....................: %s\n", emp_aux->cpf);
+                printf("> E-mail..................: %s\n", emp_aux->email);
+                printf("> Telefone................: %s\n", emp_aux->tel);
+                printf("> OAB.....................: %s\n", emp_aux->OAB);
+                printf("> Funcao..................: %s\n", emp_aux->role);
+                printf("> Descricao...............: %s\n", emp_aux->desc);
+
+                index++;
+            }
+        }
+
+        if (index == 0) {
+            printf("\n>>> Não há resultados parecidos.\n");
+        }
+        
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(emp_aux);
+}
+
+void list_service(char* name) {
+    FILE *fp;
+    Service* ser_aux = (Service*) malloc(sizeof(Service));
+
+    fp = fopen("modules/service/_services.dat", "rb");
+
+    if (!(fp == NULL)) {
+        int index = 0;
+        while(fread(ser_aux, sizeof(Service), 1, fp)) {
+            // Comparando as Strings
+            if (!(strncmp(ser_aux->name, name, strlen(name))) && ser_aux->status != 0) {
+                printf("\n>>> ------------------------------ <<<\n");
+                printf("> Servico.................: %s\n",      ser_aux->name);
+                printf("> Valor...................: R$%.2f\n",  ser_aux->value);
+                printf("> Descricao...............: %s\n",      ser_aux->desc);
+
+                index++;
+            }
+        }
+
+        if (index == 0) {
+            printf("\n>>> Não há resultados parecidos.\n");
+        }
+        
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(ser_aux);
+}
