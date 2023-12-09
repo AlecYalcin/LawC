@@ -256,10 +256,50 @@ void sc_dylist_archive(char *ar_name, int fil_choice) {
     }
 }
 
+void sc_end_archive(char *ar_name, Schedule* schedule) {
+    FILE *fp;
+    Schedule* sche_aux = (Schedule*) malloc(sizeof(Schedule));
+
+    fp = fopen(ar_name, "r+b");
+
+     if (!(fp == NULL)) {
+
+        while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
+            // Comparando as Strings
+            if (strcmp(sche_aux->name, schedule->name) == 0 && sche_aux->status != 0) {
+                if (schedule->status != 0 && schedule->finalizado != 1) {
+                    schedule->finalizado = 1;
+                    printf("\n>>> O agendamento foi Finalizado!\n");
+                    // Após encontrar, alterar a localização do ponteiro
+                    fseek(fp, -1*sizeof(Schedule), SEEK_CUR);
+                    // Tendo reposicionado o ponteiro, atualizar.
+                    fwrite(schedule, sizeof(Schedule), 1, fp);
+                
+                    break;
+                } else {
+                    printf("\n>>> O agendamento NÃO foi Finalizado!\n");
+                    printf("Verifique Se:\n1. O Item escolhido foi excluído.\n2. O Item escolhido já foi finalizado. ");
+                }
+            }
+        }
+ 
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+
+    free(sche_aux);
+}
+
 void sc_print_info(Schedule* schedule) {
     Employer* employer  = get_employer(schedule->id_employer);
     Cliente* client     = get_client(schedule->id_client);
     Service* service    = get_service(schedule->id_service);
+
+    char* finalizado = "NAO";
+    if (schedule->finalizado == 1) {
+        finalizado = "SIM";
+    }
 
     printf("\n>>> ------------------------------ <<<\n");
     printf("> Encontro.............: %s\n", schedule->name);
@@ -268,4 +308,5 @@ void sc_print_info(Schedule* schedule) {
     printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
     printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
     printf("> Data.................: %s\n", schedule->date);
+    printf("> Finalizado...........: %s\n", finalizado);
 }

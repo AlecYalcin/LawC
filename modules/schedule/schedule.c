@@ -111,9 +111,9 @@ void schedule_r(void) {
     if (schedule == NULL) {
         printf("\n>>> Agendamento não encontrado. \n");
     } else {
-       sc_print_info(schedule);
-        free(schedule);
+       sc_print_info(schedule);     
     }
+    free(schedule);
 }
 
 void schedule_u(void) {
@@ -215,6 +215,10 @@ void schedule_list(void) {
 }
 
 void schedule_end(void) {
+    Schedule* schedule;
+    char filter[51];
+
+    limpa_buffer();
     printf("-----------------------------------------------------------------\n");
     printf("|                                                               |\n");
     printf("|                             Law-C                             |\n");
@@ -222,6 +226,19 @@ void schedule_end(void) {
     printf("|               Modulo de Agendamento - Finalizar               |\n");
     printf("|                                                               |\n");
     printf("-----------------------------------------------------------------\n");
+    printf("Digite o Nome: ");
+    // Pegando dados e alterando
+    fgets(filter, 51, stdin);
+    change_last(filter);
+    // Procurando os dados nos arquivos
+    schedule = sc_read_archive(sc_ar_name, filter);
+    if (schedule == NULL) {
+        printf("\n>>> Agendamento não encontrado. \n");
+    } else {
+       sc_end_archive(sc_ar_name, schedule);
+    }
+
+    free(schedule);
 }
 
 void schedule_data(void) {

@@ -7,3 +7,5 @@ void sc_delete_archive(char*, Schedule*);
 void sc_list_archive(char*, int);
 void sc_dylist_archive(char*, int);
 void sc_print_info(Schedule*);
+
+void sc_end_archive(char*, Schedule*);
