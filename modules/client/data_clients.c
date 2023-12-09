@@ -157,43 +157,23 @@ void c_list_archive(char *ar_name, int fil_choice) {
         while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
             // Filtro A - Listagem Completa
             if (cli_aux->status != 0 && fil_choice == 1) {
-                printf("\n>>> ------------------------------ <<<\n");
-                printf("> Nome.................: %s\n", cli_aux->name);
-                printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
-                printf("> CPF..................: %s\n", cli_aux->cpf);
-                printf("> Email................: %s\n", cli_aux->email);
-                printf("> Telefone.............: %s\n", cli_aux->tel);
+                c_print_info(cli_aux);
             
             // Filtro B - Listagem por Idade
             } else if (cli_aux->status != 0 && fil_choice == 2) {
                 if (ord == '>') {
                     if (return_age(cli_aux->birth_date) >= num) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Nome.................: %s\n", cli_aux->name);
-                        printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
-                        printf("> CPF..................: %s\n", cli_aux->cpf);
-                        printf("> Email................: %s\n", cli_aux->email);
-                        printf("> Telefone.............: %s\n", cli_aux->tel);
+                        c_print_info(cli_aux);
                     } 
                 } else if(ord == '<') {
                     if (return_age(cli_aux->birth_date) <= num) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Nome.................: %s\n", cli_aux->name);
-                        printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
-                        printf("> CPF..................: %s\n", cli_aux->cpf);
-                        printf("> Email................: %s\n", cli_aux->email);
-                        printf("> Telefone.............: %s\n", cli_aux->tel);
+                        c_print_info(cli_aux);
                     }
                 }
             // Filtro C - Listagem por Idade
             } else if (cli_aux->status != 0 && fil_choice == 3) {
                 if (!(strncmp(cli_aux->name, name, strlen(name)))) {
-                    printf("\n>>> ------------------------------ <<<\n");
-                    printf("> Nome.................: %s\n", cli_aux->name);
-                    printf("> Idade................: %s (%d)\n", cli_aux->birth_date, return_age(cli_aux->birth_date)); 
-                    printf("> CPF..................: %s\n", cli_aux->cpf);
-                    printf("> Email................: %s\n", cli_aux->email);
-                    printf("> Telefone.............: %s\n", cli_aux->tel);
+                    c_print_info(cli_aux);
                 }
             } else if (fil_choice > 3 || fil_choice < 0) {
                 printf("\n>>> Opção inválida, voltando a tela de Clientes...\n");
@@ -212,32 +192,70 @@ void c_list_archive(char *ar_name, int fil_choice) {
 }
 
 // Criação de Listagem Dinâmica
-
-void c_dylist_archive(char *ar_name) {
+void c_dylist_archive(char *ar_name, int choice) {
     FILE *fp;
 
     fp = fopen(ar_name, "rb");
 
     if (!(fp == NULL)) {
-        Cliente* cli_aux;
+        Cliente* cli_aux = (Cliente*) malloc(sizeof(Cliente));
         Cliente* cli_list = NULL;
 
-        while(!feof(fp)) {
-            // Criando Memória + Lendo Cliente
-            cli_aux = (Cliente*) malloc(sizeof(Cliente));
-            fread(cli_aux, sizeof(Cliente), 1, fp);
-            // Processo de Locação de Apontadores
-            cli_aux->prox = cli_list;
-            cli_list = cli_aux;
-        }
         
+        if (choice == 4) {
+            // Ordenação por Nome
+            while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((cli_list == NULL) || (strcmp(cli_aux->name, cli_list->name) < 0)) {
+                    cli_aux->prox = cli_list;
+                    cli_list = cli_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Cliente anterior da lista e atual.
+                    Cliente* cli_anterior = cli_list;
+                    Cliente* cli_atual    = cli_list->prox;
+                    // Comparando o cliente atual da lista com o cliente lido
+                    while((cli_atual != NULL) && (strcmp(cli_atual->name, cli_aux->name) < 0)) {
+                        cli_anterior = cli_atual;
+                        cli_atual = cli_atual->prox;
+                    }
+                    // O próximo cliente do cliente anterior vai ser o lido, e o próximo lido vai ser o atual
+                    cli_anterior->prox = cli_aux;
+                    cli_aux->prox      = cli_atual;
+                }
+                // Criando Memória + Lendo Cliente
+                cli_aux = (Cliente*) malloc(sizeof(Cliente));
+            }
+        } else {
+            // Ordenação por Idade
+            while(fread(cli_aux, sizeof(Cliente), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((cli_list == NULL) || (return_age(cli_aux->birth_date) <= return_age(cli_list->birth_date))) {
+                    cli_aux->prox = cli_list;
+                    cli_list = cli_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Cliente anterior da lista e atual.
+                    Cliente* cli_anterior = cli_list;
+                    Cliente* cli_atual    = cli_list->prox;
+                    // Comparando o cliente atual da lista com o cliente lido
+                    while((cli_atual != NULL) && (return_age(cli_atual->birth_date) < return_age(cli_aux->birth_date))) {
+                        cli_anterior = cli_atual;
+                        cli_atual = cli_atual->prox;
+                    }
+                    // O próximo cliente do cliente anterior vai ser o lido, e o próximo lido vai ser o atual
+                    cli_anterior->prox = cli_aux;
+                    cli_aux->prox      = cli_atual;
+                }
+                // Criando Memória + Lendo Cliente
+                cli_aux = (Cliente*) malloc(sizeof(Cliente));
+            }
+        }
         // Exibindo os Clientes
         printf("\n>>> Lista de Clientes\n");
-        cli_aux = cli_list->prox;
+        cli_aux = cli_list;
         while(cli_aux != NULL) {
-            printf("\nEndereço atual: %p\n", cli_aux);
-            printf("Nome do Cliente: %s\n", cli_aux->name);
-            printf("Próximo Endereço: %p\n", cli_aux->prox);
+            c_print_info(cli_aux);
             cli_aux = cli_aux->prox;
         }
 
@@ -248,6 +266,19 @@ void c_dylist_archive(char *ar_name) {
             free(cli_aux);
             cli_aux = cli_list;
         }
+
         fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
     }
+}
+
+// Função para Mostrar Dados
+void c_print_info(Cliente* cliente) {
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Nome.................: %s\n", cliente->name);
+    printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
+    printf("> CPF..................: %s\n", cliente->cpf);
+    printf("> Email................: %s\n", cliente->email);
+    printf("> Telefone.............: %s\n", cliente->tel);
 }

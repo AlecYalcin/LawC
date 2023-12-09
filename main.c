@@ -112,6 +112,7 @@ int menu_system(int option) {
     printf("|                     3. Gestao de Recursos                     |\n");
     printf("|                     4. Gestao de Clientes                     |\n");
     printf("|                     5. Agendamento de Servicos                |\n");
+    printf("|                     6. Apagar Banco de Dados                  |\n");
     printf("|                     0. Voltar ao Inicio                       |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
@@ -131,12 +132,14 @@ int menu_system(int option) {
             } else if (option == 4) {
                 option = menu_clients(option);
             } else if (option == 5) {
-                option = menu_schedule(option);
+                option = menu_schedule(option); 
+            } else if (option == 6) {
+                clear_database();
+                option = 0;
             } else {
                 printf("\nMenu Sistemas: Valor Invalido!\n");
                 break;
             }
-
         } while(option != 0);
         // Retornando o valor do próprio menu
         option = 1;

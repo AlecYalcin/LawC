@@ -141,23 +141,9 @@ void sc_list_archive(char *ar_name, int fil_choice) {
         }
 
         while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
-            Employer* employer;
-            Cliente* client;
-            Service* service;
-
-            employer  = get_employer(sche_aux->id_employer);
-            client    = get_client(sche_aux->id_client);
-            service   = get_service(sche_aux->id_service);
-
             // Filtro A - Listagem Completa
             if (sche_aux->status != 0 && fil_choice == 1) {
-                printf("\n>>> ------------------------------ <<<\n");
-                printf("> Encontro.............: %s\n", sche_aux->name);
-                printf("> Descricao............: %s\n", sche_aux->desc);
-                printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
-                printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
-                printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
-                printf("> Data.................: %s\n", sche_aux->date);
+                sc_print_info(sche_aux);
             // Filtro B - Listagem por Data           
             } else if (sche_aux->status != 0 && fil_choice == 2) {
                 int* date = todays_date();
@@ -165,33 +151,15 @@ void sc_list_archive(char *ar_name, int fil_choice) {
 
                 if(choice == 1) {
                     if(schedule_date[0] == date_value) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Encontro.............: %s\n", sche_aux->name);
-                        printf("> Descricao............: %s\n", sche_aux->desc);
-                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
-                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
-                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
-                        printf("> Data.................: %s\n", sche_aux->date);
+                        sc_print_info(sche_aux);
                     }
                 } else if (choice == 2) {
                     if (schedule_date[1] == date_value) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Encontro.............: %s\n", sche_aux->name);
-                        printf("> Descricao............: %s\n", sche_aux->desc);
-                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
-                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
-                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
-                        printf("> Data.................: %s\n", sche_aux->date);
+                        sc_print_info(sche_aux);
                     }
                 } else if (choice == 3) {
                     if (schedule_date[2] == date_value) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Encontro.............: %s\n", sche_aux->name);
-                        printf("> Descricao............: %s\n", sche_aux->desc);
-                        printf("> Funcionario..........: %s (%s)\n", employer->name, sche_aux->id_employer);
-                        printf("> Cliente..............: %s (%s)\n", client->name, sche_aux->id_client);
-                        printf("> Serviço..............: %s (R$%.2f)\n", sche_aux->id_service, service->value);
-                        printf("> Data.................: %s\n", sche_aux->date);
+                        sc_print_info(sche_aux);
                     }
                 } else {
                     printf("\n!!! Aconteceu algum erro, cancelando operação. !!!\n");
@@ -206,4 +174,98 @@ void sc_list_archive(char *ar_name, int fil_choice) {
     }
 
     free(sche_aux);
+}
+
+void sc_dylist_archive(char *ar_name, int fil_choice) {
+    FILE *fp;
+
+    fp = fopen(ar_name, "rb");
+
+    if (!(fp == NULL)) {
+        Schedule* sche_aux = (Schedule*) malloc(sizeof(Schedule));
+        Schedule* sche_list = NULL;
+
+        if (fil_choice == 3) {
+            // Ordenação por Nome
+            while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((sche_list == NULL) || (strcmp(sche_aux->name, sche_list->name) < 0)) {
+                    sche_aux->prox = sche_list;
+                    sche_list = sche_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Schedule anterior da lista e atual.
+                    Schedule* sche_anterior = sche_list;
+                    Schedule* sche_atual    = sche_list->prox;
+                    // Comparando o Schedule atual da lista com o Schedule lido
+                    while((sche_atual != NULL) && (strcmp(sche_atual->name, sche_aux->name) < 0)) {
+                        sche_anterior = sche_atual;
+                        sche_atual = sche_atual->prox;
+                    }
+                    // O próximo Schedule do Schedule anterior vai ser o lido, e o próximo lido vai ser o atual
+                    sche_anterior->prox = sche_aux;
+                    sche_aux->prox      = sche_atual;
+                }
+                // Criando Memória + Lendo Schedule
+                sche_aux = (Schedule*) malloc(sizeof(Schedule));
+            }
+        } else {
+            // Ordenação por Idade
+            while(fread(sche_aux, sizeof(Schedule), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((sche_list == NULL) || (return_age(sche_aux->date) <= return_age(sche_list->date))) {
+                    sche_aux->prox = sche_list;
+                    sche_list = sche_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Schedule anterior da lista e atual.
+                    Schedule* sche_anterior = sche_list;
+                    Schedule* sche_atual    = sche_list->prox;
+                    // Comparando o Schedule atual da lista com o Schedule lido
+                    while((sche_atual != NULL) && (return_age(sche_atual->date) < return_age(sche_aux->date))) {
+                        sche_anterior = sche_atual;
+                        sche_atual = sche_atual->prox;
+                    }
+                    // O próximo Schedule do Schedule anterior vai ser o lido, e o próximo lido vai ser o atual
+                    sche_anterior->prox = sche_aux;
+                    sche_aux->prox      = sche_atual;
+                }
+                // Criando Memória + Lendo Schedule
+                sche_aux = (Schedule*) malloc(sizeof(Schedule));
+            }
+        }
+        // Exibindo os Schedules
+        printf("\n>>> Lista de Agendamentos\n");
+        sche_aux = sche_list;
+        while(sche_aux != NULL) {
+            sc_print_info(sche_aux);
+            sche_aux = sche_aux->prox;
+        }
+
+        // Liberando a memória
+        sche_aux = sche_list;
+        while(sche_list != NULL) {
+            sche_list = sche_list->prox;
+            free(sche_aux);
+            sche_aux = sche_list;
+        }
+
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+}
+
+void sc_print_info(Schedule* schedule) {
+    Employer* employer  = get_employer(schedule->id_employer);
+    Cliente* client     = get_client(schedule->id_client);
+    Service* service    = get_service(schedule->id_service);
+
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Encontro.............: %s\n", schedule->name);
+    printf("> Descricao............: %s\n", schedule->desc);
+    printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
+    printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
+    printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
+    printf("> Data.................: %s\n", schedule->date);
 }

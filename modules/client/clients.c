@@ -31,12 +31,7 @@ void clients_c(void)  {
     // Adicionar Status
     new_client->status = 1;
 
-    printf("\n>>> ------------------------------ <<<\n");
-    printf("> Nome.................: %s\n", new_client->name);
-    printf("> Idade................: %s (%d)\n", new_client->birth_date, return_age(new_client->birth_date)); 
-    printf("> CPF..................: %s\n", new_client->cpf);
-    printf("> Email................: %s\n", new_client->email);
-    printf("> Telefone.............: %s\n", new_client->tel);
+    c_print_info(new_client);
 
     // Verificar existencia de cliente parecido
     Cliente* aux_client = c_read_archive(c_ar_name, new_client->cpf);
@@ -85,12 +80,7 @@ void clients_r(void)  {
     if (cliente == NULL) {
         printf("\n>>> Cliente não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
-        printf("> CPF..................: %s\n", cliente->cpf);
-        printf("> Email................: %s\n", cliente->email);
-        printf("> Telefone.............: %s\n", cliente->tel);
+        c_print_info(cliente);
 
         free(cliente);
     }
@@ -117,12 +107,7 @@ void clients_u(void)  {
     if (cliente == NULL) {
         printf("\n>>> Cliente não encontrado. \n");
     } else {
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
-        printf("> CPF..................: %s\n", cliente->cpf);
-        printf("> Email................: %s\n", cliente->email);
-        printf("> Telefone.............: %s\n", cliente->tel);
+        c_print_info(cliente);
 
         printf("\n>>> Preencher as Novas Informacoes <<<\n");
         // Coletar e Verificar nome;
@@ -136,12 +121,7 @@ void clients_u(void)  {
         // Coletar e Verificar o Contato;
         get_tel(cliente->tel);
 
-        printf("\n>>> ------------------------------ <<<\n");
-        printf("> Nome.................: %s\n", cliente->name);
-        printf("> Idade................: %s (%d)\n", cliente->birth_date, return_age(cliente->birth_date)); 
-        printf("> CPF..................: %s\n", cliente->cpf);
-        printf("> Email................: %s\n", cliente->email);
-        printf("> Telefone.............: %s\n", cliente->tel);
+        c_print_info(cliente);
 
         c_update_archive(c_ar_name, filter, cliente);
     }
@@ -184,13 +164,20 @@ void clients_list(void)  {
     printf("|                Modulo de Funcionarios - Listar                |\n");
     printf("|                      Selecione o Filtro!                      |\n");
     printf("-----------------------------------------------------------------\n");
-    printf("[1] - Sem Filtro, Listagem Geral\n");
+    printf("[1] - Listagem Geral\n");
+    printf("---------------------- Relatório Excludente ---------------------\n");
     printf("[2] - Filtro de Idade\n");
     printf("[3] - Filtro de Nome\n");
+    printf("----------------------- Relatório Ordenado ----------------------\n");
+    printf("[4] - Ordenação de Nome\n");
+    printf("[5] - Ordenação de Idade\n");
     printf("Digite o Numero do Filtro: ");
     scanf("%d", &choice);
     getchar();
 
-    c_dylist_archive(c_ar_name);
-    //c_list_archive(c_ar_name, choice);
+    if (!(choice >= 4 && choice <= 5)) {
+        c_list_archive(c_ar_name, choice);
+    } else {
+        c_dylist_archive(c_ar_name, choice);
+    }
 }

@@ -154,35 +154,23 @@ void s_list_archive(char *ar_name, int fil_choice) {
         while(fread(ser_aux, sizeof(Service), 1, fp)) {
             // Filtro A - Listagem Completa
             if (ser_aux->status != 0 && fil_choice == 1) {
-                printf("\n>>> ------------------------------ <<<\n");
-                printf("> Servico.................: %s\n",      ser_aux->name);
-                printf("> Valor...................: R$%.2f\n",  ser_aux->value);
-                printf("> Descricao...............: %s\n",      ser_aux->desc);
+                s_print_info(ser_aux);
             
             // Filtro B - Listagem por Valor
             } else if (ser_aux->status != 0 && fil_choice == 2) {
                 if (ord == '>') {
                     if (ser_aux->value >= num) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Servico.................: %s\n",      ser_aux->name);
-                        printf("> Valor...................: R$%.2f\n",  ser_aux->value);
-                        printf("> Descricao...............: %s\n",      ser_aux->desc);
+                        s_print_info(ser_aux);
                     } 
                 } else if(ord == '<') {
                     if (ser_aux->value <= num) {
-                        printf("\n>>> ------------------------------ <<<\n");
-                        printf("> Servico.................: %s\n",      ser_aux->name);
-                        printf("> Valor...................: R$%.2f\n",  ser_aux->value);
-                        printf("> Descricao...............: %s\n",      ser_aux->desc);
+                        s_print_info(ser_aux);
                     }
                 }
             // Filtro C - Listagem por Idade
             } else if (ser_aux->status != 0 && fil_choice == 3) {
                 if (!(strncmp(ser_aux->name, name, strlen(name)))) {
-                    printf("\n>>> ------------------------------ <<<\n");
-                    printf("> Servico.................: %s\n",      ser_aux->name);
-                    printf("> Valor...................: R$%.2f\n",  ser_aux->value);
-                    printf("> Descricao...............: %s\n",      ser_aux->desc);
+                    s_print_info(ser_aux);
                 }
             } else if (fil_choice > 3 || fil_choice < 0) {
                 printf("\n>>> Opção inválida, voltando a tela de Serviços...\n");
@@ -198,4 +186,93 @@ void s_list_archive(char *ar_name, int fil_choice) {
     }
 
     free(ser_aux);
+}
+
+void s_dylist_archive(char *ar_name, int fil_choice) {
+    FILE *fp;
+
+    fp = fopen(ar_name, "rb");
+
+    if (!(fp == NULL)) {
+        Service* ser_aux = (Service*) malloc(sizeof(Service));
+        Service* ser_list = NULL;
+
+        
+        if (fil_choice == 4) {
+            // Ordenação por Nome
+            while(fread(ser_aux, sizeof(Service), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((ser_list == NULL) || (strcmp(ser_aux->name, ser_list->name) < 0)) {
+                    ser_aux->prox = ser_list;
+                    ser_list = ser_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Service anterior da lista e atual.
+                    Service* ser_anterior = ser_list;
+                    Service* ser_atual    = ser_list->prox;
+                    // Comparando o Service atual da lista com o Service lido
+                    while((ser_atual != NULL) && (strcmp(ser_atual->name, ser_aux->name) < 0)) {
+                        ser_anterior = ser_atual;
+                        ser_atual = ser_atual->prox;
+                    }
+                    // O próximo Service do Service anterior vai ser o lido, e o próximo lido vai ser o atual
+                    ser_anterior->prox = ser_aux;
+                    ser_aux->prox      = ser_atual;
+                }
+                // Criando Memória + Lendo Service
+                ser_aux = (Service*) malloc(sizeof(Service));
+            }
+        } else {
+            // Ordenação por Nome
+            while(fread(ser_aux, sizeof(Service), 1, fp)) {
+                // Caso #1: Caso o NOME INSERIDO for MENOR que o elemento atual
+                if((ser_list == NULL) || (ser_aux->value <= ser_list->value)) {
+                    ser_aux->prox = ser_list;
+                    ser_list = ser_aux;
+                // Caso #2: Caso o NOME INSERIDO for MAIOR que o elemento autal
+                } else {
+                    // Gerando apontadores para o Service anterior da lista e atual.
+                    Service* ser_anterior = ser_list;
+                    Service* ser_atual    = ser_list->prox;
+                    // Comparando o Service atual da lista com o Service lido
+                    while((ser_atual != NULL) && (ser_atual->value < ser_aux->value)) {
+                        ser_anterior = ser_atual;
+                        ser_atual = ser_atual->prox;
+                    }
+                    // O próximo Service do Service anterior vai ser o lido, e o próximo lido vai ser o atual
+                    ser_anterior->prox = ser_aux;
+                    ser_aux->prox      = ser_atual;
+                }
+                // Criando Memória + Lendo Service
+                ser_aux = (Service*) malloc(sizeof(Service));
+            }
+        }
+
+        // Exibindo os Services
+        printf("\n>>> Lista de Services\n");
+        ser_aux = ser_list;
+        while(ser_aux != NULL) {
+            s_print_info(ser_aux);
+            ser_aux = ser_aux->prox;
+        }
+
+        // Liberando a memória
+        ser_aux = ser_list;
+        while(ser_list != NULL) {
+            ser_list = ser_list->prox;
+            free(ser_aux);
+            ser_aux = ser_list;
+        }
+
+        fclose(fp);
+    } else {
+        printf("\n>>> Erro na criação do arquivo! <<<\n");
+    }
+}
+
+void s_print_info(Service* service) {
+    printf("\n>>> ------------------------------ <<<\n");
+    printf("> Servico.................: %s\n",      service->name);
+    printf("> Valor...................: R$%.2f\n",  service->value);
+    printf("> Descricao...............: %s\n",      service->desc);
 }

@@ -1,6 +1,8 @@
 typedef struct employer Employer;
 struct employer {
+    // Código de Exclusão
     int status;
+    // Estruturas Fixas
     char name[75];
     char birth_date[12];
     char cpf[12];
@@ -9,6 +11,8 @@ struct employer {
     char OAB[100];
     char role[75];
     char desc[300];
+    // Apontador de Lista
+    Employer* prox; 
 };
 void employer_c(void);
 void employer_r(void);
