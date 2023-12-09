@@ -310,12 +310,19 @@ void sc_print_info(Schedule* schedule) {
         finalizado = "SIM";
     }
 
+    char* info = "";
+    if(return_day(schedule->date) == 0) {
+        info = "[Hoje!]";
+    } else if (return_day(schedule->date) < 0) {
+        info = "[Reunião Expirou! Termine-a ou Remarque-a]";
+    }
+
     printf("\n>>> ------------------------------ <<<\n");
     printf("> Encontro.............: %s\n", schedule->name);
     printf("> Descricao............: %s\n", schedule->desc);
     printf("> Funcionario..........: %s (%s)\n", employer->name, schedule->id_employer);
     printf("> Cliente..............: %s (%s)\n", client->name, schedule->id_client);
     printf("> Serviço..............: %s (R$%.2f)\n", schedule->id_service, service->value);
-    printf("> Data.................: %s (Faltam: %d dias)\n", schedule->date, return_day(schedule->date));
+    printf("> Data.................: %s (Faltam: %d dias %s)\n", schedule->date, return_day(schedule->date), info);
     printf("> Finalizado...........: %s\n", finalizado);
 }

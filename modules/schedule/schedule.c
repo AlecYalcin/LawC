@@ -58,6 +58,12 @@ void schedule_c(void) {
 
     // Coleta a Data do Encontro
     get_birth(new_schedule->date, 0);
+
+    while(return_day(new_schedule->date) < 0) {
+        printf("\n!!! Esse Data JÁ Passou. Tente Novamente. !!!\n");
+        get_birth(new_schedule->date, 0);
+    }
+
     // Alterar Status
     new_schedule->status = 1;
     new_schedule->finalizado = 0;
