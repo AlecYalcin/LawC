@@ -386,7 +386,6 @@ int menu_schedule(int option) {
     printf("|                     4. Excluir Agendamento                    |\n");
     printf("|                     5. Listar Agendamentos                    |\n");
     printf("|                     6. Finalizar Agendamentos                 |\n");
-    printf("|                     7. Calendario de Agendamentos             |\n");
     printf("|                     0. Voltar ao Menu                         |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
