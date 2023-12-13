@@ -112,7 +112,6 @@ int menu_system(int option) {
     printf("|                     3. Gestao de Recursos                     |\n");
     printf("|                     4. Gestao de Clientes                     |\n");
     printf("|                     5. Agendamento de Servicos                |\n");
-    printf("|                     6. Apagar Banco de Dados                  |\n");
     printf("|                     0. Voltar ao Inicio                       |\n");
     printf("-----------------------------------------------------------------\n");
     printf("Escolha uma opcao: ");
@@ -133,7 +132,8 @@ int menu_system(int option) {
                 option = menu_clients(option);
             } else if (option == 5) {
                 option = menu_schedule(option); 
-            } else if (option == 6) {
+            // Caso seja preciso limpar o banco de dados
+            } else if (option == 8762) {
                 clear_database();
                 option = 0;
             } else {
